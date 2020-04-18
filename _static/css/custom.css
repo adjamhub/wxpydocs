@@ -6,6 +6,5 @@
 .wy-nav-content {max-width:900px}
 
 /* più distanza tra i capitoli */
-h2 {padding-top:50px}
-h3 {padding-top:30px}
-h4 {padding-top:20px}
+h1,h2 {padding-top:50px}
+h3,h4,h5,h6 {padding-top:30px}

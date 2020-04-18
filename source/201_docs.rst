@@ -1,3 +1,7 @@
+.. |br| raw:: html
+
+    <br>
+
 ==============
 Documentazione
 ==============
@@ -17,12 +21,43 @@ Cliccate su uno dei gruppi che vi interessano, date un occhio al codice e assolu
 
 
 
-Riferimenti alle classi wxPython studiate
-=========================================
+
+Modulo wx
+=========
+
+Il modulo wx rappresenta il modulo principale della libreria wxPython e quello che contiene le classi sicuramente necessarie per implementare una GUI.
+L'elenco completo delle classi presenti nel modulo si trova al link: https://docs.wxpython.org/wx.1moduleindex.html. |br|
+Sotto trovate le classi che abbiamo utilizzato.
 
 
 `wx.App <https://docs.wxpython.org/wx.App.html>`_
     Classe che gestisce le applicazioni con GUI implementate tramite wxPython.
     
+`wx.Frame <https://docs.wxpython.org/wx.Frame.html>`_
+    Classe che implementa una generica finestra vuota, ma perfettamente funzionante.
+    
+`wx.StaticText <https://docs.wxpython.org/wx.StaticText.html>`_
+    Classe che implementa una etichetta dove il programmatore può inserire un testo da visualizzare all'utente.
+    
+
+Modulo wx.adv
+=============
+
+Il modulo wx.adv contiene classi più avanzate rispetto a quelle presenti nel modulo wx ma meno utilizzate e quindi relegate in un modulo alternativo
+L'elenco completo delle classi presenti nel modulo si trova al link: https://docs.wxpython.org/wx.adv.1moduleindex.html. |br|
+Sotto trovate le classi che abbiamo utilizzato.
 
 
+
+
+Modulo wx.RichTextCtrl
+======================
+
+Il modulo wx.RichTextCtrl contiene l'implementazione di un controllo Rich Text utile per l'implementazione di un editor di testo con funzionalità avanzate.
+L'elenco completo delle classi presenti nel modulo si trova al link: https://docs.wxpython.org/wx.richtext.1moduleindex.html. |br|
+Sotto trovate le classi che abbiamo utilizzato.
+
+
+`wx.richtext.RichTextCtrl <https://docs.wxpython.org/wx.richtext.RichTextCtrl.html>`_
+    Classe che implementa una widget per implementare un editor di testo.
+    

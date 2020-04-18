@@ -3,97 +3,33 @@ Primi Concetti, primi Esempi
 ============================
 
 
-wxPython è un toolkit Python cross-platform per la creazione di interfacce grafiche che si basa su 5 moduli:
-
-#. **Windows**: le widgets che saranno finestre delle applicazioni basate su wxPython.
-
-#. **GDI (Graphic Device Interface)**: Un insieme di classi per disegnare oggetti.
-
-#. **Core**: classi elementari da cui derivano tutte le altre (per sfruttare al meglio l'ereditarietà)
-
-#. **Misc**: classi miste di utilità.
-
-#. **Controls**: fornisce le widgets più comuni. Pulsanti, radiobutton, Toolbars...
-
+wxPython è un toolkit Python cross-platform per la creazione di applicazioni con GUI e che espone una lunga lista di widgets per i compiti più disparati.
+Le sue classi sono organizzate in moduli che pian piano andremo a studiare: per adesso ci basterà sapere che le classi principali sono disponibili nel modulo
+**wx**, lo stesso che abbiamo importato nell'esempio *Hello, World!*.
 
 Capisco che arrivato a questo punto, prima di andare avanti, è necessario che io faccia una pausa e spieghi una serie di termini che ho utilizzato qua e là e che probabilmente ancora non conoscete.
 
 *toolkit*
     Letteralmente "cassetta degli attrezzi", rappresenta l'insieme di strumenti necessari per eseguire un compito. Il compito del toolkit wxPython è la creazione
     di applicazioni grafiche, gli strumenti che utilizza sono classi Python.
+
+*GUI*
+    Acronimo di *Graphical User Interface*, indica la capacità di alcune applicazioni di interagire con gli utenti tramite la modalità WIMP (e adesso spiego WIMP...)
+    
+*WIMP*
+    Acronimo di *Windows Icon Mouse Pointer*. Rappresenta una modalità tramite la quale interagire con il sistema operativo e le applicazioni, alternativa a quella
+    testuale, tipica delle linee di comando.
     
 *cross-platform*
     Rappresenta la capacità di alcuni software di essere utilizzati su vari sistemi operativi. Per quanto riguarda wxPython essa è disponibile su tutti i sistemi
-    operativi desktop, in particolare sicuramente disponibile su Windows, Mac OS e Linux.
+    operativi desktop, in particolare è sicuramente disponibile su Windows, Mac OS e Linux.
     
 *Widget*
-    Si tratta di un generico oggetto grafico. Nel contesto wxPython si tratta di una classe wxPython che implementa un oggetto grafico, ad esempio un pulsante, una 
-    finestra, una checkbox, etc...
+    Si tratta di un generico oggetto grafico. Nel contesto wxPython si tratta di una classe wxPython che implementa un oggetto grafico, ad esempio la classe che 
+    implementa un pulsante (e quindi il pulsante), la classe che implementa una finestra, una checkbox, etc...
     
 
-Oggetti wx disponibili
-======================
-
-Gli oggetti disponibili nella libreria wxPython sono numerosi e catalogati a seconda del loro utilizzo. Almeno all'inizio devo elencarvi i più importanti, introducendo i gruppi ove si trovano per permettere una prima categorizzazione:
-
-Base Widgets
-    Widget da cui derivano le altre, solitamente poco usate in maniera diretta
-    
-    * wx.Window
-    * wx.Control
-    * wx.ControlWithItem 
-
-Top level Widgets
-    Finestre e widgets di riferimento per un gruppo di widgets
-
-    * wx.Frame
-    * wx.MDIParentFrame
-    * wx.MDIChildFrame
-    * wx.Dialog
-    * wx.PopupWindow 
-
-Containers
-    Widgets contenitrici per organizzare il layout della finestra
-
-    * wx.Panel
-    * wx.Notebook
-    * wx.ScrolledWindow
-    * wx.SplitterWindow 
-
-Dynamic Widgets
-    Widgets con cui l'utente può interagire in maniera diretta (scrivendo, cliccando, etc...)
-
-    * wx.Button
-    * wx.BitmapButton
-    * wx.Choice
-    * wx.ComboBox
-    * wx.CheckBox
-    * wx.Grid
-    * wx.ListBox
-    * wx.RadioBox
-    * wx.RadioButton
-    * wx.ScrollBar
-    * wx.SpinButton
-    * wx.SpinCtrl
-    * wx.Slider
-    * wx.TextCtrl
-    * wx.ToggleButton 
-    
-Static Widgets
-    Widgets per la visualizzazione delle informazioni
-
-    * wx.Gauge
-    * wx.StaticText
-    * wx.StaticBitmap
-    * wx.StaticLine
-    * wx.StaticBox 
-
-Other Widgets
-    Widgets che non appartengono ai gruppi precedenti
-
-    * wx.MenuBar
-    * wx.ToolBar
-    * wx.StatusBar
+Benissimo! Detto questo passiamo a reimplementare l'unico esempio che abbiamo finora visto e ragioniamoci un pò sù
 
 
 Esempio 0: ancora "Hello, World!"
@@ -103,7 +39,7 @@ Riguardiamo per un attimo il solito esempio iniziale alla luce delle nuove cose 
 
 .. code:: python
 
-    # si importa il modulo wx, che contiene tutte le classi wxPython 
+    # si importa il modulo wx, che contiene le classi wxPython principali
     import wx
 
     # si crea un oggetto Applicazione.
@@ -122,7 +58,7 @@ Riguardiamo per un attimo il solito esempio iniziale alla luce delle nuove cose 
     app.MainLoop()
     
 
-.. tip::
+.. note::
     Il **Main Event Loop** o *ciclo principale degli eventi* è uno stato di grazia in cui si pone ogni applicazione grafica dopo aver disegnato le proprie widgets. 
     
     In questo particolare stato di colloquio perenne tra il sistema operativo, l'utente e l'applicazione stessa, quest'ultima diventa in grado di intercettare gli eventi che accadono nel sistema (un click su un pulsante, un movimento del mouse, la carta della stampante che finisce, la rete che si sconnette, etc...) e di rispondere (eventualmente) eseguendo una funzione tra quelle disponibili fra gli oggetti che la compongono.

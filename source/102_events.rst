@@ -124,7 +124,7 @@ Nell'esempio che segue la finestra che appare è chiudibile dall'utente (con sco
 Come al solito... copiate e provate!
 
 .. tip::
-    In questo unico caso, in cui si intercetta l'evento **wx.EVT_CLOSE** è necessario chiudere la finestra utilizzando *Destroy* invece di *Close(True)*.
+    In questo unico caso, in cui si intercetta l'evento **wx.EVT_CLOSE** è necessario chiudere la finestra utilizzando *Destroy()* invece di *Close(True)*.
     Infatti la funzione *Close()* genera un evento EVT_CLOSE che di solito chiama la funzione di chiusura predefinita, ma in questo richiamerebbe 
     la funzione chiudi definita da noi che richiamerebbe la funzione *Close()*, dando vita ad un ciclo infinito.
     

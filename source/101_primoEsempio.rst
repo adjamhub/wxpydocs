@@ -75,17 +75,17 @@ Inoltre produrremo una nuova classe che deriva da wx.Frame per inserirvi l'etich
 
     import wx
 
-    # creazione classe derivata da wx.Frame
+    # classe che deriva da wx.Frame
     class LaMiaPrimaFinestra(wx.Frame):
         
         def __init__(self):
             wx.Frame.__init__(self, None, title="La mia prima finestra")
-            self.control = wx.StaticText(self, label="Hello, World!")
-            self.Show(True)
+            self.etichetta = wx.StaticText(self, label="Hello, World!")
     
     # non dovrebbe essere difficilissimo, ormai..
     app = wx.App()
     windows = LaMiaPrimaFinestra()
+    windows.Show(True)
     app.MainLoop()
 
 

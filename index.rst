@@ -33,7 +33,9 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/102_events
    source/103_widgets
    source/110_layout
+   source/112_exercizes
    source/115_dialogs
+   source/118_advanced
    source/120_menu
    source/122_toolbars
    

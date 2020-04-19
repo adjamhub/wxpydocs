@@ -1,3 +1,4 @@
+
 .. |br| raw:: html
 
     <br>
@@ -39,7 +40,10 @@ Sotto trovate le classi che abbiamo utilizzato.
 `wx.StaticText <https://docs.wxpython.org/wx.StaticText.html>`_
     Classe che implementa una etichetta dove il programmatore può inserire un testo da visualizzare all'utente.
     
-
+`wx.Button <https://docs.wxpython.org/wx.Button.html>`_
+    Classe che implementa un pulsante cliccabile.
+    
+    
 Modulo wx.adv
 =============
 

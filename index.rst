@@ -36,12 +36,13 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/112_exercizes
    source/115_dialogs
    source/118_advanced
-   source/120_menu
-   source/122_toolbars
+   source/120_menu_toolbars
+   source/130_summary
    
 
 .. toctree::
    :maxdepth: 1
    :caption: wxPython docs
 
-   source/201_docs
+   source/201_wx
+   source/299_tools

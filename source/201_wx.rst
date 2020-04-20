@@ -1,0 +1,50 @@
+=========
+Modulo wx
+=========
+
+
+Il modulo wx rappresenta il modulo principale della libreria wxPython e quello che contiene le classi sicuramente necessarie per implementare una GUI.
+L'elenco completo delle classi presenti nel modulo si trova al link: https://docs.wxpython.org/wx.1moduleindex.html.
+
+Sotto trovate le classi che abbiamo utilizzato.
+
+
+`wx.App <https://docs.wxpython.org/wx.App.html>`_
+    Classe che gestisce le applicazioni con GUI implementate tramite wxPython.
+    
+`wx.Frame <https://docs.wxpython.org/wx.Frame.html>`_
+    Classe che implementa una generica finestra vuota, ma perfettamente funzionante.
+
+`wx.Button <https://docs.wxpython.org/wx.Button.html>`_
+    Classe che implementa un pulsante cliccabile.
+
+`wx.ToggleButton <https://docs.wxpython.org/wx.ToggleButton.html>`_
+    Classe che implementa un pulsante con due stati: cliccato e non cliccato.
+    
+`wx.StaticText <https://docs.wxpython.org/wx.StaticText.html>`_
+    Classe che implementa una etichetta dove il programmatore può inserire un testo da visualizzare all'utente.
+
+`wx.StaticLine <https://docs.wxpython.org/wx.StaticLine.html>`_
+    Classe che implementa una linea decorativa, orizzontale o verticale.
+    
+`wx.StaticBox <https://docs.wxpython.org/wx.StaticBox.html>`_
+    Classe che implementa una decorazione per raggruppare le widget. Utile per organizzare il layout.
+    
+`wx.ComboBox <https://docs.wxpython.org/wx.ComboBox.html>`_
+    Classe che implementa un menù a tendina
+    
+`wx.CheckBox <https://docs.wxpython.org/wx.CheckBox.html>`_
+    Classe che implementa una casella di spunta.
+    
+`wx.RadioButton <https://docs.wxpython.org/wx.RadioButton.html>`_
+    Classe che implementa un pulsante selezionabile in maniera mutualmente esclusiva.
+    
+`wx.Gauge <https://docs.wxpython.org/wx.Gauge.html>`_
+    Classe che implementa una barra di avanzamento.
+    
+`wx.Slider <https://docs.wxpython.org/wx.Slider.html>`_
+    Classe che implementa un cursore ad avanzamento lineare.
+
+`wx.SpinCtrl <https://docs.wxpython.org/wx.SpinCtrl.html>`_
+    Classe che implementa un selettore numerico con pulsanti di avanzamento.
+

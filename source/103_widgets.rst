@@ -35,7 +35,7 @@ Nell'esempio proposto quando si clicca il pulsante (evento **wx.EVT_BUTTON**) si
         def __init__(self):
             super().__init__(None, title="Iconificami")
             pannello = wx.Panel(self)
-            self.pulsante = wx.Button(pannello, label="Riduci ad icona", pos=(5,5), size=(100,40))
+            self.pulsante = wx.Button(pannello, label="Riduci ad icona", pos=(5,5), size=(150,40))
             self.pulsante.Bind(wx.EVT_BUTTON, self.iconifica)
             
         def iconifica(self, event):
@@ -69,7 +69,8 @@ e si cambia la scritta sul pulsante (che rimane cliccato). Cliccandolo di nuovo 
         
         def __init__(self):
             super().__init__(None, title="Fullscreen(er)")
-            self.fsButton = wx.ToggleButton(self, label="Metti fullscreen")
+            pannello = wx.Panel(self)
+            self.fsButton = wx.ToggleButton(pannello, label="Metti fullscreen", pos=(5,5), size=(150,40))
             self.fsButton.Bind(wx.EVT_TOGGLEBUTTON, self.mettiFullScreen)
             
         def mettiFullScreen(self, event):
@@ -81,13 +82,13 @@ e si cambia la scritta sul pulsante (che rimane cliccato). Cliccandolo di nuovo 
                 self.fsButton.SetLabel("Metti fullscreen")
 
     # ----------------------------------------
+
     app = wx.App()
 
     window = Esempio()
     window.Show()
 
     app.MainLoop()
-
 
     
 wx.StaticText
@@ -97,7 +98,7 @@ La classe wx.StaticText rappresenta una widget che implementa una etichetta dove
 
 .. image:: images/wxStaticText.jpg
 
-Nel semplicissimo esempio proposto, viene utilizzato la widget wx.StaticText per visualizzare una poesia in più righe.
+Nel semplicissimo esempio proposto, viene utilizzato la widget wx.StaticText per visualizzare una poesia in più righe. La widget è inserita a "tutta finestra".
 
 .. code:: python
 
@@ -128,7 +129,7 @@ La classe wx.StaticLine rappresenta una widget che implementa una linea decorati
 .. image:: images/wxStaticLine.jpg
 
 Inserire una wx.StaticLine è veramente semplice e serve solo a scopo decorativo. Approfitto di questa per farvi vedere come modificare il font 
-di una wx.StaticText e realizzare una widget con titolo, linea, testo.
+di una wx.StaticText e realizzare una widget con titolo, linea e testo, come vedete nella figura.
 
 .. code:: python
 
@@ -138,15 +139,16 @@ di una wx.StaticText e realizzare una widget con titolo, linea, testo.
         
         def __init__(self):
             super().__init__(None, title="Poesia")
-                
+            pannello = wx.Panel(self)
+            
             font = wx.Font(20,wx.DEFAULT,wx.NORMAL,wx.BOLD)
-            self.titolo = wx.StaticText(self, label="Soldati",pos=(10,10), size=(200,30))
+            self.titolo = wx.StaticText(pannello, label="Soldati",pos=(10,10), size=(200,30))
             self.titolo.SetFont(font)
             
-            wx.StaticLine(self, pos=(10,50), size=(200,3))
+            wx.StaticLine(pannello, pos=(10,50), size=(200,3))
             
             testo = "\nSi sta come\nd'autunno\nsugli alberi\nle foglie\n"
-            self.etichetta = wx.StaticText(self, label=testo, pos=(10,60), size=(200,100))
+            self.etichetta = wx.StaticText(pannello, label=testo, pos=(10,60), size=(200,100))
         
     # ----------------------------------------
     app = wx.App()
@@ -177,13 +179,14 @@ dell'etichetta.
         def __init__(self):
             super().__init__(None, title="Cambia l'etichetta")
                 
-            self.etichetta = wx.StaticText(self, label="seleziona una voce",
-                                        pos=(5,5), size=(200,30))
+            pannello = wx.Panel(self)       
+            self.etichetta = wx.StaticText(pannello, label="seleziona una voce",
+                                            pos=(5,5), size=(200,30))
             frutta = ["pere", "mele", "arance", "banane"]
-            self.combo = wx.ComboBox(self, choices=frutta,
-                                    pos=(5,40), size=(200,30))
+            self.combo = wx.ComboBox(pannello, choices=frutta, style=wx.CB_READONLY,
+                                            pos=(5,40), size=(200,30))
             self.combo.Bind(wx.EVT_COMBOBOX, self.visualizzaSelezione)
-            
+    
         def visualizzaSelezione(self, event):
             f = event.GetString()
             self.etichetta.SetLabel("Hai selezionato: " + f)
@@ -261,10 +264,11 @@ si deselezionerà automaticamente e l'etichetta sotto verrà aggiornata.
         
         def __init__(self):
             super().__init__(None, title="Seleziona una opzione")
-            
-            self.rbM = wx.RadioButton(self, label="Maschio", style=wx.RB_GROUP, pos=(5,5))
-            self.rbF = wx.RadioButton(self, label="Femmina", pos=(5,35))
-            self.testo = wx.StaticText(self, label="Voce selezionata: Maschio", pos=(5,65))
+            pannello = wx.Panel(self)
+        
+            self.rbM = wx.RadioButton(pannello, label="Maschio", style=wx.RB_GROUP, pos=(5,5))
+            self.rbF = wx.RadioButton(pannello, label="Femmina", pos=(5,35))
+            self.testo = wx.StaticText(pannello, label="Voce selezionata: Maschio", pos=(5,65))
             
             self.rbM.Bind(wx.EVT_RADIOBUTTON, self.impostaSesso)
             self.rbF.Bind(wx.EVT_RADIOBUTTON, self.impostaSesso)
@@ -275,6 +279,7 @@ si deselezionerà automaticamente e l'etichetta sotto verrà aggiornata.
             else:
                 self.testo.SetLabel("Hai selezionato: Femmina")
             return
+    
     # ----------------------------------------
     app = wx.App()
 
@@ -306,22 +311,23 @@ Nell'esempio proposto quando si clicca OK la barra comincia a caricarsi e può e
     class Esempio(wx.Frame):
         
         def __init__(self):
-            super().__init__(None, title="Quando la barra è carica il programma si chiude")
+            super().__init__(None, title="Quando la barra è carica, il programma si chiude")
             
             self.timer = wx.Timer(self,1)
-            self.Bind(wx.EVT_TIMER, self.OnTimer, self.timer)
-        
+            self.Bind(wx.EVT_TIMER, self.OnTimer, self.timer)        
             self.conta = 0
-            self.barra = wx.Gauge(self, range=10, pos=(5,5), size=(250,-1))
-            self.btnOk = wx.Button(self, wx.ID_OK, pos=(5,50))
-            self.btnStop = wx.Button(self, wx.ID_STOP, pos=(150,50))
+            
+            pannello = wx.Panel(self)
+            self.barra = wx.Gauge(pannello, range=10, pos=(5,5), size=(250,-1))
+            self.btnOk = wx.Button(pannello, wx.ID_OK, pos=(5,50))
+            self.btnStop = wx.Button(pannello, wx.ID_STOP, pos=(150,50))
 
             self.btnOk.Bind(wx.EVT_BUTTON, self.OnOk)
             self.btnStop.Bind(wx.EVT_BUTTON, self.OnStop)
                     
         def OnTimer(self, event):
             self.conta += 1
-            if self.conta >= 10:
+            if self.conta > 10:
                 self.Close(True)
                 return
             self.barra.SetValue(self.conta)
@@ -345,6 +351,8 @@ Nell'esempio proposto quando si clicca OK la barra comincia a caricarsi e può e
 
 
 
+
+
 wx.Slider
 =========
 
@@ -365,9 +373,9 @@ iniziale a 50. Sotto c'è una etichetta che si aggiorna automaticamente quando s
         
         def __init__(self):
             super().__init__(None, title="Muovi lo slider")
-            
-            self.slide = wx.Slider(self, value=50, pos=(5,5), size=(250,-1))
-            self.testo = wx.StaticText(self, label="Valore: 50", pos=(5,35))
+            pannello = wx.Panel(self)
+            self.slide = wx.Slider(pannello, value=50, pos=(5,5), size=(250,-1))
+            self.testo = wx.StaticText(pannello, label="Valore: 50", pos=(5,35))
             
             self.slide.Bind(wx.EVT_SLIDER, self.aggiornaValore)
             
@@ -385,7 +393,7 @@ iniziale a 50. Sotto c'è una etichetta che si aggiorna automaticamente quando s
     app.MainLoop()
 
 
-    
+
 wx.SpinCtrl
 ===========
 
@@ -393,10 +401,51 @@ La classe wx.SpinCtrl rappresenta una widget che implementa un selettore numeric
 
 .. image:: images/wxSpinCtrl.jpg
 
+
+Nell'esempio proposto quando muovo il controllo della wx.SpinCtrl l'etichetta si aggiorna automaticamente (evento **wx.EVT_SPINCTRL**). 
+Come ormai tradizione in questi esempi, approfitto di una widget *facile* per introdurre una piccola novità: Il pulsante a due stati
+serve per abilitare e disabilitare la widget. Provate!
+
 .. code:: python
 
     import wx
-    
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="Seleziona numero")
+            pannello = wx.Panel(self)
+            self.spin = wx.SpinCtrl(pannello, value="0", pos=(5,5), size=(150,30))
+            self.spin.SetRange(-10,10)
+            self.testo = wx.StaticText(pannello, label="Valore: 0", pos=(5,45), size=(150,30))
+            self.pulsante = wx.ToggleButton(pannello, label="Blocca spin", pos=(5,85), size=(150,30))
+            
+            self.spin.Bind(wx.EVT_SPINCTRL, self.aggiornaValore)
+            self.pulsante.Bind(wx.EVT_TOGGLEBUTTON, self.bloccaSpinCtrl)
+                    
+        def aggiornaValore(self, event):
+            v = self.spin.GetValue()
+            self.testo.SetLabel("Valore: " + str(v))
+            return
+        
+        def bloccaSpinCtrl(self, event):
+            if self.pulsante.GetValue():
+                self.spin.Enable(False)
+                self.pulsante.SetLabel("Sblocca")
+            else:
+                self.spin.Enable(True)        
+                self.pulsante.SetLabel("Blocca spin")
+            return
+        
+    # ----------------------------------------
+    app = wx.App()
+
+    window = Esempio()
+    window.Show()
+
+    app.MainLoop()
+
+
 
 wx.StaticBox
 ============
@@ -405,11 +454,40 @@ La classe wx.StaticBox rappresenta una widget che implementa una decorazione per
 
 .. image:: images/wxStaticBox.jpg
 
-C
+
+Nell'esempio proposto vediamo come la StaticBox, con etichetta "Informazioni Personali" serva a raggruppare logicamente le widget che permettono
+all'utente di inserirli. La cosa importante da notare è che gli oggetti al suo interno sono tutti "fratelli" della widget contenitrice, ovvero
+hanno tutti lo stesso primo parametro ("pannello", nell'esempio sottostante).
 
 .. code:: python
 
     import wx
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="Esempio con StaticBox")
+            pannello = wx.Panel(self)
+            self.box = wx.StaticBox(pannello, label='Informazioni personali', pos=(5, 5), size=(240, 170))
+            self.sex = wx.CheckBox(pannello, label='Maschio', pos=(15, 30))
+            self.married = wx.CheckBox(pannello, label='Sposato', pos=(15, 55))
+            self.text = wx.StaticText(pannello, label='Età', pos=(15, 95))
+            self.age = wx.SpinCtrl(pannello, value='1', pos=(55, 90), size=(120, -1), min=1, max=120)
+            
+            self.button = wx.Button(pannello, wx.ID_CLOSE, pos=(90, 185), size=(120, -1))
+            self.button.Bind(wx.EVT_BUTTON, self.chiudi)
+                    
+        def chiudi(self, event):    
+            self.Close(True)
+            return
+        
+    # ----------------------------------------
+    app = wx.App()
+
+    window = Esempio()
+    window.Show()
+
+    app.MainLoop()
 
     
 

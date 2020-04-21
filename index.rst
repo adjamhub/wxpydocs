@@ -20,14 +20,14 @@ Come vedete, questa documentazione è divisa in 3 parti:
     
 .. toctree::
    :maxdepth: 1
-   :caption: Introduzione
+   :caption: Prime cose
 
    source/000_intro
    source/001_install
 
 .. toctree::
    :maxdepth: 1
-   :caption: La libreria wxPython
+   :caption: Usare wxPython
 
    source/101_primoEsempio
    source/102_events
@@ -42,7 +42,7 @@ Come vedete, questa documentazione è divisa in 3 parti:
 
 .. toctree::
    :maxdepth: 1
-   :caption: wxPython docs
+   :caption: Documentazione
 
    source/201_wx
    source/299_tools

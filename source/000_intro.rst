@@ -42,4 +42,4 @@ Il risultato dell'esecuzione di quel codice è questo!
 .. image:: images/first_wxpython_code.jpg
 
 
-Come primo step non mi sembra complicatissimo! Lo proveremo dal vivo non appena avremo installato la libreria **wxPython** nel prossimo step!
+Come inizio basta così! Lo proveremo dal vivo non appena avremo installato la libreria **wxPython** nel prossimo step!

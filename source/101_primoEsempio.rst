@@ -82,7 +82,7 @@ Inoltre produrremo una nuova classe che deriva da wx.Frame per inserirvi l'etich
             wx.Frame.__init__(self, None, title="La mia prima finestra")
             self.etichetta = wx.StaticText(self, label="Hello, World!")
     
-    # non dovrebbe essere difficilissimo, ormai..
+    # spero sia chiaro ormai
     app = wx.App()
     windows = LaMiaPrimaFinestra()
     windows.Show(True)

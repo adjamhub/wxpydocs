@@ -16,6 +16,39 @@ una descrizione sommaria delle sue caratteristiche, un'immagine esplicativa e un
 Ricordo che la documentazione completa di ognuna di queste widget è disponibile nella apposita sezione.
 
 
+wx.Frame
+========
+
+La classe wx.Frame rappresenta una finestra vuota, con bordo e aspetto nativo nel sistema operativo ospite, con le funzionalità tipiche delle finestre già
+implementate e funzionanti senza fare nulla: trascinamento, ridimensionamento, barra del titolo, riduzione ad icona, massimizzazione, etc...
+
+
+.. image:: images/wxFrame.jpg
+
+
+Non c'è molto da spiegare su questo che non abbiamo già visto... provate a copiare l'esempio sotto e a giocare un pò con la finestra. Poi magari date un occhio
+alla documentazione.
+
+.. code:: python
+
+    import wx
+
+    app = wx.App()
+    win = wx.Frame(None, title="Un Esempio con wx.Frame")
+    win.Show()
+    app.MainLoop()
+
+
+
+wx.Panel
+========
+
+La classe wx.Panel rappresenta una widget vuota, adatta ad essere utilizzata come contenitore delle altre che vedremo. Ha lo stesso colore di sfondo della
+classe wx.Frame quindi è impossibile distinguere visivamente un Frame con dentro un Panel da uno senza.
+
+La sua utilità sta nel fatto che fornisce nativamente interazione con la tastiera (*Tab Traversal*, lo spostamento fra una widget e l'altra premendo Tab)
+per sè e per tutte lle widget al suo interno.
+
 
 wx.Button
 =========

@@ -18,7 +18,7 @@ Bene! Vi ripropongo il codice che abbiamo già visto un paio di volte:
         def __init__(self):
             super().__init__(None, title="Chiudi")
             pannello = wx.Panel(self)
-            self.pulsante = wx.Button(pannello, label="Chiudi", pos=(5,5), size=(150,40))
+            self.pulsante = wx.Button(pannello, label="Chiudi", pos=(100,100), size=(150,40))
             self.pulsante.Bind(wx.EVT_BUTTON, self.chiudiFinestra)
             
         def chiudiFinestra(self, event):
@@ -37,13 +37,13 @@ Ok... questa è l'immagine della finestra creata con questo codice:
 
 .. image:: images/chiudiNormale.jpg
 
-Bene, adesso invece di cliccare sul pulsante prova a ridimensionare la finestra più possibile... visto cosa succede? Il pulsante viene coperto completamente 
-dalla finestra contenitrice!!
+Bene, adesso invece di cliccare sul pulsante provate a ridimensionare la finestra... visto cosa succede? Il pulsante rimane fermo nella sua posizione
+senza ridimensionarsi o *spostarsi* minimamente e viene presto coperto dalla finestra contenitrice, anche se avrebbe spazio a sinistra per rendersi visualizzabile.
 
 .. image:: images/chiudiRistretto.jpg
 
-Infatti con il posizionamento assoluto, ovvero inserendo le widget con *pos* e *size*, il contenitore (ovvero la finestra con bordo) non ha bene idea di dove 
-la widget finisca. Immaginate una finestra con parecchie widget, un disastro!!
+Infatti con il posizionamento assoluto, ovvero inserendo le widget con *pos* e *size*, il contenitore (ovvero la finestra con bordo) non ha voce in capitolo
+sul posizionamento delle widget contenute.Immaginate una finestra con parecchie widget, un disastro!!
 
 Per implementare correttamente un layout in wxPython dobbiamo ricorrere ai **contenitori di ridimensionamento (sizers)**!!! La libreria wxPython offre i seguenti
 oggetti per gestire il layout:
@@ -58,20 +58,125 @@ wx.FlexGridSizer   Contenitore a tabella per le widget con dimensioni variabili
 wx.GridBagSizer    Contenitore a tabella con spanning
 =================  ================================================================
 
+Prima di iniziare subito a preoccuparvi, sappiate che i contenitori sono praticamente solo 2:
+
+#. **wxBoxSizer** se volete inserire le widget esattamente in fila (oppure esattamente in colonna). **wx.StaticBoxSizer** funziona esattamente come il precedente
+   con l'unica importante differenza di avere un contorno evidenziato intorno: un abbellimento e nulla più.
+   
+#. **wx.GridSizer** se volete inserire le widget con una organizzazione tabellare (pensate ad una calcolatrice, o a un form da compilare). Le altre due forniscono
+   caratteristiche aggiuntive per rendere il nostro layout più vicino alla nostra idea, ma funzionano con la stessa logica del GridSizer.
+
+
+Ok, vediamo come funzionano ognuno di questi, partendo dalle loro caratteristiche e vedendoli all'opera con qualche esempio di codice.
+
 
 wx.BoxSizer
 ===========
 
-box = wx.BoxSizer( ORIENTAZIONE )   può essere wx.HORIZONTAL oppure wx.VERTICAL
+La classe wx.BoxSizer può essere utilizzata per creare un layout orizzontale oppure verticale.
 
-box.Add(widget, proportion = 0, flag = 0, border = 0)
+.. code:: python
 
-proportion può essere 0,1,2
-flag può essere...
-border è la distanza in pixel fra le widget nella direzione indicata in flag
+    # se vuoi un layout orizzontale
+    hBox = wx.BoxSizer( wx.HORIZONTAL )   
+
+    # se vuoi un layout verticale
+    vBox = wx.BoxSizer( wx.HORIZONTAL )   
+
+E fino a qui è molto semplice.
+
+Per aggiungere widget al layout bisogna utilizzare la funzione *Add* che presenta una serie di opzioni che determinano come le widget si *allargheranno*
+nello spazio disponibile e metteranno *bordo* fra di loro. Vediamo la sintassi:
+
+.. code:: python
+
+    box.Add(widget, proportion = 0, flag = 0, border = 0)
+
+Vediamo i parametri:
+
+* **widget** è la widget da inserire
+
+* **proportion** può essere 0,1,2
+
+    * 0 significa che la widget non si ridimensionerà
+    
+    * 1 significa che la widget si ridimensionerà proporzionalmente alla widget
+    
+    * 2 significa che la widget cercherà di occupare il doppio del posto di quelle con valore 1
+
+* **flag** indica la direzione verso cui avere bordo. Può essere:
+
+    * wx.TOP: bordo verso l'alto
+    
+    * wx.RIGHT: bordo verso destra
+    
+    * wx.BOTTOM: bordo verso il basso
+    
+    * wx.LEFT: bordo verso sinistra
+    
+    * wx.ALL: bordo in tutte le direzione
+    
+    * wx.EXPAND: bordo in espansione all'aumentare dello spazio
+
+  Va detto che è possibile combinare 2 o più flag con il simbolo `|`. Vuoi il bordo in alto e a sinistra in espansione? Scrivi `flag = wx.TOP | wx.LEFT | wx.EXPAND`.
+  
+* **border** è la dimensione in pixel del bordo della widget, nelle direzioni indicate in flag
+
+Quando hai finito di lavorare con layout e widget devi applicare il layout al suo contenitore, che nei nostri esempi sarà sempre un pannello, quindi codice:
+
+.. code:: python
+
+    # ...
+    # per inserire il BoxSizer come layout del Panel
+    panel.SetSizer(box)
+    # Se vuoi anche ottenere un effetto centrato (sì, lo vuoi...)
+    self.Centre()
+
+
+Sembra complicato all'inizio, ma guardiamo qualche esempio e avremo tutto chiaro. Il prossimo codice crea un layout orizzontale con 2 pulsanti che vogliamo ridimensionarsi con la finestra (quindi *proportion = 1*) e con un pochino di bordo in tutte le direzioni.
+
+.. code:: python
+
+    import wx
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="BoxSizer Orizzontale")
+            panel = wx.Panel(self)
+            box = wx.BoxSizer(wx.HORIZONTAL)
+            self.p1 = wx.Button(panel, label="testo1")
+            self.p2 = wx.Button(panel, label="testo2")
+            
+            # i 2 pulsanti si espandono allo stesso modo
+            # e hanno 10 pixel di bordo (fisso) in tutte le direzioni.
+            box.Add(self.p1, proportion=1, flag=wx.ALL, border=10)
+            box.Add(self.p2, proportion=1, flag=wx.ALL, border=10)
+            
+            panel.SetSizer(box)
+            self.Centre()
+
+    # ----------------------------------------
+    app = wx.App()
+    window = Esempio()
+    window.Show()
+    app.MainLoop()
+
+Il risultato del codice precedente è questo:
+
+
+.. image:: images/BoxSizerOrizzontale.jpg
+
+
+Il prossimo esempio è leggermente più complicato (soprattutto perché è più lungo): mette insieme vari layout orizzontali e verticali combinandoli
+assieme fino ad ottenere ciò che vedete nella prossima immagine.
+
+Si parte da un pannello e un layout verticale. Poi si crea man mano un layout orizzontale, si mettono le widget in esso e infine si inserisce il layout
+orizzontale in quello verticale principale. Ad un certo punto ho aggiunto anche degli spazi, che ho spiegato con un commento.
 
 
 .. image:: images/wxBoxSizerLayout.jpg
+
 
 .. code:: python
 
@@ -122,6 +227,9 @@ border è la distanza in pixel fra le widget nella direzione indicata in flag
     window.Show()
     app.MainLoop()
 
+
+Capisco perfettamente che non vi sentiate ancora in grado di implementare layout così complicati! Questo l'ho messo apposta perché possiate curiosare in 
+questo codice quando vi troverete ad implementare qualcosa di simile (o magari poco più semplice... accadrà molto presto!!!).
 
 
 wx.StaticBoxSizer

@@ -1,3 +1,8 @@
+.. |hr| raw:: html
+
+    <hr>
+
+
 =========
 Modulo wx
 =========
@@ -11,13 +16,17 @@ Sotto trovate le classi che abbiamo utilizzato.
 
 `wx.App <https://docs.wxpython.org/wx.App.html>`_
     Gestisce le applicazioni con GUI implementate tramite wxPython.
-    
+
+|hr|
+
 `wx.Frame <https://docs.wxpython.org/wx.Frame.html>`_
     Finestra vuota generica, con barra del titolo, bordi e ridimensionamento funzionanti.
 
 `wx.Panel <https://docs.wxpython.org/wx.Panel.html>`_
     Pannello utile per organizzare il layout.
-    
+
+|hr|
+
 `wx.Button <https://docs.wxpython.org/wx.Button.html>`_
     Pulsante cliccabile.
 
@@ -50,6 +59,8 @@ Sotto trovate le classi che abbiamo utilizzato.
 
 `wx.SpinCtrl <https://docs.wxpython.org/wx.SpinCtrl.html>`_
     Selettore numerico con pulsanti di avanzamento.
+
+|hr|
 
 `wx.BoxSizer <https://docs.wxpython.org/wx.BoxSizer.html>`_
     Contenitore per una riga (o una colonna) di widget

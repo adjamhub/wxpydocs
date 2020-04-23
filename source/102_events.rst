@@ -73,17 +73,25 @@ con una finestra che intercetta i suoi spostamenti e tramite una funzione scrive
 
 
 Anche qui vi propongo di copiare il codice e testarlo prima di andare avanti... L'oggetto in questione stavolta è la finestra principale, la widget **wx.Frame**,
-l'evento da intercettare si chiama **wx.EVT_MOVE**, la funzione da eseguire in risposta ad esso l'ho implementata io e si chiama *aggiornaPosizione*.
-Benissimo, arrivati qui ci sono 2 cose da mettere in chiaro.
+l'evento da intercettare si chiama **wx.EVT_MOVE**, la funzione da eseguire in risposta ad esso è implementata sotto e si chiama *aggiornaPosizione*.
 
-#. Le funzioni che rispondono agli eventi hanno tutte la struttura **funzione (self, evento)**.
+Cerchiamo adesso di mettere in evidenza alcune cose che avete intuito osservando questi esempi:
+
+#. Le funzioni che rispondono agli eventi hanno tutte la struttura **funzione (self, event)**.
    Questo per fare in modo che la funzione possa trarre informazioni dall'evento occorso, come nel caso
    della funzione *aggiornaPosizione* che tramite esso acquisisce la nuova posizione della finestra.
    
-#. Come si fa a sapere quali eventi possono gestire le widget? Beh... la risposta a questa domanda è una sola:
-   leggendo la documentazione dell'oggetto troverete la sezione che elenca gli eventi a cui esso può reagire
-   e che possono essere collegati tramite **binding** (ovvero con la funzione Bind)
+#. Come la widget pulsante, che si chiama wxButton ha un evento predefinito (il click su di esso) che si chiama wx.EVT_BUTTON, tutte le widget
+   che vedremo hanno l'evento predefinito che si chiama come loro stesse. Quindi ad esempio la ipotetica widget *wx.Banana* ha un evento predefinito
+   (ad esempio qualcuno che inizia a sbucciarla) che si chiama wx.EVT_BANANA.
    
+#. Come si fa a sapere quali altri eventi può gestire una widget? Beh... bisogna leggere la documentazione. Nella sezione apposita ci sono i link diretti
+   a tutte le classi che studieremo e scorrendola troverete la sezione che elenca gli eventi a cui ognuna di esse può reagire
+   e che possono essere collegati tramite **binding** (ovvero con la funzione Bind)
+
+   
+Vediamo un ultimo concetto sugli eventi prima di passare in rassegna tutte le widget disponibili.
+
 
 Bloccare gli eventi
 ===================
@@ -123,10 +131,11 @@ Nell'esempio che segue la finestra che appare è chiudibile dall'utente (con sco
 
 Come al solito... copiate e provate!
 
-.. tip::
+.. note::
     In questo unico caso, in cui si intercetta l'evento **wx.EVT_CLOSE** è necessario chiudere la finestra utilizzando *Destroy()* invece di *Close(True)*.
-    Infatti la funzione *Close()* genera un evento EVT_CLOSE che di solito chiama la funzione di chiusura predefinita, ma in questo richiamerebbe 
-    la funzione chiudi definita da noi che richiamerebbe la funzione *Close()*, dando vita ad un ciclo infinito.
+    Infatti la funzione *Close()* genera un evento EVT_CLOSE che di solito chiama la funzione di chiusura predefinita. Se in questo caso usassimo Close(True)
+    dentro la funzione chiudi() si genererebbe un nuovo evento wx.EVT_CLOSE, che richiamerebbe la funzioni chiudi(), che richiamerebbe la funzione Close()...
+    dando vita ad un ciclo infinito.
     
 
 Ok, definiti gli eventi più semplici e capito come collegarli alle widget, vediamo le widgets e i layout per creare delle applicazioni con un look consistente.

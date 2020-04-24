@@ -79,7 +79,7 @@ Inoltre produrremo una nuova classe che deriva da wx.Frame per inserirvi l'etich
     class LaMiaPrimaFinestra(wx.Frame):
         
         def __init__(self):
-            wx.Frame.__init__(self, None, title="La mia prima finestra")
+            super().__init__(None, title="La mia prima finestra")
             self.etichetta = wx.StaticText(self, label="Hello, World!")
     
     # spero sia chiaro ormai

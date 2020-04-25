@@ -100,12 +100,12 @@ Vediamo i parametri:
 
     * 0 (valore di *default*, ma poco usato) significa che la widget non si ridimensionerà
     
-    * 1 significa che la widget si ridimensionerà proporzionalmente alla widget
+    * 1 significa che la widget si ridimensionerà proporzionalmente al suo contenitore
     
-    * 2 significa che la widget cercherà di occupare il doppio del posto di quelle con valore 1
+    * 2 significa che la widget cercherà di occupare il doppio del posto di quelle con valore 1 :)
 
 * **border** (anche se è l'ultimo lo metto prima, perché il prossimo è più lungo) rappresenta la dimensione in pixel del bordo della widget, 
-  nelle direzioni indicate in flag.
+  nelle direzioni indicate in flag (se non ci sono flag, è un parametro inutile).
 
 * **flag** permette di inserire alcune informazioni su come la widget deve comportarsi all'interno del layout.
 
@@ -141,7 +141,7 @@ Vediamo i parametri:
     
     * wx.EXPAND: widget in espansione all'aumentare dello spazio
 
-  Va detto che è possibile combinare 2 o più flag con il simbolo `|`. Vediamo qualche esempio:
+  Va detto che è possibile combinare 2 o più flag con il simbolo `|` (si chiama *pipe*). Vediamo qualche esempio:
   
 
   .. code:: python
@@ -166,7 +166,9 @@ una cosa del genere:
     self.Centre()
 
 
-Sembra complicato all'inizio, ma guardiamo qualche esempio e avremo tutto chiaro. Il prossimo codice crea un layout orizzontale con 2 pulsanti che vogliamo ridimensionarsi con la finestra (quindi *proportion = 1*) e con un pochino di bordo in tutte le direzioni.
+Sembra complicato all'inizio, ma guardiamo qualche esempio e avremo tutto chiaro. 
+
+Il prossimo codice crea un layout orizzontale con 2 pulsanti che vogliamo ridimensionarsi con la finestra (quindi *proportion = 1*) e con un pochino di bordo in tutte le direzioni.
 
 .. code:: python
 
@@ -276,11 +278,77 @@ Negli esempi relativi al BoxSizer provate a cambiarne qualcuno con uno StaticBox
 wx.GridSizer
 ============
 
-wx.GridSizer(rows = 1, cols = 0, vgap = 0, hgap = 0)
+La classe wx.GridSizer può essere utilizzata per creare un layout a griglia uniforme, ovvero con lo stesso spazio (più o meno) per tutte le caselle della griglia. Quando si definisce, è possibile anche specificare un margine orizzontale e verticale fra gli elementi della griglia.
 
-Problema di AddMany
 
-.. image:: images/wxGridSizerLayout.jpg
+.. code:: python
+
+    wx.GridSizer(rows = 1, cols = 0, vgap = 0, hgap = 0)
+
+    # esempio di layout a griglia con 4 righe e 3 colonne e 5 pixel di magine orizzontale e verticale
+    grid = wx.GridSizer( rows = 4 , cols = 3, vgap = 5 , hgap = 5 )
+
+    
+Ok, adesso proviamo a guadagnare punti a favore della OOP. Come si fa ad aggiungere widgets ad un GridSizer? Esattamente con la stessa identica funzione. Perchè?
+Beh... perché derivano entrambe dalla stessa classe (la classe **wx.Sizer**, che **non** studieremo) ed ereditano entrambe la funzione **Add**. Con che logica
+vengono aggiunte le widget alla GridSizer tramite la funione Add? In fila, a partire da in alto a sinistra, poi si procede in riga e terminata la riga in alto si
+continua sotto.
+
+Adesso voglio esagerare... le classi *Sizer* ereditano anche un'altra funzione, che risulta particolarmente comoda nella GridSizer, ma che potete usare in qualunque
+altra di queste: la funzione **AddMany**. Essa prende come unico parametro una tupla di comandi, tutti uguali a quelli che prenderebbe la funzione Add.
+
+.. warning:: 
+
+    A dire la verità una piccola magagnetta c'è... siccome la funzione **AddMany** prende una tupla di valori, ognuno come se fosse i parametri della funzione
+    **Add**, dobbiamo rispettare la sequenza di comandi della funzione stessa senza poter utilizzare l'inserimento nominale:
+    
+    .. code:: python
+      
+      # SBAGLIATO
+      grid.AddMany( (widget, proportion = 1, flag = wx.ALL, border = 5) , (widget, proportion = 1, flag = wx.ALL, border = 5) )
+    
+      # GIUSTO
+      grid.AddMany( (widget, 1, wx.ALL, 5) , (widget, 1, wx.ALL, 5) )
+    
+    Tutto qui, non è gravissimo dai...
+    
+
+Alla luce delle nuove conoscenze acquisite, facciamo subito una prova semplice semplice:
+
+
+.. code:: python
+
+    import wx
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="GridSizer")
+            
+            panel = wx.Panel(self)
+            grid = wx.GridSizer(rows = 2, cols = 2, vgap = 10, hgap = 10)
+            grid.AddMany( ( (wx.StaticText(panel, label="Sono qui"), 1, wx.ALIGN_CENTER) , 
+                            (wx.Button(panel, label="pulsante"), 1, wx.ALIGN_CENTER) ,
+                            (wx.CheckBox(panel, label="Non toccarmi"), 1, wx.ALIGN_CENTER) ,
+                            (wx.RadioButton(panel, label="Ho capito"), 1, wx.ALIGN_CENTER) ) )
+            panel.SetSizer(grid)
+            self.Centre()
+            
+    # ----------------------------------------
+    app = wx.App()
+    window = Esempio()
+    window.Show()
+    app.MainLoop()
+
+    
+Risultato:
+
+
+.. image:: images/wxGridSizer.jpg
+
+
+Come già sperimentato precedentemente, passiamo a visionare il codice e il risultato relativo ad un esempio un pochino più complicato, in cui il GridSizer
+viene inserito dentro un layout verticale, fino a formare una pseudo calcolatrice.
 
 
 .. code:: python
@@ -304,11 +372,11 @@ Problema di AddMany
             
             grid = wx.GridSizer(rows=4, cols=4, vgap=10, hgap=10)
             self.labels = "789/456*123-.0=+"
-            self.buttons = []
+            self.buttons = {}
             many = []
-            for l in self.labels:
-                btn = wx.Button(panel, label=l)
-                self.buttons.append(btn)
+            for lab in self.labels:
+                btn = wx.Button(panel, label=lab)
+                self.buttons[lab] = btn
                 many.append( (btn,0,wx.EXPAND) )  
             grid.AddMany(many)
             vbox.Add(grid,flag=wx.EXPAND|wx.ALL, border=10)
@@ -323,11 +391,53 @@ Problema di AddMany
     app.MainLoop()
 
 
+Copiate il codice, eseguite, dovreste vedere una window tipo questa.
+
+
+.. image:: images/wxGridSizerLayout.jpg
+
+
+Adesso però tornate su e ricontrollate il codice che avete copiato cercando di comprendere l'organizzazione del layout.
+
+
 
 wx.FlexGridSizer
 ================
 
-wx.FlexGridSizer(rows = 1, cols = 0, vgap = 0, hgap = 0)
+
+La classe wx.FlexGridSizer può essere utilizzata per creare un layout a griglia flessibile, ovvero con righe o colonne di dimensione diversa.
+Questo può ritornare utile soprattutto in alcuni casi specifici, che vedremo fra un attimo.
+
+La definizione di un FlexGridSizer è identica a quella di un GridSizer:
+
+.. code:: python
+
+    wx.FlexGridSizer(rows = 1, cols = 0, vgap = 0, hgap = 0)
+
+    # esempio di layout a griglia flessibile con 4 righe e 3 colonne e 5 pixel di magine orizzontale e verticale
+    grid = wx.FlexGridSizer( rows = 4 , cols = 3, vgap = 5 , hgap = 5 )
+
+    
+Quindi non c'è molto da spiegare: un FlexGridSizer si comporta esattamente come un GridSizer, se non fosse per la possibilità di dire ad una riga 
+(o ad una colonna) di allargarsi secondo lo spazio disponibile. Lo stesso si potrebbe ottenere combinando BoxSizer orizzontale e verticale e lavorando 
+con il parametro proportion, ma forse sarebbe più complicato e comunque sempre meno... *flessibile*.
+
+Le funzioni per allargare righe e colonne sono rispettivamente:
+
+.. code:: python
+
+    # Permette di allungare una riga
+    # Il primo parametro è il numero di riga (si inizia a contare da ZERO)
+    # Il secondo è la solita proportion: mettete 1
+    AddGrowableRow(row, proportion=0)
+    
+    # Permette di allungare una colonne
+    # Il primo parametro è il numero di colonna (si inizia a contare da ZERO)
+    # Il secondo è la solita proportion: mettete 1
+    AddGrowableCol(1, proportion=1)
+    
+
+Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allungare la seconda colonna e la terza riga
 
 
 .. image:: images/wxFlexGridLayout.jpg
@@ -365,8 +475,8 @@ wx.FlexGridSizer(rows = 1, cols = 0, vgap = 0, hgap = 0)
             tcLyric = wx.TextCtrl(panel, style=wx.TE_MULTILINE)
             flex.Add(tcLyric, 1, wx.EXPAND)
 
-            flex.AddGrowableRow(2, 1)
-            flex.AddGrowableCol(1, 1)
+            flex.AddGrowableRow(2, proportion=1)
+            flex.AddGrowableCol(1, proportion=1)
             box.Add(flex, proportion=1, flag=wx.ALL|wx.EXPAND, border=10)
             
             box.Add((-1, 10))  # spazio verticale di 10 pixel
@@ -393,7 +503,56 @@ wx.GridBagSizer
 ===============
 
 
+La classe wx.GridBagSizer implementa il contenitore più flessibile in wxPython e un concetto analogo risulta presente in molti altri toolkit grafici: 
+in questo Sizer infatti, le widget possono occupare qualunque posizione e comprendere anche più di una riga o una colonna.
+
+Si definisce senza precisare il numero di righe e colonne, ma solo lo spazio fra queste:
+
+.. code:: python
+
+    wx.GridBagSizer( vgap , hgap )
+
+In questo Sizer è stato reimplementato il metodo *Add*, l'unico utilizzabile per inserirvi elementi
+
+.. code:: python
+
+    bag = wx.GridBagSizer( 10, 10 )
+    bag.Add ( widget , pos = (row,column) , span = wx.DefaultSpan, flag = 0, border = 0)
+    
+Vediamo i parametri:
+
+* **widget** è la widget da inserire
+
+* **pos** è la posizione della widget nella griglia. Ricordate che si inizia a contare da ZERO.
+
+* **span** indica di quanto la widget si deve allargare. Di default occupa solo la sua casella. Prende una tupla 2D. Ad esempio inserendo span = (2,3) dite
+  che la widget deve allargarsi di 2 righe e 3 colonne.
+  
+* **flag** e **border** sono gli stessi del solito.
+
+Di default le caselle della griglia mantengono la loro proporzione se la finestra viene ridimensionata. Se volete invece fare in modo che una riga o una colonna si comporti come nel FlexGridSizer, usate i seguenti metodi:
+
+
+.. code:: python
+
+    bag = wx.GridBagSizer( 10, 10 )
+    
+    # ...
+    # numero di riga
+    bar.AddGrowableRow (row)
+    # ...
+    # numero di colonna
+    bar.AddGrowableCol (col)
+
+
+Per concludere arriviamo finalmente all'ultimo esempio con un layout GridBagSizer. In questo esempio l'idea è quella di realizzare una griglia di 3 righe per 5 colonne: le 3 righe sono evidenti nel disegno; nella prima riga è occupata solo la prima casella ( pos = (0,0) ); la seconda riga è tutta occupata da un'unica
+widget; nella terza riga sono occupate dai pulsanti solo le ultime 2 caselle.
+
+
 .. image:: images/wxGridBagSizerLayout.jpg
+
+
+Ecco il codice che implementa quest'ultimo esempio:
 
 
 .. code:: python
@@ -429,5 +588,4 @@ wx.GridBagSizer
     window = Esempio()
     window.Show()
     app.MainLoop()
-
 

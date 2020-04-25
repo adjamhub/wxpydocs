@@ -47,7 +47,7 @@ La classe wx.Panel rappresenta una widget vuota, adatta ad essere utilizzata com
 classe wx.Frame quindi è impossibile distinguere visivamente un Frame con dentro un Panel da uno senza.
 
 La sua utilità sta nel fatto che fornisce nativamente interazione con la tastiera (*Tab Traversal*, lo spostamento fra una widget e l'altra premendo Tab)
-per sè e per tutte lle widget al suo interno.
+per sè e per tutte le widget al suo interno.
 
 
 wx.Button

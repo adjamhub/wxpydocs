@@ -81,7 +81,7 @@ La classe wx.BoxSizer può essere utilizzata per creare un layout orizzontale op
     hBox = wx.BoxSizer( wx.HORIZONTAL )   
 
     # se vuoi un layout verticale
-    vBox = wx.BoxSizer( wx.HORIZONTAL )   
+    vBox = wx.BoxSizer( wx.VERTICAL )   
 
 E fino a qui è molto semplice.
 
@@ -98,13 +98,18 @@ Vediamo i parametri:
 
 * **proportion** può essere 0,1,2
 
-    * 0 significa che la widget non si ridimensionerà
+    * 0 (valore di *default*, ma poco usato) significa che la widget non si ridimensionerà
     
     * 1 significa che la widget si ridimensionerà proporzionalmente alla widget
     
     * 2 significa che la widget cercherà di occupare il doppio del posto di quelle con valore 1
 
-* **flag** indica la direzione verso cui avere bordo. Può essere:
+* **border** (anche se è l'ultimo lo metto prima, perché il prossimo è più lungo) rappresenta la dimensione in pixel del bordo della widget, 
+  nelle direzioni indicate in flag.
+
+* **flag** permette di inserire alcune informazioni su come la widget deve comportarsi all'interno del layout.
+
+  La direzione verso cui avere bordo, che può essere:
 
     * wx.TOP: bordo verso l'alto
     
@@ -116,13 +121,41 @@ Vediamo i parametri:
     
     * wx.ALL: bordo in tutte le direzione
     
-    * wx.EXPAND: bordo in espansione all'aumentare dello spazio
-
-  Va detto che è possibile combinare 2 o più flag con il simbolo `|`. Vuoi il bordo in alto e a sinistra in espansione? Scrivi `flag = wx.TOP | wx.LEFT | wx.EXPAND`.
+  La direzione di allinamento della widget, che può essere:
   
-* **border** è la dimensione in pixel del bordo della widget, nelle direzioni indicate in flag
+    * wx.ALIGN_LEFT, allineata a sinistra
+    
+    * wx.ALIGN_RIGHT, allineata a destra
+    
+    * wx.ALIGN_TOP, incolonnata in alto
+    
+    * wx.ALIGN_BOTTOM, incolonnata in basso
+    
+    * wx.ALIGN_CENTER_VERTICAL, allinamento verticale al centro
+    
+    * wx.ALIGN_CENTER_HORIZONTAL, allinamento orizzontale al centro
+    
+    * wx.ALIGN_CENTER, al centro, verticalmente e orizzontalmente
 
-Quando hai finito di lavorare con layout e widget devi applicare il layout al suo contenitore, che nei nostri esempi sarà sempre un pannello, quindi codice:
+  C'è inoltre un ultimo flag che permette alla widget di espandersi su tutto il posto disponibile (ma ovviamente funziona solo se proportion vale 1 o 2)
+    
+    * wx.EXPAND: widget in espansione all'aumentare dello spazio
+
+  Va detto che è possibile combinare 2 o più flag con il simbolo `|`. Vediamo qualche esempio:
+  
+
+  .. code:: python
+
+      # bordo in alto e a sinistra con la widget in espansione
+      ... flag = wx.TOP | wx.LEFT | wx.EXPAND ... 
+      
+      # widget allineata a destra con 10 pixel di bordo
+      ... flag = wx.ALIGN_RIGHT | wx.RIGHT, border = 10 )
+    
+  E così via...
+
+Quando hai finito di lavorare con layout e widget devi applicare il layout al suo contenitore, che nei nostri esempi sarà sempre un pannello, quindi dovrai fare 
+una cosa del genere:
 
 .. code:: python
 
@@ -162,6 +195,7 @@ Sembra complicato all'inizio, ma guardiamo qualche esempio e avremo tutto chiaro
     window.Show()
     app.MainLoop()
 
+    
 Il risultato del codice precedente è questo:
 
 
@@ -197,7 +231,7 @@ orizzontale in quello verticale principale. Ad un certo punto ho aggiunto anche 
             hbox1.Add(self.tc1, proportion=1)
             vbox.Add(hbox1,flag=wx.EXPAND|wx.ALL, border=10)
             
-            vbox.Add((-1, 10))  # spazio verticale di 10 pixel
+            vbox.Add((-1, 10))  # spazio verticale di 10 pixel, orizzontale nulla
             
             hbox2 = wx.BoxSizer(wx.HORIZONTAL)
             self.st2 = wx.StaticText(panel, label="Risultati della ricerca")
@@ -209,7 +243,7 @@ orizzontale in quello verticale principale. Ad un certo punto ho aggiunto anche 
             hbox3.Add(self.tc2, proportion=1, flag=wx.EXPAND)
             vbox.Add(hbox3,proportion=1,flag=wx.EXPAND|wx.ALL, border=10)
 
-            vbox.Add((-1, 10))  # spazio verticale di 10 pixel
+            vbox.Add((-1, 10))  # spazio verticale di 10 pixel, orizzontale nulla
 
             hbox4 = wx.BoxSizer(wx.HORIZONTAL)
             self.ok = wx.Button(panel, label="OK")

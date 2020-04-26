@@ -1,6 +1,6 @@
-=================
-Problemi avanzati
-=================
+==================================
+Esercizi sulle finestre di dialogo
+==================================
 
 sommatore
 

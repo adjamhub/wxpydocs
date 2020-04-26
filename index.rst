@@ -34,11 +34,14 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/103_widgets
    source/105_exercizes
    source/110_layout
-   source/115_dialogs
-   source/118_advanced
-   source/120_menu_toolbars
-   source/130_summary
-   
+   source/112_ex_layout
+   source/120_dialogs
+   source/122_ex_dialogs
+   source/130_menu_toolbars
+   source/132_ex_gui
+   source/140_advanced
+   source/142_ex_adv
+
 
 .. toctree::
    :maxdepth: 1

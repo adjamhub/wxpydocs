@@ -59,6 +59,9 @@ Sotto trovate le classi che abbiamo utilizzato:
 
 `wx.SpinCtrl <https://docs.wxpython.org/wx.SpinCtrl.html>`_
     Selettore numerico con pulsanti di avanzamento.
+    
+`wx.ListBox <https://docs.wxpython.org/wx.ListBox.html>`_
+    Lista verticale di elementi di testo.
 
 |hr|
 

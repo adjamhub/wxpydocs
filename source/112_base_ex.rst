@@ -140,3 +140,22 @@ lo stato dello Slider.
 Inserite nella finestra due Slider, uno orizzontale che va da 200 a 800 per la larghezza e uno verticale che va da 100 a 500 per l'altezza. 
 L'utente muove gli slider a piacimento e quando clicca il pulsante si modifica la dimensione della finestra.
 
+
+
+**Esercizio 119 (ListBox, Button, StaticText)**
+
+Inserite nella finestra una ListBox con una sequenza di voci e la possibilità di selezionarne contemporaneamente più di una. Quando l'utente clicca il pulsante
+nella StaticText vengono visualizzate tutte le voci selezionate, separate da virgola.
+
+
+**Esercizio 120 (ListBox, TextCtrl, Button)**
+
+Inserite nella finestra una ListBox inizialmente vuota, una TextCtrl e un pulsante. L'utente digita qualcosa nella TextCtrl e quando clicca il pulsante, 
+se la TextCtrl non è vuota, aggiunge la parola alla ListBox e pulisce la TextCtrl.
+
+
+**Esercizio 121 (ListBox, PushButton)**
+
+Inserite nella finestra una ListBox vuota e un pulsante. Quando l'utente clicca il pulsante, il programma carica dal file *dati.txt* presente nella stessa cartella
+(dovete crearlo voi, con una parola ogni riga: ogni riga del file diventerà una voce nella ListBox). 
+

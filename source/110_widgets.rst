@@ -527,3 +527,49 @@ hanno tutti lo stesso primo parametro ("pannello", nell'esempio sottostante).
 wx.ListBox
 ==========
 
+La classe wx.ListBox rappresenta una widget che implementa una lista di voci selezionabili in maniera singola o multipla.
+
+
+.. image:: images/wxListBox.jpg
+
+
+Questa widget supporta 2 eventi considerabili \"di default\":
+
+* **wx.EVT_LISTBOX**: scatenato quando si seleziona un elemento della lista
+
+* **wx.EVT_LISTBOX_BCLICK**: scatenato quando si fa doppio click su un elemento della lista
+
+
+Come al solito vediamo il codice che genera l'immagine che vedete sopra:
+
+
+.. code:: python
+
+    import wx
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="ListBox (ce l'ho con la frutta...)")
+            pannello = wx.Panel(self)       
+            frutta = ["pere", "mele", "arance", "banane"]
+            self.list = wx.ListBox(pannello, choices=frutta, pos=(10,10), size=(200,300))
+            self.etichetta = wx.StaticText(pannello, pos=(250,10), size=(200,50))
+            self.list.Bind(wx.EVT_LISTBOX, self.updateLabel)
+            
+        def updateLabel(self, event):
+            index = self.list.GetSelection()
+            self.etichetta.SetLabel( self.list.GetString(index) )
+            return
+        
+    # ----------------------------------------
+    app = wx.App()
+
+    window = Esempio()
+    window.Show()
+
+    app.MainLoop()
+
+
+Provate a cambiare l'evento nel Bind per vedere la differenza di funzionamento.
+

@@ -1,6 +1,6 @@
-========================
-Esercizi su GUI complete
-========================
+======================
+Esercizi su GUI intere
+======================
 
 .. i numeri degli esercizi sono 4xx
 
@@ -17,9 +17,6 @@ Slideshow
 
 
 Gif Viewer
-
-
-Minibrowser
 
 
 Downloader

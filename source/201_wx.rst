@@ -11,7 +11,7 @@ Modulo wx
 Il modulo wx rappresenta il modulo principale della libreria wxPython e quello che contiene le classi sicuramente necessarie per implementare una GUI.
 L'elenco completo delle classi presenti nel modulo si trova al link: https://docs.wxpython.org/wx.1moduleindex.html.
 
-Sotto trovate le classi che abbiamo utilizzato.
+Sotto trovate le classi che abbiamo utilizzato:
 
 
 `wx.App <https://docs.wxpython.org/wx.App.html>`_
@@ -77,3 +77,26 @@ Sotto trovate le classi che abbiamo utilizzato.
 `wx.GridBagSizer <https://docs.wxpython.org/wx.GridBagSizer.html>`_
     Contenitore a tabella con spanning
     
+|hr|
+
+`wx.MessageDialog <https://docs.wxpython.org/wx.MessageDialog.html>`_
+    Finestra di dialogo per messaggi generici
+
+`wx.DirDialog <https://docs.wxpython.org/wx.DirDialog.html>`_
+    Finestra di dialogo per selezione cartelle
+
+`wx.FileDialog <https://docs.wxpython.org/wx.FileDialog.html>`_
+    Finestra di dialogo per selezione files
+
+`wx.ColourDialog <https://docs.wxpython.org/wx.ColourDialog.html>`_
+    Finestra di dialogo per selezione colori
+
+`wx.ColourData <https://docs.wxpython.org/wx.ColourData.html>`_
+    Classe ausiliaria alla ColourDialog. Contiene le informazioni necessarie ad essa.
+
+`wx.FontDialog <https://docs.wxpython.org/wx.FontDialog.html>`_
+    Finestra di dialogo per selezione font
+
+`wx.FontData <https://docs.wxpython.org/wx.FontData.html>`_
+    Classe ausiliaria alla FontDialog. Contiene le informazioni necessarie ad essa.
+

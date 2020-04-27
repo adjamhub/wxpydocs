@@ -10,6 +10,15 @@ calcolatrice
 
 gioco del 15
 
+form di input dati
+
+Lista spesa
+
+Rubrica
+
+
+.. con Timer e/o DateTime
+
 orologio
 
 cronometro
@@ -22,26 +31,4 @@ calendario
 
 agenda
 
-form di input dati
 
-Lista spesa
-
-Rubrica
-
-Foglio Elettronico
-
-Blocco Note
-
-Visualizzatore immagini
-
-Slideshow
-
-Gif Viewer
-
-Fortune
-
-Battleship
-
-Minibrowser
-
-Downloader

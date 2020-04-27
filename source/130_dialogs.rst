@@ -73,6 +73,26 @@ Vediamo qualche esempio semplice semplice:
 Ovviamente va individuato il giusto momento per visualizzare una MessageDialog: abusare di finestre modali è considerato fastidioso e maleducato.
 
 
+
+**Esercizio 301**
+
+Visualizzate una finestra con un pulsante che quando premuto visualizza un messaggio informativo a vostro piacere.
+
+
+
+**Esercizio 302**
+
+Visualizzate una finestra vuota. Quando si clicca per chiuderla appare il messaggio di domanda \"Sicuro di voler chiudere?\". Se l'utente risponde No, la 
+finestra non si chiude.
+
+
+
+**Esercizio 303**
+
+Visualizzare una finestra con una SpinCtrl con valori da -10 a +10. Se l'utente seleziona 0, appare un messaggio di avvertimento.
+
+
+
 Dir Dialogs
 ===========
 
@@ -88,10 +108,27 @@ Servono per selezionare una cartella (presente o no) nel proprio computer.
     #... il percorso scelto si ottiene con dlg.GetPath()
 
 
+
+**Esercizio 311**
+
+Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre la DirDialog che permette di selezionare
+la cartella. Se l'utente preme OK nella etichetta di testo si visualizzi il percorso selezionato.
+
+
+
+**Esercizio 312**
+
+Visualizzare una finestra con un pulsante. Cliccando il pulsante si apre una DirDialog con la possibilità di selezionare cartelle non esistenti. Se l'utente ne 
+seleziona una non esistente, il programma la crea (Sugg: ricordate il modulo Pathlib???)
+
+
+
+    
 File Dialogs
 ============
 
 Analogamente alle DirDialog, servono per selezionare un file (esistente o no) nel proprio computer.
+
 
 .. code:: python
 
@@ -111,10 +148,103 @@ Analogamente alle DirDialog, servono per selezionare un file (esistente o no) ne
     #... il percorso scelto si ottiene con dlg.GetPath()
 
     
+    
+**Esercizio 321**
+
+Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre la FileDialog che permette di selezionare
+un file per l'apertura. Se l'utente preme OK nella etichetta di testo si visualizzi il percorso del file selezionato.
+
+
+
+**Esercizio 322**
+
+Visualizzare una finestra con un pulsante. Cliccando il pulsante si apre una FileDialog in modalità salva. Se l'utente ne seleziona uno non esistente, 
+il programma lo crea vuoto (Sugg: ricordate il modulo Pathlib???)
+
+
+
+**Esercizio 323**
+
+Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre una FileDialog in modalità apri. 
+Se l'utente seleziona un file di testo e preme OK, il contenuto del file viene visualizzato nell'etichetta.
+
+
 
 Colour Dialogs
 ==============
 
+Le finestre di dialogo per la selezione dei colori si utilizzano tramite la loro classe ausiliaria `wx.ColourData`
+che mantiene le informazioni iniziali necessarie per la selezione dei colori e (dopo l'esecuzione della dialog) il colore selezionato dall'utente.
+
+.. code:: python
+
+    # ...
+    datiIniziali = wx.ColourData()
+    dialog = wx.ColourDialog(self, datiIniziali)
+    if dialog.ShowModal() == wx.ID_OK:
+        datiFinali = dialog.GetColourData()
+        coloreSelezionato = datiFinali.GetColour()
+        # ...
+
+        
+
+**Esercizio 331**
+
+Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre una ColourDialog che permette
+di selezionare un colore. Visualizzarlo come stringa nella etichetta.
+
+
+
+**Esercizio 332**
+
+Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre una ColourDialog che permette
+di selezionare un colore. Colorare lo sfondo dell'etichetta del colore selezionato.
+
+
+
+**Esercizio 333**
+
+Visualizzare una finestra con un pulsante ed una etichetta di testo con la scritta "Colore selezionato". Cliccando il pulsante si apre una ColourDialog che permette
+di selezionare un colore. Colorare il testo dell'etichetta con il colore selezionato.
+
+
+
 Font Dialogs
 ============
 
+Le finestre di dialogo per la selezione dei font si utilizzano tramite la loro classe ausiliaria `wx.FontData`
+che mantiene le informazioni iniziali necessarie per la selezione dei font e (dopo l'esecuzione della dialog) il colore selezionato dall'utente.
+(Questa frase mi sembra di averla già sentita...)
+
+.. code:: python
+
+    # ...
+    datiIniziali = wx.FontData()
+    dialog = wx.FontDialog(self, datiIniziali)
+    if dialog.ShowModal() == wx.ID_OK:
+        datiFinali = dialog.GetFontData()
+        fontSelezionato = datiFinali.GetFont()
+        # ...
+
+
+        
+**Esercizio 341**
+
+Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre una FontDialog che permette
+di selezionare un font. Visualizzarlo come stringa nella etichetta.
+
+
+
+**Esercizio 342**
+
+Visualizzare una finestra con un pulsante ed una etichetta di testo con la scritta "Font selezionato". Cliccando il pulsante si apre una FontDialog che permette
+di selezionare un font. Utilizzarlo come font dell'etichetta.
+
+
+
+.. tip::
+
+    Se volete una presentazione generica di tutte le finestre di dialogo comuni presenti nella libreria `wxPython` ecco il
+    link che fa per voi: https://docs.wxpython.org/common_dialogs_overview.html.
+    
+    

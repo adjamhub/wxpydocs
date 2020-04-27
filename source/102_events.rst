@@ -81,7 +81,7 @@ Cerchiamo adesso di mettere in evidenza alcune cose che avete intuito osservando
    Questo per fare in modo che la funzione possa trarre informazioni dall'evento occorso, come nel caso
    della funzione *aggiornaPosizione* che tramite esso acquisisce la nuova posizione della finestra.
    
-#. Come la widget pulsante, che si chiama wxButton ha un evento predefinito (il click su di esso) che si chiama wx.EVT_BUTTON, tutte le widget
+#. Come la widget pulsante, che si chiama wxButton ha un evento predefinito (il click su di esso) che si chiama wx.EVT_BUTTON, quasi tutte le widget
    che vedremo hanno l'evento predefinito che si chiama come loro stesse. Quindi ad esempio la ipotetica widget *wx.Banana* ha un evento predefinito
    (ad esempio qualcuno che inizia a sbucciarla) che si chiama wx.EVT_BANANA.
    

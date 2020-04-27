@@ -2,10 +2,9 @@
 wx Tools
 ========
 
-La documentazione ufficiale della libreria **wxPython** è disponibile online (in versione integrale) all'indirizzo https://docs.wxpython.org/.
-Se volete lavorare consultando quella e magari cercando qualche tutorial date un occhio allo `wiki del sito wxpython <https://wiki.wxpython.org>`_.
-
-Se invece preferite avere tutto sul vostro PC, la libreria wxPython fornisce due script che fanno al caso vostro!
+La libreria wxPython fornisce due semplici strumenti per reperire localmente la documentazione e gli esempi principali della libreria stessa. Utilizzandoli avrete
+la comodità di avere tutta la documentazione disponibile offline, oltre che la possibilità di accedere ad una miriade di esempi di codice già scritti e pronti all'uso
+e alla consultazione.
 
 
 wxdocs

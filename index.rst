@@ -54,5 +54,5 @@ Come vedete, questa documentazione è divisa in 3 parti:
    :maxdepth: 1
    :caption: Documentazione
 
-   source/201_wx
+   source/201_classes
    source/299_tools

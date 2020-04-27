@@ -104,8 +104,6 @@ PS: se non avete pensato ad usare un dizionario... beh... ricominciate a pensare
 Inserite nella finestra una SpinCtrl per inserire un intero fra 1 e 10. Quando si clicca il pulsante nella StaticText sotto appare il countdown dal numero selezionato
 fino a zero.
 
-PS: Se avete capito come funziona la classe *wx.Timer* potete fare in modo che i numeri appaiano uno ogni secondo!!!
-
 
 
 **Esercizio 114 (ComboBox, TextCtrl, Button)**

@@ -3,15 +3,18 @@
     <hr>
 
 
-=========
-Modulo wx
-=========
+===============
+Classi wxPython
+===============
 
 
-Il modulo wx rappresenta il modulo principale della libreria wxPython e quello che contiene le classi sicuramente necessarie per implementare una GUI.
-L'elenco completo delle classi presenti nel modulo si trova al link: https://docs.wxpython.org/wx.1moduleindex.html.
+La documentazione ufficiale della libreria **wxPython** è disponibile online (in versione integrale) all'indirizzo https://docs.wxpython.org/.
+Se volete lavorare consultando quella e magari cercando qualche tutorial date un occhio anche allo `wiki del sito wxpython <https://wiki.wxpython.org>`_.
 
-Sotto trovate le classi che abbiamo utilizzato:
+Qui sotto trovate i link diretti alla documentazione relativa alle classi che abbiamo utilizzato durante il corso. Le trovate elencate con la sintassi
+`MODULO.CLASSE`. Nella maggior parte dei casi si tratterà di classi del modulo `wx`, il modulo di base della libreria.
+
+Buona lettura!
 
 
 `wx.App <https://docs.wxpython.org/wx.App.html>`_
@@ -39,8 +42,8 @@ Sotto trovate le classi che abbiamo utilizzato:
 `wx.StaticLine <https://docs.wxpython.org/wx.StaticLine.html>`_
     Linea decorativa, orizzontale o verticale.
     
-`wx.StaticBox <https://docs.wxpython.org/wx.StaticBox.html>`_
-    Decorazione per raggruppare le widget. Utile per organizzare il layout.
+`wx.TextCtrl <https://docs.wxpython.org/wx.TextCtrl.html>`_
+    Casella di testo.
     
 `wx.ComboBox <https://docs.wxpython.org/wx.ComboBox.html>`_
     Menù a tendina
@@ -51,9 +54,6 @@ Sotto trovate le classi che abbiamo utilizzato:
 `wx.RadioButton <https://docs.wxpython.org/wx.RadioButton.html>`_
     Pulsante selezionabile in maniera mutualmente esclusiva.
     
-`wx.Gauge <https://docs.wxpython.org/wx.Gauge.html>`_
-    Barra di avanzamento.
-    
 `wx.Slider <https://docs.wxpython.org/wx.Slider.html>`_
     Barra di scorrimento lineare.
 
@@ -63,6 +63,9 @@ Sotto trovate le classi che abbiamo utilizzato:
 `wx.ListBox <https://docs.wxpython.org/wx.ListBox.html>`_
     Lista verticale di elementi di testo.
 
+`wx.StaticBox <https://docs.wxpython.org/wx.StaticBox.html>`_
+    Decorazione per raggruppare le widget. Utile per organizzare il layout.
+    
 |hr|
 
 `wx.BoxSizer <https://docs.wxpython.org/wx.BoxSizer.html>`_
@@ -103,3 +106,11 @@ Sotto trovate le classi che abbiamo utilizzato:
 `wx.FontData <https://docs.wxpython.org/wx.FontData.html>`_
     Classe ausiliaria alla FontDialog. Contiene le informazioni necessarie ad essa.
 
+|hr|
+
+`wx.Timer <https://docs.wxpython.org/wx.Timer.html>`_
+    Timer.
+    
+`wx.Gauge <https://docs.wxpython.org/wx.Gauge.html>`_
+    Barra di avanzamento.
+    

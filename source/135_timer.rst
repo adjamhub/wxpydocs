@@ -4,6 +4,11 @@ Timer(s)
 
 .. i numeri degli esercizi sono 35x
 
+* wx.Timer
+
+* DateTime
+
+* Calendar Widget(s)
 
 
 

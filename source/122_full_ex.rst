@@ -1,6 +1,6 @@
-=================
-Esercizi Completi
-=================
+====================
+Esercizi Strutturati
+====================
 
 .. i numeri degli esercizi sono 2xx
 
@@ -15,20 +15,5 @@ form di input dati
 Lista spesa
 
 Rubrica
-
-
-.. con Timer e/o DateTime
-
-orologio
-
-cronometro
-
-sveglia
-
-semaforo
-
-calendario
-
-agenda
 
 

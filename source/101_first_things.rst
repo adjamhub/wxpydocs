@@ -32,8 +32,8 @@ Capisco che arrivato a questo punto, prima di andare avanti, è necessario che i
 Benissimo! Detto questo passiamo a reimplementare l'unico esempio che abbiamo finora visto e ragioniamoci un pò sù
 
 
-Esempio 0: ancora "Hello, World!"
-=================================
+Ancora "Hello, World!"
+======================
 
 Riguardiamo per un attimo il solito esempio iniziale alla luce delle nuove cose che abbiamo imparato:
 
@@ -64,8 +64,8 @@ Riguardiamo per un attimo il solito esempio iniziale alla luce delle nuove cose 
     In questo particolare stato di colloquio perenne tra il sistema operativo, l'utente e l'applicazione stessa, quest'ultima diventa in grado di intercettare gli eventi che accadono nel sistema (un click su un pulsante, un movimento del mouse, la carta della stampante che finisce, la rete che si sconnette, etc...) e di rispondere (eventualmente) eseguendo una funzione tra quelle disponibili fra gli oggetti che la compongono.
 
 
-Esempio 1: "Hello, World!" per l'ultima volta
-=============================================
+"Hello, World!" per l'ultima volta
+==================================
 
 In questa ultima versione di "Hello, World!" invece di inserire la scritta sul titolo della finestra la inseriremo in una etichetta al centro della stessa.
 Inoltre produrremo una nuova classe che deriva da wx.Frame per inserirvi l'etichetta.

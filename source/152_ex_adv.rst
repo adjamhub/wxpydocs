@@ -3,18 +3,16 @@ Problemi avanzati
 =================
 
 
-Blocco Note
-altro con Scintilla
+* Blocco Note con Scintilla
 
-Visualizzatore immagini
-Slideshow
-Gif Viewer
+* Media player
 
-Minibrowser
-roba con browser e html. PDF Viewer?
+* File Manager
 
-Foglio Elettronico
-Battleship
+* Minibrowser
 
-Fortune
-Downloader
+* roba con browser e html. PDF Viewer?
+
+* Foglio Elettronico
+
+* Battleship

@@ -3,11 +3,19 @@ Caratteristiche avanzate
 ========================
 
 
+Widgets
+=======
 
-timer
+* wx.ListCtrl
+* html.window, 
+* scintilla, 
+* notebook, 
+* media player
 
-wx.ListCtrl???
 
-Widget html.window, scintilla, notebook
 
-print
+Printing support
+================
+
+
+blah blah

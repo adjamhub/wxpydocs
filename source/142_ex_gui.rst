@@ -1,22 +1,14 @@
-======================
-Esercizi su GUI intere
-======================
+========================
+Esercizi su GUI complete
+========================
 
 .. i numeri degli esercizi sono 4xx
 
-Blocco Note
 
+* Blocco Note
 
-Foglio Elettronico
+* Visualizzatore immagini
 
+* Slideshow
 
-Visualizzatore immagini
-
-
-Slideshow
-
-
-Gif Viewer
-
-
-Downloader
+* Gif Viewer

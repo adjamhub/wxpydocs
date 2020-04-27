@@ -386,69 +386,6 @@ si deselezionerà automaticamente e l'etichetta sotto verrà aggiornata.
 
 
 
-wx.Gauge
-========
-
-La classe wx.Gauge rappresenta una widget che implementa una barra di avanzamento.
-
-.. image:: images/wxGauge.jpg
-
-La barra di avanzamento va impostata indicando il range predefinito. In questo esempio ho messo range=10 e questo significa che la barra si caricherà come fosse
-divisa in 10 pezzi. Per realizzare un esempio interessante ho aggiunto due caratteristiche avanzate che saranno spiegate successivamente (non vi preoccupate adesso
-se non capite bene queste parti): un timer (classe **wx.Timer**) per far avanzare la barra di uno step automaticamente ogni secondo e 2 **pulsanti predefiniti** con
-valori OK e STOP. Il Bind del timer è particolare, ma come dicevo... ci ritorneremo.
-
-Nell'esempio proposto quando si clicca OK la barra comincia a caricarsi e può essere fermata cliccando STOP. Quando la barra è carica il programma si chiude.
-
-.. code:: python
-
-    import wx
-
-    class Esempio(wx.Frame):
-        
-        def __init__(self):
-            super().__init__(None, title="Quando la barra è carica, il programma si chiude")
-            
-            self.timer = wx.Timer(self,1)
-            self.Bind(wx.EVT_TIMER, self.OnTimer, self.timer)        
-            self.conta = 0
-            
-            pannello = wx.Panel(self)
-            self.barra = wx.Gauge(pannello, range=10, pos=(5,5), size=(250,-1))
-            self.btnOk = wx.Button(pannello, wx.ID_OK, pos=(5,50))
-            self.btnStop = wx.Button(pannello, wx.ID_STOP, pos=(150,50))
-
-            self.btnOk.Bind(wx.EVT_BUTTON, self.OnOk)
-            self.btnStop.Bind(wx.EVT_BUTTON, self.OnStop)
-                    
-        def OnTimer(self, event):
-            self.conta += 1
-            if self.conta > 10:
-                self.Close(True)
-                return
-            self.barra.SetValue(self.conta)
-            return
-
-        def OnOk(self, event):
-            self.timer.Start(1000)
-            return
-
-        def OnStop(self, event):
-            self.timer.Stop()
-            return
-
-    # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
-
-
-
-
-
 wx.Slider
 =========
 
@@ -587,43 +524,6 @@ hanno tutti lo stesso primo parametro ("pannello", nell'esempio sottostante).
 
     
 
-wx.StatusBar
-============
-
-La classe wx.StatusBar rappresenta una widget che implementa la barra di stato delle applicazioni.
-
-.. image:: images/wxStatusBar.jpg
-
-E' possibile creare una barra di stato in due modi: o dichiarando un oggetto di tipo wx.StatusBar e poi inserendolo
-nella finestra tramite il metodo *SetStatusBar()* oppure chiamando direttamente dalla finestra il metodo *CreateStatusBar()*.
-Se dovete solo visualizzare informazioni il secondo metodo è una bomba! Se dovete modificare la StatusBar aggiungendovi widget e icone
-serve il primo metodo, eventualmente creando una classe derivata da wx.StatusBar.
-
-Nell'esempio proposto si crea automaticamente una StatusBar e si visualizza la posizione del puntatore non appena questo entra nella finestra.
-
-.. code:: python
-
-    import wx
-
-    class Esempio(wx.Frame):
-        
-        def __init__(self):
-            super().__init__(None, title="Muovi il mouse sopra la finestra")        
-            self.bar = self.CreateStatusBar()
-            self.Bind(wx.EVT_MOTION, self.controllaMouse)
-            
-        def controllaMouse(self, event):
-            pos = event.GetPosition()
-            info = "x: " + str(pos[0]) + " y: " + str(pos[1])
-            self.bar.SetStatusText(info)
-            return
-        
-    # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
-
+wx.ListBox
+==========
 

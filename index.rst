@@ -39,6 +39,7 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/122_full_ex
    
    source/130_dialogs
+   source/135_timer
    
    source/140_menu_toolbars
    source/142_ex_gui
@@ -46,7 +47,9 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/150_advanced
    source/152_ex_adv
 
+   source/160_network
 
+   
 .. toctree::
    :maxdepth: 1
    :caption: Documentazione

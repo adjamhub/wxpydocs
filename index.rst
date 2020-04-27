@@ -29,18 +29,22 @@ Come vedete, questa documentazione è divisa in 3 parti:
    :maxdepth: 1
    :caption: Usare wxPython
 
-   source/101_primoEsempio
+   source/101_first_things
    source/102_events
-   source/103_widgets
-   source/105_exercizes
-   source/110_layout
-   source/112_ex_layout
-   source/120_dialogs
-   source/122_ex_dialogs
-   source/130_menu_toolbars
-   source/132_ex_gui
-   source/140_advanced
-   source/142_ex_adv
+   
+   source/110_widgets
+   source/112_base_ex
+   
+   source/120_layout
+   source/122_full_ex
+   
+   source/130_dialogs
+   
+   source/140_menu_toolbars
+   source/142_ex_gui
+   
+   source/150_advanced
+   source/152_ex_adv
 
 
 .. toctree::

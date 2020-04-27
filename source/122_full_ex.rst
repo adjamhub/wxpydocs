@@ -1,6 +1,8 @@
-==================================
-Esercizi sulle finestre di dialogo
-==================================
+=================
+Esercizi Completi
+=================
+
+.. i numeri degli esercizi sono 2xx
 
 sommatore
 

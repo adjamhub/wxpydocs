@@ -193,6 +193,69 @@ di una wx.StaticText e realizzare una widget con titolo, linea e testo, come ved
 
     
 
+wx.TextCtrl
+===========
+
+La classe wx.TextCtrl rappresenta una widget che implementa una casella di testo, con vari stili supportati, definibili in fase di inizializzazione:
+
+.. code:: python
+
+    casella = wx.TextCtrl( window , style=OPTIONS )
+
+    
+Cito qui i più importanti:
+
+=============== ==================================================
+Stile           Descrizione
+=============== ==================================================
+(default)       Linea singola di testo, digitabile dall'utente
+wx.TE_MULTILINE Permette alla TextCtrl di utilizzare più righe
+wx.TE_PASSWORD  Ogni carattere viene visualizzato con un asterisco
+wx.TE_READONLY  Testo non modificabile dall'utente
+=============== ==================================================
+
+Non ha un evento di default, ma ben due utilizzabili distintamente:
+
+* **wx.EVT_TEXT**: viene scatenato ogni volta che cambia il testo contenuto nella widget
+
+* **wx.EVT_TEXT_ENTER**: viene scatenato quando si preme INVIO nella widget
+
+
+Nell'esempio proposto ho inserito una TextCtrl con caratteri oscurati (password). Man mano che si digita su di essa, il testo appare nella StaticText a fianco.
+Se provate a modificare l'evento *wx.EVT_TEXT* con l'evento *wx.EVT_TEXT_ENTER* vedrete che lo stesso succederà solo quando alla fine si preme INVIO.
+
+
+.. image:: images/wxTextCtrl.jpg
+
+
+.. code:: python
+
+    import wx
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="TextCtrl Examples")
+            panel = wx.Panel(self)
+            
+            self.text1 = wx.TextCtrl(panel, style=wx.TE_PASSWORD, pos=(5,5), size=(200,50))
+            self.static1 = wx.StaticText(panel, label="", pos=(5,70))
+            self.text1.Bind(wx.EVT_TEXT, self.aggiornaTesto)
+            
+        def aggiornaTesto(self, event):
+            self.static1.SetLabel( self.text1.GetValue() )
+            return
+        
+    # ----------------------------------------
+    app = wx.App()
+
+    window = Esempio()
+    window.Show()
+
+    app.MainLoop()
+
+
+
 wx.ComboBox
 ===========
 

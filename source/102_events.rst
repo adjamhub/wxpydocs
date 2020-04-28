@@ -90,7 +90,77 @@ Cerchiamo adesso di mettere in evidenza alcune cose che avete intuito osservando
    e che possono essere collegati tramite **binding** (ovvero con la funzione Bind)
 
    
-Vediamo un ultimo concetto sugli eventi prima di passare in rassegna tutte le widget disponibili.
+Vediamo altre due cose importantissime sugli eventi prima di passare in rassegna tutte le widget disponibili.
+
+
+
+Identificare le Widgets
+=======================
+
+Immaginate una applicazione con tanti pulsanti (una tastiera virtuale, una calcolatrice, etc...). Capita spesso in questi casi di collegare più oggetti
+alla stessa funzione. Ma come si può distinguere quale pulsante (o più in generale quale widget) ha scatenato l'evento. Provo con un esempio:
+
+
+.. code:: python
+
+  import wx
+
+  class Esempio(wx.Frame):
+      
+      def __init__(self):
+          super().__init__(None, title="2 pulsanti, 1 funzione")
+          self.pulsante1 = wx.Button(self, label="pulsante1", pos=(5,5), size=(100,30))
+          self.pulsante2 = wx.Button(self, label="pulsante2", pos=(120,5), size=(100,30))
+          self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+          self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+          
+      def chiudi(self, event):
+          # ok... chi mi ha cliccato?
+
+  # ----------------------------------------
+  app = wx.App()
+  window = Esempio()
+  window.Show()
+  app.MainLoop()
+
+
+Bene... la soluzione in questo e molti altri casi è quella di identificare le widgets con un **ID**. Questo significa praticamente assegnare ad ogni widget
+un numero in modo da poterle distinguere tra di loro (se te li ricordi... ovviamente!).
+
+La libreria wxPython fa già questo lavoro di default, ovvero assegna automaticamente ad ogni widget un numero **negativo**: la prima widget che crei sarà quella
+con ID -1, la seconda quella con ID -2 e così via... invece di contare all'impazzata, sappiate che è possibile assegnare manualmente un ID (magari solo alle widget per cui vi interessa farlo). La regola d'oro per i programmatori è quella di **usare per gli ID solo numeri positivi diversi fra loro**, magari partendo da 1, poi 2, etc... A questo punto sarà possibile dalle funzioni (o da tutta l'applicazione) identificare le widget e quello che fanno!
+
+Il codice nel nostro esempio specifico diventa il seguente:
+
+
+.. code:: python
+
+  import wx
+
+  class Esempio(wx.Frame):
+      
+      def __init__(self):
+          super().__init__(None, title="2 pulsanti, 1 funzione")
+          # i due pulsanti sono identificati con ID 1 e 2
+          self.pulsante1 = wx.Button(self, label="pulsante 1", pos=(5,5), size=(100,30), id=1)
+          self.pulsante2 = wx.Button(self, label="pulsante 2", pos=(120,5), size=(100,30), id=2)
+          self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+          self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+          
+      def faiQualcosa(self, event):
+          # la funzione GetId ci dice l'ID della widget che ha scatenato l'evento
+          id = event.GetId()
+          print("Hai cliccato il pulsante con ID =", id)
+          return
+
+  # ----------------------------------------
+  app = wx.App()
+  window = Esempio()
+  window.Show()
+  app.MainLoop()
+
+
+
 
 
 Bloccare gli eventi

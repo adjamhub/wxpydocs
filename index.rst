@@ -45,7 +45,6 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/142_ex_gui
    
    source/150_advanced
-   source/152_ex_adv
 
    source/160_network
 

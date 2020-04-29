@@ -4,27 +4,33 @@ Timer(s)
 
 .. i numeri degli esercizi sono 35x
 
-I Timer sono oggetti molto comuni in ogni libreria OOP. Risolvono tipicamente il tempo appoggiandosi al clock di sistema, che teoricamente scandisce il milionesimo
-di secondo, ma che per motivi tecnici che non sto a spiegarvi (a lezione me lo chiederete, lo so: il bello dell'inutile) è affidabile appena a fatica al millesimo
-di secondo. Per quello che serve a noi, basta e avanza...
+I Timer sono oggetti molto comuni in ogni libreria OOP. Per la scansione del tempo si appoggiano tipicamente al clock di sistema, che teoricamente scandisce 
+il milionesimo di secondo, ma che per motivi tecnici che non sto a spiegarvi (a lezione me lo chiederete, lo so: il bello dell'inutile) è affidabile appena 
+al millesimo di secondo. Per quello che serve a noi, basta e avanza...
 
-Un Timer è un oggetto della classe wx.Timer che gestisce appunto una scansione del tempo in millisecondi. Poiché ha già il suo bel daffare con questa questione del
-tempo vive sospeso rispetto al *Main Event Loop* e quindi non gestisce direttamente i suoi eventi, ma si appoggia alla sua widget parent. Detto così sembra complicato... vediamo un esempio commentato e capirete subito come funziona.
+Un Timer è un oggetto della classe wx.Timer che gestisce appunto una scansione del tempo in millisecondi. Poiché ha già il suo bel daffare con questa questione 
+del tempo vive sospeso rispetto al *Main Event Loop* e quindi non gestisce direttamente i suoi eventi, ma si appoggia alla sua widget parent. Detto così sembra complicato... vediamo un esempio commentato e capirete subito come funziona.
 
 
 .. code:: python
 
-  # in questo modo abbiamo un riferimento al timer
-  # e il timer ha la nostra widget come parent
+  # dichiariamo un oggetto della classe wx.Timer
+  # con la nostra widget come parent
+  # Manteniamo un riferimento ad esso con una variabile membro (una del tipo self.var)
   # Se nella vostra app avete 2 timer, inserite un ID
   self.timer = wx.Timer(self)
 
-  # facciamo il BIND tramite la widget: BIND(evento, funzione, oggetto)
+  # facciamo il BIND tramite la parent widget: BIND(evento, funzione, oggetto)
   self.Bind(wx.EVT_TIMER, self.funzioneDaEseguire, self.timer)
 
-Ecco qua! Come avete visto non è particolarmente complicato. Si fa partire il timer, quando scatta genera un evento timeout (wx.EVT_TIMER) e tramite questo
-Bind possiamo eseguire qualunque funzione della classe. Ma... per farlo partire??? Per fermarlo? Per... insomma, vediamo le funzioni più utilizzate della classe
-wx.Timer.
+Ecco qua! Come avete visto non è particolarmente complicato. Adesso il timer è pronto e collegato alla funzione da eseguire al timeout. 
+Ma come si fa a far partire il timer? E a fermarlo? E... 
+
+Come vediamo fra un attimo, per attivare un timer, basta invocare la funzione **Start(millisecondi)**. Se ad esempio invochiamo Start(100), ogni 100 millisecondi
+il timer genererà un evento wx.EVT_TIMER che nel nostro esempio, scatenerà la *funzioneDaEseguire*.
+
+Se avete necessità di fermare questa ripetizione infinita, usate la funzione **Stop()**. Ultima, ma non meno importante, se avete bisogno di eseguire una sola 
+volta la funzione dilazionata nel tempo, ad esempio fra 10 secondi, avviate il timer con la funzione **StartOnce(10000)**.
 
 
 .. code:: python
@@ -42,7 +48,7 @@ wx.Timer.
   timer.StartOnce(millisecondi)
 
 
-Tutto qui! Complicato?
+Spero sia tutto chiaro :)
 
 
 

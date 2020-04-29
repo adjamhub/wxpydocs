@@ -127,8 +127,12 @@ alla stessa funzione. Ma come si può distinguere quale pulsante (o più in gene
 Bene... la soluzione in questo e molti altri casi è quella di identificare le widgets con un **ID**. Questo significa praticamente assegnare ad ogni widget
 un numero in modo da poterle distinguere tra di loro (se te li ricordi... ovviamente!).
 
-La libreria wxPython fa già questo lavoro di default, ovvero assegna automaticamente ad ogni widget un numero **negativo**: la prima widget che crei sarà quella
-con ID -1, la seconda quella con ID -2 e così via... invece di contare all'impazzata, sappiate che è possibile assegnare manualmente un ID (magari solo alle widget per cui vi interessa farlo). La regola d'oro per i programmatori è quella di **usare per gli ID solo numeri positivi diversi fra loro**, magari partendo da 1, poi 2, etc... A questo punto sarà possibile dalle funzioni (o da tutta l'applicazione) identificare le widget e quello che fanno!
+La libreria wxPython fa già questo lavoro di default, ovvero assegna automaticamente ad ogni widget un numero **negativo**: la prima widget creata sarà quella
+con ID -1, la seconda quella con ID -2 e così via... invece di contare all'impazzata, sappiate che è possibile assegnare manualmente un ID (magari solo alle widget per cui vi interessa farlo). 
+
+La regola d'oro per i programmatori è quella di **usare per gli ID solo numeri positivi diversi fra loro**, magari partendo da 1, poi 2, etc... Questo ovviamente
+per evitare a priori alcun conflitto con gli ID selezionati automaticamente dalla libreria wxPython. A questo punto sarà possibile identificare le widget 
+e quello che fanno da ogni punto della tua applicazione!
 
 Il codice nel nostro esempio specifico diventa il seguente:
 
@@ -141,6 +145,7 @@ Il codice nel nostro esempio specifico diventa il seguente:
       
       def __init__(self):
           super().__init__(None, title="2 pulsanti, 1 funzione")
+          
           # i due pulsanti sono identificati con ID 1 e 2
           self.pulsante1 = wx.Button(self, label="pulsante 1", pos=(5,5), size=(100,30), id=1)
           self.pulsante2 = wx.Button(self, label="pulsante 2", pos=(120,5), size=(100,30), id=2)

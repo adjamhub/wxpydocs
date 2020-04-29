@@ -56,7 +56,7 @@ Scaricato il pacchetto di installazione, avvialo e alla finestra iniziale di con
 
 
 Al termine dell'installazione riavvia il computer (in teoria basterebbe solo uscire e rientrare nel proprio account) per caricare le nuove impostazioni
-di ambiente. Rientrato nel proprio utente, apri il prompt dei comandi e digita:
+di ambiente. Quando sei rientrato nel tuo account, apri il prompt dei comandi e digita:
 
 .. code:: bash
     

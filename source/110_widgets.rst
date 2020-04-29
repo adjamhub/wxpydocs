@@ -205,24 +205,26 @@ La classe wx.TextCtrl rappresenta una widget che implementa una casella di testo
     
 Cito qui i più importanti:
 
-=============== ==================================================
-Stile           Descrizione
-=============== ==================================================
-(default)       Linea singola di testo, digitabile dall'utente
-wx.TE_MULTILINE Permette alla TextCtrl di utilizzare più righe
-wx.TE_PASSWORD  Ogni carattere viene visualizzato con un asterisco
-wx.TE_READONLY  Testo non modificabile dall'utente
-=============== ==================================================
+=================== ==================================================
+Stile               Descrizione
+=================== ==================================================
+(default)           Linea singola di testo, digitabile dall'utente
+wx.TE_MULTILINE     Permette alla TextCtrl di utilizzare più righe
+wx.TE_PASSWORD      Ogni carattere viene visualizzato con un asterisco
+wx.TE_READONLY      Testo non modificabile dall'utente
+wx.TE_PROCESS_ENTER Gestisce il tasto INVIO come evento separato
+=================== ==================================================
 
 Non ha un evento di default, ma ben due utilizzabili distintamente:
 
 * **wx.EVT_TEXT**: viene scatenato ogni volta che cambia il testo contenuto nella widget
 
-* **wx.EVT_TEXT_ENTER**: viene scatenato quando si preme INVIO nella widget
+* **wx.EVT_TEXT_ENTER**: viene scatenato quando hai impostato lo stile wx.TE_PROCESS_ENTER e si preme INVIO nella widget
 
 
 Nell'esempio proposto ho inserito una TextCtrl con caratteri oscurati (password). Man mano che si digita su di essa, il testo appare nella StaticText a fianco.
-Se provate a modificare l'evento *wx.EVT_TEXT* con l'evento *wx.EVT_TEXT_ENTER* vedrete che lo stesso succederà solo quando alla fine si preme INVIO.
+Provate a testare l'esempio autonomamente e a modificare il codice per visualizzare ciò che è stato digitato solo alla fine, quando si preme INVIO
+nella TextCtrl.
 
 
 .. image:: images/wxTextCtrl.jpg

@@ -1,6 +1,6 @@
-=======
-Widgets
-=======
+==========
+Le Widgets
+==========
 
 .. warning::
     Negli esempi che seguono, scritti con l'unico obiettivo di presentare le widget, andremo a posizionare più oggetti

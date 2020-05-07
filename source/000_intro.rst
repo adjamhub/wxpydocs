@@ -1,10 +1,10 @@
-====================
-Introducing wxPython
-====================
+=======================
+Introduzione a wxPython
+=======================
 
 **wxPython** (https://wxpython.org/) è una libreria grafica open source, adatta alla creazione di GUI (interfacce grafiche) per sistemi Windows, Mac e Linux. 
 
-WxPython deriva dal toolkit wxWidgets (https://wxwidgets.org), libreria grafica C++ con una tradizione più che ventennale. Con la versione 4.x che noi utilizzeremo (codenamed *Phoenix*) ha subito una profonda revisione e modernizzazione, fino a diventare la libreria grafica preferita dallo stesso von Rossum (l'inventore di Python). E chissà che presto non diventi la libreria grafica predefinita!
+WxPython deriva dal toolkit wxWidgets (https://wxwidgets.org), libreria grafica C++ con una tradizione più che ventennale. Con la versione 4.x che noi utilizzeremo (codenamed *Phoenix*) ha subito una profonda revisione e modernizzazione, fino a diventare la libreria grafica preferita dallo stesso `von Rossum <https://it.wikipedia.org/wiki/Guido_van_Rossum>`_ (l'inventore di Python). E chissà che presto non diventi la libreria grafica predefinita!
 
 Si presenta come una libreria Python 3.x completamente orientata agli oggetti e
 quindi sarà di immediato utilizzo per tutti noi, non appena avremo introdotto

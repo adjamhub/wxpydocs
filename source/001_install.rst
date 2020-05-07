@@ -1,13 +1,13 @@
-============
-Installation
-============
+=============
+Installazione
+=============
 
 La libreria wxPython è una libreria OOP Python in tutto e per tutto. La trovate come tantissime altre sul **Python Package Index** e per installarla, 
-se sapete quello che state facendo, basta un semplicissimo:
+se sapete quello che state facendo, basta utilizzare `pip <https://pip.pypa.io/en/stable/>`_:
 
 .. code:: bash
     
-    $ pip install wxpython
+    $ pip3 install -U wxpython
 
 
 Se invece avete bisogno di una procedura guidata, ho preparato due percorsi alternativi a seconda dell'editor python che intendete utilizzare.
@@ -60,7 +60,7 @@ di ambiente. Quando sei rientrato nel tuo account, apri il prompt dei comandi e 
 
 .. code:: bash
     
-    $ pip install wxpython
+    $ pip3 install -U wxpython
 
 Attendi che **pip** faccia quello che deve fare... fatto! Tutto qui!
 

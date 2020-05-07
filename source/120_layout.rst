@@ -1,6 +1,6 @@
-=================
-Layout Management
-=================
+===================
+Gestione del Layout
+===================
 
 
 Il **layout management**, ovvero la gestione del posizionamento delle widget all'interno della finestra è l'arte di collocare gli oggetti tramite strumenti

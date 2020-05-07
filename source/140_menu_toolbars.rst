@@ -1,6 +1,6 @@
-==================
-Menus and Toolbars
-==================
+============
+GUI Complete
+============
 
 
 In questo capitolo cercheremo di introdurre tutti quegli elementi grafici che completano una GUI moderna: barra dei menù, azioni, icone, barre degli strumenti, etc...
@@ -36,8 +36,8 @@ Ecco l'elenco per voi: https://docs.wxpython.org/stock_items.html#stock-items
 
 
 
-Menus
-=====
+Menubar
+=======
 
 I menù sono oggetti grafici che tutti conosciamo e a cui tutti siamo abituati, non ho bisogno di grandi introduzioni! Poiché la nostra applicazione
 iniziale (un oggetto della classe wx.Frame) è completamente spoglia, come prima cosa dovremo inserire una MenuBar, una barra dei menù:
@@ -122,8 +122,14 @@ Come al solito allego il codice completo dell'esempio proposto:
     app.MainLoop()
 
 
-Toolbars
-========
+    
+Context Menu
+============
+
+
+Toolbar
+=======
+
 
 wx.StatusBar
 ============

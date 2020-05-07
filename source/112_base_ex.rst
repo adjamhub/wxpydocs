@@ -1,6 +1,6 @@
-================
-Esercizi di base
-================
+======================
+Esercizi sulle widgets
+======================
 
 
 In questa prima sequenza di esempi ed esercizi prenderemo confidenza con le widgets più semplici, senza preoccuparci più di tanto del layout, ma solo cercando

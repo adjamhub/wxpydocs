@@ -1,5 +1,5 @@
 ==========
-Le Widgets
+Le widgets
 ==========
 
 .. warning::

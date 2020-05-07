@@ -2,10 +2,18 @@ La libreria wxPython
 ====================
 
 .. warning::
-    Questa documentazione è un lavoro in divenire di preparazione del materiale necessario per il corso di Informatica del prof. Mi dispiace di ammettere che 
-    la qualità iniziale della stessa è per forza molto bassa e questo costringerà gli studenti a porsi parecchie domande e dire tante parolacce...
+    La documentazione qui presente rappresenta una parte del materiale necessario per il corso di Informatica del prof. Essendo un lavoro in fase di sviluppo
+    vi prego (più del solito) di segnalare sempre cose che non capite bene, eventuali refusi nella scrittura e tutto quello che vi viene in mente :)
+    
+    Grazie.
     
 
+.. tip::
+    Questa documentazione, oltre che usufruibile online, è disponibile in diversi formati: **PDF, ePUB, SingleHTML, etc.** Per scaricare il formato 
+    che preferite, accedete alla apposita finestra di selezione posizionata in basso nella barra laterale.
+    
+    Se ne scaricate una copia, abbiate cura di verificare che essa sia sempre aggiornata, confrontando la sua data di rilascio con quella del sito.
+    
 
 Come vedete, questa documentazione è divisa in 3 parti:
 

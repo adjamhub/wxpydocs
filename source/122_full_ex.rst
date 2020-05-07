@@ -37,9 +37,9 @@ Per implementare la vittoria potete disabilitare tutti i pulsanti e fare apparir
 Il *Fifteen Puzzle* o gioco del 15 si implementa con una semplice griglia in cui inserire 15 pulsanti. Per quanto riguarda le regole del gioco... faccio finta
 che tutti sappiate giocare e abbiate giocato almeno una volta...
 
-L'implementazione è una cosa personale, ma io voglio darvi comunque un suggerimento: inserite non 15 ma 16 pulsanti nella griglia, riempiendola completamente!
+L'implementazione di ognuno può essere diversa e comunque corretta, ma io voglio darvi un suggerimento: inserite non 15 ma 16 pulsanti nella griglia, riempiendola completamente!
 Il 16-esimo pulsante non ha etichetta e va nascosto. Ogni volta che si clicca sul pulsante vicino, quello in realtà non si sposta, ma lo si nasconde, si fa apparire
-il pulsante nascosto e si copia l'etichetta dal primo sul secondo. Tutto qui!
+il pulsante nascosto e si copia l'etichetta dal primo sul secondo.
 
 Dovete implementare una funzione *mischia* che all'inizio prepara il gioco, far muovere i pulsanti al click e una funzione *controllaSeHaiVinto* che appunto ti dice
 se sei riuscito a riordinare il puzzle!
@@ -50,11 +50,12 @@ se sei riuscito a riordinare il puzzle!
 
 .. image:: images/ex_sommatore.jpg
 
-In questa applicazione bisogna implementare un semplice sommatore. Sarà l'occasione per ragionare un pò sui layout e per curiosare un pochino
+In questa applicazione bisogna implementare una widget per fare le somme. Sarà l'occasione per ragionare un pò sui layout e per curiosare un pochino
 nella documentazione degli oggetti utilizzati.
 
 Come vedete, si parte con un layout verticale in cui sono inseriti una serie di layout orizzontali contenenti gli oggetti... Per quanto riguarda l'implementazione,
-vi ricordo di convertire i dati in int (oppure in float) sommarli e visualizzarli, ritrasformandoli in stringhe.
+vi voglio far notare che i dati nelle TextCtrl sono comunque stringhe, quindi quando li prendete dovete convertirli in int (oppure in float), poi potete sommarli e
+infine, per visualizzarli dovete ritrasformare il risultato in una stringa.
 
 
 
@@ -80,20 +81,24 @@ Attenzione alle righe e alle colonne da far allargare!
   
 * pulsante CHIUDI: chiude l'applicazione
 
-Aggiungo 2 livelli di difficoltà opzionali: prima cosa, il pulsante ELIMINA disabilitato all'inizio e abilitato solo se c'è una voce selezionata nella ListBox.
-Secondo livello, invece di CHIUDI, implementare SALVA E CHIUDI che prima di chiudere l'applicazione salva i dati nel file "lista_della_spesa.txt" sul Desktop dell'utente. I dati vanno salvati uno per riga.
+Aggiungo 2 livelli di difficoltà (opzionali): 
+
+#. il pulsante ELIMINA disabilitato all'inizio e abilitato solo se c'è una voce selezionata nella ListBox.
+
+#. Invece di CHIUDI, implementare SALVA E CHIUDI che prima di chiudere l'applicazione salva i dati nel file *lista_della_spesa.txt* sul Desktop dell'utente. 
+   I dati vanno salvati uno per riga.
 
 
 
 
-**Esercizio 206 (Input dati)**
+.. **Esercizio 206 (Input dati)**
 
 
 
-**Esercizio 207 (Rubrica)**
+.. **Esercizio 207 (Rubrica)**
 
 
 
-**Esercizio 208 (Rock, Paper, Scissors)**
+.. **Esercizio 208 (Rock, Paper, Scissors)**
 
 

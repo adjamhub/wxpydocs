@@ -1,6 +1,6 @@
-============================
-Primi Concetti, primi Esempi
-============================
+==============
+Primi concetti
+==============
 
 
 wxPython è un toolkit Python cross-platform per la creazione di applicazioni con GUI e che espone una lunga lista di widgets per i compiti più disparati.

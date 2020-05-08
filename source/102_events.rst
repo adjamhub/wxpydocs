@@ -1,5 +1,5 @@
 =====================
-Gestione degli Eventi
+Gestione degli eventi
 =====================
 
 
@@ -94,7 +94,7 @@ Vediamo altre due cose importantissime sugli eventi prima di passare in rassegna
 
 
 
-Identificare le Widgets
+Identificare le widgets
 =======================
 
 Immaginate una applicazione con tanti pulsanti (una tastiera virtuale, una calcolatrice, etc...). Capita spesso in questi casi di collegare più oggetti

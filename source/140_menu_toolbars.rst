@@ -1,5 +1,5 @@
 ============
-GUI Complete
+GUI complete
 ============
 
 

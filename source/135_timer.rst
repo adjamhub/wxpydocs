@@ -61,7 +61,7 @@ siffatta reimplementazione si chiama **wx.DateTime**. Non ho intenzione di spieg
 Eccola: https://docs.wxpython.org/datetime_overview.html
 
 
-Calendar Widget(s)
+Calendar widget(s)
 ==================
 
 La widget **wx.lib.Calendar** (attenzione... della libreria wx.lib) implementa una widget con un calendario.

@@ -1,5 +1,5 @@
 ====================
-Esercizi Strutturati
+Esercizi strutturati
 ====================
 
 Negli esercizi che seguono dovete implementare layout e funzionalità: nessuno di questi è un esercizio banale, ma sono tutti più che
@@ -29,6 +29,8 @@ Potete implementarne due versioni (in due programmi diversi):
 Per implementare la vittoria potete disabilitare tutti i pulsanti e fare apparire una nuova finestra con l'etichetta HAI VINTO. O più semplicemente scriverlo sul titolo.
 
 
+.. line::
+
 
 **Esercizio 202 (Fifteen puzzle)**
 
@@ -45,6 +47,8 @@ Dovete implementare una funzione *mischia* che all'inizio prepara il gioco, far 
 se sei riuscito a riordinare il puzzle!
 
 
+.. line::
+
 
 **Esercizio 203 (Sommatore)**
 
@@ -58,6 +62,8 @@ vi voglio far notare che i dati nelle TextCtrl sono comunque stringhe, quindi qu
 infine, per visualizzarli dovete ritrasformare il risultato in una stringa.
 
 
+.. line::
+
 
 **Esercizio 204 (Calcolatrice)**
 
@@ -66,6 +72,8 @@ infine, per visualizzarli dovete ritrasformare il risultato in una stringa.
 Evoluzione del programma sommatore. Nella calcolatrice è presente anche un layout a griglia. La TextCtrl è impostata in modalità READONLY e ogni pulsante ha la
 sua ovvia funzione. Copiate il funzionamento da una calcolatrice tradizionale. La nostra dovrà comportarsi in maniera esattamente identica!!
 
+
+.. line::
 
 
 **Esercizio 205 (Lista spesa)**

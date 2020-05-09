@@ -73,11 +73,12 @@ Vediamo qualche esempio semplice semplice:
 Ovviamente va individuato il giusto momento per visualizzare una MessageDialog: abusare di finestre modali è considerato fastidioso e maleducato.
 
 
-
 **Esercizio 301**
 
 Visualizzate una finestra con un pulsante che quando premuto visualizza un messaggio informativo a vostro piacere.
 
+
+.. line::
 
 
 **Esercizio 302**
@@ -85,6 +86,8 @@ Visualizzate una finestra con un pulsante che quando premuto visualizza un messa
 Visualizzate una finestra vuota. Quando si clicca per chiuderla appare il messaggio di domanda \"Sicuro di voler chiudere?\". Se l'utente risponde No, la 
 finestra non si chiude.
 
+
+.. line::
 
 
 **Esercizio 303**
@@ -114,6 +117,8 @@ Servono per selezionare una cartella (presente o no) nel proprio computer.
 Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre la DirDialog che permette di selezionare
 la cartella. Se l'utente preme OK nella etichetta di testo si visualizzi il percorso selezionato.
 
+
+.. line::
 
 
 **Esercizio 312**
@@ -155,12 +160,16 @@ Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente
 un file per l'apertura. Se l'utente preme OK nella etichetta di testo si visualizzi il percorso del file selezionato.
 
 
+.. line::
+
 
 **Esercizio 322**
 
 Visualizzare una finestra con un pulsante. Cliccando il pulsante si apre una FileDialog in modalità salva. Se l'utente ne seleziona uno non esistente, 
 il programma lo crea vuoto (Sugg: ricordate il modulo Pathlib???)
 
+
+.. line::
 
 
 **Esercizio 323**
@@ -194,12 +203,16 @@ Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente
 di selezionare un colore. Visualizzarlo come stringa nella etichetta.
 
 
+.. line::
+
 
 **Esercizio 332**
 
 Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre una ColourDialog che permette
 di selezionare un colore. Colorare lo sfondo dell'etichetta del colore selezionato.
 
+
+.. line::
 
 
 **Esercizio 333**
@@ -233,6 +246,8 @@ che mantiene le informazioni iniziali necessarie per la selezione dei font e (do
 Visualizzare una finestra con un pulsante ed una etichetta di testo inizialmente vuota. Cliccando il pulsante si apre una FontDialog che permette
 di selezionare un font. Visualizzarlo come stringa nella etichetta.
 
+
+.. line::
 
 
 **Esercizio 342**

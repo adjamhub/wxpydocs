@@ -2,7 +2,7 @@
 Timer(s)
 ========
 
-.. i numeri degli esercizi sono 35x
+.. i numeri degli esercizi sono 38x
 
 I Timer sono oggetti molto comuni in ogni libreria OOP. Per la scansione del tempo si appoggiano tipicamente al clock di sistema, che teoricamente scandisce 
 il milionesimo di secondo, ma che per motivi tecnici che non sto a spiegarvi (a lezione me lo chiederete, lo so: il bello dell'inutile) è affidabile appena 
@@ -129,16 +129,18 @@ Nell'esempio proposto quando si clicca OK la barra comincia a caricarsi e può e
 Esercizi
 ========
 
-.. i numeri degli esercizi vanno da 35x
+.. i numeri degli esercizi vanno da 38x
 
 
-**Esercizio 351 (orologio)**
+**Esercizio 381 (orologio)**
 
 Implementare una semplice finestra con un'unica etichetta che visualizza un orologio funzionante (che scorre) con ore, minuti, secondi.
 
 
+.. line::
 
-**Esercizio 352 (cronometro)**
+
+**Esercizio 382 (cronometro)**
 
 Implementare un cronometro con una etichetta con valore iniziale "00:00:00" rappresentanti rispettivamente minuti, secondi e centesimi di secondo 
 e tre pulsanti per le funzioni START, STOP, RESET.
@@ -150,28 +152,36 @@ e tre pulsanti per le funzioni START, STOP, RESET.
 * RESET lo (ri)imposta a ZERO
 
 
+.. line::
 
-**Esercizio 353 (sveglia)**
+
+**Esercizio 383 (sveglia)**
 
 Come l'orologio ma con la possibilità per l'utente di impostare una sveglia con ore e minuti. In quel momento dovrà *suonare la sveglia*, ad esempio
 facendo apparire una message dialog, etc...
 
 
+.. line::
 
-**Esercizio 354 (semaforo)**
+
+**Esercizio 384 (semaforo)**
 
 Applicazione con 4 immagini per 3 caselle: luce rossa, luce gialla, luce verde, luce grigia (luce spenta). Il semaforo inizia con la luce verde attiva
 e le altre due grigie. Ogni 5 secondi si passa allo stadio successivo (luce gialla, poi luce rossa, poi si ritorna a luce verde, all'infinito).
 
 
+.. line::
 
-**Esercizio 355 (calendario)**
+
+**Esercizio 385 (calendario)**
 
 Calendario in cui cliccando su un giorno è possibile inserire un appuntamento per quella data. L'applicazione deve memorizzare tutte le informazioni 
 inserite dall'utente, salvarle su file e ricaricarle all'avvio.
 
 
+.. line::
 
-**Esercizio 356 (agenda)**
+
+**Esercizio 386 (agenda)**
 
 Un agenda. Io devo ancora pensare come strutturarla. Pensaci anche tu.

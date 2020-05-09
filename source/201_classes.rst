@@ -1,8 +1,3 @@
-.. |hr| raw:: html
-
-    <hr>
-
-
 ===============
 Classi wxPython
 ===============
@@ -20,7 +15,9 @@ Buona lettura!
 `wx.App <https://docs.wxpython.org/wx.App.html>`_
     Gestisce le applicazioni con GUI implementate tramite wxPython.
 
-|hr|
+    
+.. line::
+
 
 `wx.Frame <https://docs.wxpython.org/wx.Frame.html>`_
     Finestra vuota generica, con barra del titolo, bordi e ridimensionamento funzionanti.
@@ -28,7 +25,9 @@ Buona lettura!
 `wx.Panel <https://docs.wxpython.org/wx.Panel.html>`_
     Pannello utile per organizzare il layout.
 
-|hr|
+
+.. line::
+
 
 `wx.Button <https://docs.wxpython.org/wx.Button.html>`_
     Pulsante cliccabile.
@@ -65,8 +64,10 @@ Buona lettura!
 
 `wx.StaticBox <https://docs.wxpython.org/wx.StaticBox.html>`_
     Decorazione per raggruppare le widget. Utile per organizzare il layout.
+
     
-|hr|
+.. line::
+
 
 `wx.BoxSizer <https://docs.wxpython.org/wx.BoxSizer.html>`_
     Contenitore per una riga (o una colonna) di widget
@@ -83,7 +84,7 @@ Buona lettura!
 `wx.GridBagSizer <https://docs.wxpython.org/wx.GridBagSizer.html>`_
     Contenitore a tabella con spanning
     
-|hr|
+.. line::
 
 `wx.MessageDialog <https://docs.wxpython.org/wx.MessageDialog.html>`_
     Finestra di dialogo per messaggi generici
@@ -106,7 +107,9 @@ Buona lettura!
 `wx.FontData <https://docs.wxpython.org/wx.FontData.html>`_
     Classe ausiliaria alla FontDialog. Contiene le informazioni necessarie ad essa.
 
-|hr|
+    
+.. line::
+
 
 `wx.Timer <https://docs.wxpython.org/wx.Timer.html>`_
     Timer.

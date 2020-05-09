@@ -47,9 +47,10 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/122_full_ex
    
    source/130_dialogs
+   source/132_images
    source/135_timer
    
-   source/140_menu_toolbars
+   source/140_full_gui
    source/142_ex_gui
    
    source/150_advanced

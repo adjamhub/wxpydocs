@@ -24,15 +24,96 @@ univocamente tramite un nome (ad esempio: COPIA), un'icona (...), una scorciatoi
 
 La libreria wxPython per assicurare uniformità nelle azioni più comuni, come ad esempio APRI, SALVA, ESCI, etc... ha pensato bene di definirle tramite 
 degli ID: ad esempio l'ID per l'azione SALVA si chiama wx.ID_SAVE. Voi identificate un pulsante con quell'ID e quello diventa automaticamente il pulsante
-SALVA! Ha un testo, un'icona, una scorciatoia, etc...
+SALVA! Ha un testo, una scorciatoia, etc... 
+
+Su Linux (precisamente, se wxPython utilizza il backend wxGTK) la nostra azione avrà anche un'icona di default. Purtroppo questo non vale per tutte le 
+piattaforme supportate... poco male comunque! Possiamo inserire le icone necessarie tramite la classe **wx.ArtProvider**, come visto nella parte sulle immagini.
+
 
 .. code:: python
 
-    # quasi troppo facile :)
-    button = wx.Button(parent, id=wx.ID_SAVE)
+    # è solo un esempio per dare un'idea... è chiaro sì?
+    var = wx.RobaGrafica( parent, id = wx.ID_SAVE , bitmap = wx.ArtProvider.GetBitmap(wx.ART_SAVE) )
 
-Ok, come faccio a conoscere l'elenco delle azioni predefinite in wxPython? Leggi la documentazione! 
-Ecco l'elenco per voi: https://docs.wxpython.org/stock_items.html#stock-items
+    
+Ok, ci manca solo l'elenco completo degli ID delle azioni predefinite in wxPython. Eccolo:
+
+======================= ========================
+ACTION ID               DEFAULT LABEL
+======================= ========================
+wx.ID_ABOUT             About
+wx.ID_ADD               Add
+wx.ID_APPLY             Apply
+wx.ID_BACKWARD          Back
+wx.ID_BOLD              Bold
+wx.ID_BOTTOM            Bottom
+wx.ID_CANCEL            Cancel
+wx.ID_CDROM             CD-Rom
+wx.ID_CLEAR             Clear
+wx.ID_CLOSE             Close
+wx.ID_CONVERT           Convert
+wx.ID_COPY              Copy
+wx.ID_CUT               Cut
+wx.ID_DELETE            Delete
+wx.ID_DOWN              Down
+wx.ID_EDIT              Edit
+wx.ID_EXECUTE           Execute
+wx.ID_EXIT              Quit
+wx.ID_FILE              File
+wx.ID_FIND              Find
+wx.ID_FIRST             First
+wx.ID_FLOPPY            Floppy
+wx.ID_FORWARD           Forward
+wx.ID_HARDDISK          Harddisk
+wx.ID_HELP              Help
+wx.ID_HOME              Home
+wx.ID_INDENT            Indent
+wx.ID_INDEX             Index
+wx.ID_INFO              Info
+wx.ID_ITALIC            Italic
+wx.ID_JUMP_TO           Jump to
+wx.ID_JUSTIFY_CENTER    Centered
+wx.ID_JUSTIFY_FILL      Justified
+wx.ID_JUSTIFY_LEFT      Align Left
+wx.ID_JUSTIFY_RIGHT     Align Right
+wx.ID_LAST              Last
+wx.ID_NETWORK           Network
+wx.ID_NEW               New
+wx.ID_NO                No
+wx.ID_OK                Ok
+wx.ID_OPEN              Open
+wx.ID_PASTE             Paste
+wx.ID_PREFERENCES       Preferences
+wx.ID_PREVIEW           Print previe&w
+wx.ID_PRINT             Print
+wx.ID_PROPERTIES        Properties
+wx.ID_REDO              Redo
+wx.ID_REFRESH           Refresh
+wx.ID_REMOVE            Remove
+wx.ID_REPLACE           Replace
+wx.ID_REVERT_TO_SAVED   Revert to Saved
+wx.ID_SAVE              Save
+wx.ID_SAVEAS            Save As
+wx.ID_SELECTALL         Select All
+wx.ID_SELECT_COLOR      Color
+wx.ID_SELECT_FONT       Font
+wx.ID_SORT_ASCENDING    Ascending
+wx.ID_SORT_DESCENDING   Descending
+wx.ID_SPELL_CHECK       Spell Check
+wx.ID_STOP              Stop
+wx.ID_STRIKETHROUGH     Strikethrough
+wx.ID_TOP               Top
+wx.ID_UNDELETE          Undelete
+wx.ID_UNDERLINE         Underline
+wx.ID_UNDO              Undo
+wx.ID_UNINDENT          Unindent
+wx.ID_UP                Up
+wx.ID_YES               Yes
+wx.ID_ZOOM_100          Actual Size
+wx.ID_ZOOM_FIT          Zoom to Fit
+wx.ID_ZOOM_IN           Zoom In
+wx.ID_ZOOM_OUT          Zoom Out
+======================= ========================
 
 
 
@@ -40,7 +121,8 @@ Menubar
 =======
 
 I menù sono oggetti grafici che tutti conosciamo e a cui tutti siamo abituati, non ho bisogno di grandi introduzioni! Poiché la nostra applicazione
-iniziale (un oggetto della classe wx.Frame) è completamente spoglia, come prima cosa dovremo inserire una MenuBar, una barra dei menù:
+iniziale (un oggetto della classe wx.Frame) è completamente spoglia, come prima cosa dovremo inserire una MenuBar (una barra dei menù) e quando
+sarà pronta impostarla come barra della nostra Frame Widget:
 
 .. code:: python
 
@@ -100,7 +182,8 @@ Come al solito allego il codice completo dell'esempio proposto:
             exitItem = fileMenu.Append(wx.ID_EXIT)
             customItem = wx.MenuItem(fileMenu, 35, "Fai qualcosa")
             fileMenu.Append(customItem)
-
+            
+            # Aggiungo il menù creato come menù File (con F come scorciatoia)
             menubar.Append(fileMenu, '&File')
             self.SetMenuBar(menubar)
             
@@ -122,13 +205,21 @@ Come al solito allego il codice completo dell'esempio proposto:
     app.MainLoop()
 
 
-    
-Context Menu
-============
-
-
 Toolbar
 =======
+
+Le barre degli strumenti permettono, nelle GUI moderne, l'accesso veloce alle azioni di maggior utilizzo per gli utenti. Per aggiungere una Toolbar alla
+nostra Frame Widget dobbiamo utilizzare la funzione `CreateToolBar()` a cui poi potremo aggiungere le azioni che ci interessano.
+
+.. code:: python
+
+    toolbar = window.CreateToolBar()
+    
+    toolbar.AddTool(...e qui si aggiungono le azioni una ad una...)
+    
+    # riempita la toobar, va eseguito il metodo Realize()
+    toolbar.Realize()
+
 
 
 wx.StatusBar
@@ -172,5 +263,10 @@ Nell'esempio proposto si crea automaticamente una StatusBar e si visualizza la p
 
 
     
+Context Menu
+============
+
+
+
 SystemSettings
 ==============

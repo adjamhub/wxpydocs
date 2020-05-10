@@ -63,8 +63,9 @@ trova l'immagine e volete visualizzarla all'avvio. Se volete visualizzare un'imm
 allora create la Bitmap quando sapete il percorso e lo abbinate alla StaticBitmap nel layout tramite la funzione `SetBitmap()`.
 
 
-Se hai propositi bellicosi nei confronti della tua immagine, allora hai bisogno della classe **wx.Image**. In essa troverai tutte le funzionalità presenti in wxPython
-per la modifica delle immagini. Non ce la faccio a spiegare tutto in questo testo, ma vi invito a curiosare sul tool **wxdemo** citato nell'ultima pagina della dispensa e a consultare la documentazione della classe `wx.Image <https://wxpython.org/Phoenix/docs/html/wx.Image.html>`_.
+Se hai propositi bellicosi nei confronti della tua immagine (ovvero se pensi di modificarne dimensione, colore, trasparenza etc...), allora hai bisogno 
+della classe **wx.Image**. In essa troverai tutte le funzionalità presenti in wxPython per la modifica delle immagini. 
+Non ce la faccio a spiegare tutto in questo testo: per darvi un'idea delle funzionalità della classe wx.Image vi invito a curiosare sul tool **wxdemo** citato nell'ultima pagina della dispensa e a consultare la documentazione della classe `wx.Image <https://wxpython.org/Phoenix/docs/html/wx.Image.html>`_.
 
 Per ottenere un oggetto della classe wx.Image basta partire da un oggetto wx.Bitmap ed estrarlo da questo, come nell'esempio con la solita immagine:
 

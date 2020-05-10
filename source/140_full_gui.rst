@@ -173,7 +173,7 @@ Si ottiene questo (come vedete, su Linux c'è un'icona in più...):
 .. image:: images/wxMenuBar.jpg
 
 
-Per collegare le azioni create ad una funzione (Binding) va intercettato l'evento wx.EVT_MENU:
+Per collegare le azioni create ad una funzione (Binding) va intercettato l'evento wx.EVT_MENU abbinato all'ID della voce di menù in questione:
 
 
 .. code:: python
@@ -298,8 +298,10 @@ Per implementare un *Check Item* ripropongo un esempio che attiva e disattiva il
 Toolbar
 =======
 
-Le barre degli strumenti permettono, nelle GUI moderne, l'accesso veloce alle azioni di maggior utilizzo per gli utenti. Per aggiungere una Toolbar alla
-nostra Frame Widget dobbiamo utilizzare la funzione `CreateToolBar()` a cui poi potremo aggiungere le azioni che ci interessano.
+Se le barre dei menù dovrebbero permettere l'accesso a **tutte** le funzioni disponibili in una applicazione, le barre degli strumenti dovrebbero permettere
+l'accesso alle azioni veloci, ovvero a quelle di maggior utilizzo per gli utenti.
+
+Per aggiungere una Toolbar alla nostra Frame Widget dobbiamo utilizzare la funzione `CreateToolBar()` a cui poi potremo aggiungere le azioni che ci interessano.
 
 .. code:: python
 
@@ -310,6 +312,109 @@ nostra Frame Widget dobbiamo utilizzare la funzione `CreateToolBar()` a cui poi 
     # riempita la toobar, va eseguito il metodo Realize()
     toolbar.Realize()
 
+
+Facciamo anche qui un esempio con 2 azioni e un separatore: la prima azione sarà un azione standard, mentre la seconda una azione personalizzata:
+
+
+.. code:: 
+
+    # ...
+    # azione standard: ID, descrizione, icona
+    exitTool = toolbar.AddTool( wx.ID_EXIT, "ESCI", wx.ArtProvider.GetBitmap(wx.ART_QUIT) )
+    
+    # un separatore: come abbellimento e per vedere come si fa :)
+    toolbar.AddSeparator()
+    
+    # azione personalizzata: ID, descrizione, icona
+    questionTool = toolbar.AddTool( 73 , "Fai una domanda" , wx.ArtProvider.GetBitmap(wx.ART_QUESTION) )
+
+
+A questo punto, se volete collegare i pulsanti della Toolbar ad una funzione, basta eseguire il solito Bind() con l'evento **wx.EVT_TOOL**.
+
+
+.. code:: 
+
+    self.Bind(wx.EVT_TOOL, self.esci, exitTool )
+    self.Bind(wx.EVT_TOOL, self.dattiUnaRisposta, exitTool )
+
+    
+Come al solito, propongo l'esempio completo delle toolbar.
+
+
+.. code::
+
+    import wx
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="Prova Toolbar")
+            
+            toolbar = self.CreateToolBar()
+            
+            exitTool = toolbar.AddTool( wx.ID_EXIT, "ESCI", wx.ArtProvider.GetBitmap(wx.ART_QUIT) )
+            toolbar.AddSeparator()
+            questionTool = toolbar.AddTool( 73 , "Fai una domanda" , wx.ArtProvider.GetBitmap(wx.ART_QUESTION) )
+
+            toolbar.Realize()
+
+            self.Bind(wx.EVT_TOOL, self.esci, exitTool)
+            self.Bind(wx.EVT_TOOL, self.dattiUnaRisposta, questionTool)
+
+        def esci(self, event):
+            self.Close(True)
+            return
+        
+        def dattiUnaRisposta(self,event):
+            dial = wx.MessageDialog(None, "Bravo!", "Risposta", wx.OK | wx.ICON_EXCLAMATION)
+            dial.ShowModal()
+            
+    # ----------------------------------------
+    app = wx.App()
+    window = Esempio()
+    window.Show()
+    app.MainLoop()
+
+
+.. warning::
+    L'evento EVT_TOOL è automaticamente abbinato ad un evento EVT_MENU e viceversa. Questo significa che se, ad esempio, avete già implementato
+    tutte le vostre azioni nella MenuBar e fatto il Binding con i loro ID con le opportune funzioni, tutte le azioni che aggiungerete alla toolbar
+    con ID già utilizzati funzioneranno automaticamente senza bisogno di un ulteriore binding!!!
+    
+    
+Vediamo una semplicissima dimostrazione di ciò con una finestra avente una sola azione, presente sia nella menubar che nella toolbar.
+
+
+.. code::
+
+    import wx
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="Stessa azione: menu & toolbar")
+
+            menubar = wx.MenuBar()
+            fileMenu = wx.Menu()
+            fileItem = fileMenu.Append(wx.ID_EXIT)
+            menubar.Append(fileMenu, '&File')
+            self.SetMenuBar(menubar)
+            
+            self.Bind(wx.EVT_MENU, self.esci, id=wx.ID_EXIT)
+            
+            toolbar = self.CreateToolBar()
+            toolbar.AddTool( wx.ID_EXIT, "ESCI", wx.ArtProvider.GetBitmap(wx.ART_QUIT) )
+            toolbar.Realize()
+
+        def esci(self, event):
+            self.Close(True)
+            return
+            
+    # ----------------------------------------
+    app = wx.App()
+    window = Esempio()
+    window.Show()
+    app.MainLoop()
 
 
 wx.StatusBar

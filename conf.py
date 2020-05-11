@@ -16,7 +16,7 @@ ver = oggi.strftime("%Y%m%d")
 # -- Project information -----------------------------------------------------
 
 project = 'wxpython docs'
-copyright = year + ', Andrea Diamantini. Lic: CC BY-NC-SA 4.0. Ver: ' + ver + ". "
+copyright = year + ', Andrea Diamantini. License: CC BY-NC-SA 4.0. Version: ' + ver + ". "
 author = 'Andrea Diamantini'
 
 # The full version, including alpha/beta/rc tags

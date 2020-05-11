@@ -13,7 +13,7 @@ La libreria wxPython
     che preferite, accedete alla apposita finestra di selezione posizionata in basso nella barra laterale.
     
     Se ne scaricate una copia, abbiate cura di verificare che essa sia sempre aggiornata, confrontando la sua data di rilascio con quella del sito, scritta
-    in ogni pagina in basso (Ver: AnnoMeseGiorno).
+    in ogni pagina in basso (Version: AnnoMeseGiorno).
     
 
 Come vedete, questa documentazione è divisa in 3 parti:

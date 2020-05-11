@@ -461,6 +461,69 @@ Nell'esempio proposto si crea automaticamente una StatusBar e si visualizza la p
 Context Menu
 ============
 
+I *Context Menus* ovvero i menù contestuali sono quei menù che appaiono quando si fa click con il tasto destro in determinate posizione della nostra applicazione.
+Risulta chiaro a mio avviso che i Context Menu dipendono dalla widget sopra la quale si fa click con il tasto destro. Un immagine vale più di 1000 parole:
+
+
+.. image:: images/contextMenu.jpg
+
+
+Per capire come si può implementare un Context Menu tramite la libreria wxPython proviamo ad implementarne uno su una widget con dentro un check item che abilita
+o disabilita la toolbar, rendendo possibile in quest'ultimo caso utilizzare i suoi strumenti.
+
+
+.. code:: python
+
+    import wx
+
+    class Esempio(wx.Frame):
+        
+        def __init__(self):
+            super().__init__(None, title="Context Menu")
+            
+            self.toolbar = self.CreateToolBar()        
+            exitTool = self.toolbar.AddTool( wx.ID_EXIT, "ESCI", wx.ArtProvider.GetBitmap(wx.ART_QUIT) )
+            self.toolbar.Realize()
+
+            self.Bind(wx.EVT_TOOL, self.esci, exitTool)
+            
+            # serve ad attivare il Context Menu
+            self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+
+            # Crea il menù, pronto per essere attivato!
+            self.contextMenu = wx.Menu()
+            self.fsItem = wx.MenuItem(self.contextMenu, id=100, text="Toolbar abilitata", kind=wx.ITEM_CHECK)
+            self.contextMenu.Append(self.fsItem)
+            self.contextMenu.Check(100, True)
+            self.Bind(wx.EVT_MENU, self.ManageToolBar, self.fsItem)
+                    
+        def esci(self, event):
+            self.Close(True)
+            return
+        
+        def OnRightDown(self, event):
+            self.PopupMenu(self.contextMenu, event.GetPosition())
+
+        def ManageToolBar(self,event):
+            if self.fsItem.IsChecked():
+                self.toolbar.Enable(True)
+            else:
+                self.toolbar.Enable(False)
+            
+    # ----------------------------------------
+    app = wx.App()
+    window = Esempio()
+    window.Show()
+    app.MainLoop()
+
+
+Il risultato di questo codice è il seguente:
+
+
+.. image:: images/wxContextMenu.jpg
+
+
+Spero che osservare e riprodurre l'esempio sia sufficiente per capire il funzionamento :)
 
 
 SystemSettings

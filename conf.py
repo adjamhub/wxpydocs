@@ -8,18 +8,20 @@ import sys
 sys.path.insert(0, os.path.abspath('.'))
 import myrules
 
-# needed for version number
 import datetime
-
+# oggi instead of today: there is another variabile called "today"
+oggi = datetime.date.today()
+year = oggi.strftime("%Y")
+ver = oggi.strftime("%Y%m%d")
 # -- Project information -----------------------------------------------------
 
 project = 'wxpython docs'
-copyright = '2020, Andrea Diamantini, licensed under CC BY-NC-SA 4.0. '
+copyright = year + ', Andrea Diamantini. Lic: CC BY-NC-SA 4.0. Ver: ' + ver + ". "
 author = 'Andrea Diamantini'
 
 # The full version, including alpha/beta/rc tags
-version = datetime.date.today().strftime("%Y%m%d")
-release = version
+version = ver
+release = 'latest'
 
 
 # -- General configuration ---------------------------------------------------

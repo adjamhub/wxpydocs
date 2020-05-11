@@ -111,9 +111,52 @@ Buona lettura!
 .. line::
 
 
+`wx.Bitmap <https://docs.wxpython.org/wx.Bitmap.html>`_
+    Classe per la gestione delle immagini.
+    
+`wx.StaticBitmap <https://docs.wxpython.org/wx.StaticBitmap.html>`_
+    Classe per la visualizzazione delle immagini.
+    
+`wx.Image <https://docs.wxpython.org/wx.Image.html>`_
+    Classe per la manipolazione delle immagini.
+
+`wx.ArtProvider <https://docs.wxpython.org/wx.ArtProvider.html>`_
+    Classe per individuare file multimediali predefiniti.
+
+
+.. line::
+
+
 `wx.Timer <https://docs.wxpython.org/wx.Timer.html>`_
     Timer.
     
+`wx.DateTime <https://docs.wxpython.org/wx.DateTime.html>`_
+    Classe wxPython per la gestione di data e ora.
+    
 `wx.Gauge <https://docs.wxpython.org/wx.Gauge.html>`_
     Barra di avanzamento.
+
+
+.. line::
+
+
+`wx.MenuBar <https://docs.wxpython.org/wx.MenuBar.html>`_
+    Classe per implementare una barra dei menù
     
+`wx.Menu <https://docs.wxpython.org/wx.Menu.html>`_
+    Classe per implementare un menù
+
+`wx.MenuItem <https://docs.wxpython.org/wx.Menuitem.html>`_
+    Classe per implementare un elemento di menù
+
+`wx.ToolBar <https://docs.wxpython.org/wx.ToolBar.html>`_
+    Classe per implementare una barra dei menù
+
+`wx.StatusBar <https://docs.wxpython.org/wx.StatusBar.html>`_
+    Classe per implementare una barra di stato.
+
+`wx.ConfigBase <https://docs.wxpython.org/wx.ConfigBase.html>`_
+    Classe **astratta** (non può essere utilizzata direttamente) per il salvataggio delle impostazioni.
+    
+`wx.FileConfig <https://docs.wxpython.org/wx.FileConfig.html>`_
+    Classe per il salvataggio delle impostazioni su file INI (coppie VARIABILE=VALORE)

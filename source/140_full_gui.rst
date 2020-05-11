@@ -526,5 +526,64 @@ Il risultato di questo codice è il seguente:
 Spero che osservare e riprodurre l'esempio sia sufficiente per capire il funzionamento :)
 
 
-SystemSettings
-==============
+Impostazioni 
+============
+
+Può essere interessante e/o addirittura necessario per una applicazione salvare da qualche parte alcune impostazioni da ricaricare al prossimo riavvio.
+Ad esempio potrebbe essere interessante tracciare la posizione e la dimensione della finestra principale nello schermo, per riproporla identica... oppure nel
+caso di una applicazione che permette ad esempio di cambiare la dimensione del font, di memorizzare questa impostazione e riproporla anche nelle successive esecuzioni,
+senza dover ogni volta costringere l'utente a cambiarla di nuovo.
+
+Certo siete già in grado di fare questo tipo di lavoro salvando ad esempio su file di testo queste informazioni... ma dove lo mettiamo questo file per essere 
+ragionevolmente sicuri di ritrovarlo alla prossima esecuzione? A tutte queste domande risponde con semplicità disarmante la classe **wx.FileConfig** che deriva 
+dalla classe astratta **wx.ConfigBase** (uhm... forse non sapete cosa significa astratta... pazienza!!!).
+
+La classe *wx.FileConfig* richiede come informazioni solo il nome dell'applicazione, poi per ogni sistema operativo sceglie il posto riservato alle impostazioni
+delle applicazioni e scrive lì dentro un file di testo con una sequenza di coppie VARIABILE = VALORE.
+
+Quindi riassumendo:
+
+STEP 1
+    Dare un nome alla propria App. Questo si fa nella classe App, prima di creare una finestra, con la funzione SetAppName. Ad esempio:
+    
+    .. code:: python
+        
+        app = wx.App()
+        app.SetAppName("Ciccio")
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
+
+STEP 2
+    Dove ti serve di salvare alcune impostazioni, crea un oggetto della classe wx.FileConfig e salva i tuoi dati con la funzione `Write("variabile", valore)`.
+    Nell'esempio sotto proviamo a salvare la variabile "colore" che contiene il valore "red" e la variabile "dimensioneFont" che contiene il valore 18. Attenzione
+    ad assicurarsi di salvare sempre e solo stringhe:
+    
+    .. code:: python
+    
+        config = wx.FileConfig("Ciccio")
+        config.Write( "colore" , "red" )
+        
+        # l'int va convertito in stringa
+        config.Write( "dimensioneFont" , str(18) )
+        
+        # basta... tutto qui!
+        
+STEP 3
+    Quando ti serve di sapere i valori abbinati alle variabili "colore" e "dimensioneFont", che evidentemente per il tuo programma sono importanti, ti
+    basterà andare a controllarne il valore con le funzioni Read (che restituisce sempre stringhe, quindi converti i valori se ne hai bisogno).
+    
+    .. code:: python
+    
+        config = wx.FileConfig("Ciccio")
+        
+        # "black" è il valore di default, viene usato se non è stato salvato nulla
+        colore = config.Read( "colore" , "black" ) 
+        
+        # trasformo in int. 12 default.
+        dimensioneFont = int( config.Read( "dimensioneFont" , "12" ) ) 
+
+
+Come vedete salvare le configurazioni della propria App diventa semplicissimo, a patto di saper scegliere bene i valori da salvare come impostazioni e di
+fare in modo che i dati da salvare siano semplicemente convertibili in stringhe.
+

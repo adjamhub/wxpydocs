@@ -8,14 +8,17 @@ import sys
 sys.path.insert(0, os.path.abspath('.'))
 import myrules
 
+# needed for version number
+import datetime
+
 # -- Project information -----------------------------------------------------
 
 project = 'wxpython docs'
-copyright = '2020, Andrea Diamantini'
+copyright = '2020, Andrea Diamantini, licensed under CC BY-NC-SA 4.0'
 author = 'Andrea Diamantini'
 
 # The full version, including alpha/beta/rc tags
-version = 'latest'
+version = datetime.date.today().strftime("%Y%m%d")
 release = 'latest'
 
 

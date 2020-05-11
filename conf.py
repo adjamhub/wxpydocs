@@ -14,12 +14,12 @@ import datetime
 # -- Project information -----------------------------------------------------
 
 project = 'wxpython docs'
-copyright = '2020, Andrea Diamantini, licensed under CC BY-NC-SA 4.0'
+copyright = '2020, Andrea Diamantini, licensed under CC BY-NC-SA 4.0. '
 author = 'Andrea Diamantini'
 
 # The full version, including alpha/beta/rc tags
 version = datetime.date.today().strftime("%Y%m%d")
-release = 'latest'
+release = version
 
 
 # -- General configuration ---------------------------------------------------

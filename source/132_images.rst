@@ -175,13 +175,13 @@ File normale                wx.ART_NORMAL_FILE
 Incolla                     wx.ART_PASTE
 Più                         wx.ART_PLUS
 Stampa                      wx.ART_PRINT
+Domanda                     wx.ART_QUESTION
+Termina l'applicazione      wx.ART_QUIT
 Ripristina                  wx.ART_REDO
 Vista riassuntiva           wx.ART_REPORT_VIEW
 Un grosso tick              wx.ART_TICK_MARK
 Suggerimento                wx.ART_TIP
 Annulla                     wx.ART_UNDO
-Domanda                     wx.ART_QUESTION
-Termina l'applicazione      wx.ART_QUIT
 Attenzione                  wx.ART_WARNING
 =========================== ===========================
 

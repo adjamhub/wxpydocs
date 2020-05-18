@@ -64,25 +64,29 @@ Riguardiamo per un attimo il solito esempio iniziale alla luce delle nuove cose 
     In questo particolare stato di colloquio perenne tra il sistema operativo, l'utente e l'applicazione stessa, quest'ultima diventa in grado di intercettare gli eventi che accadono nel sistema (un click su un pulsante, un movimento del mouse, la carta della stampante che finisce, la rete che si sconnette, etc...) e di rispondere (eventualmente) eseguendo una funzione tra quelle disponibili fra gli oggetti che la compongono.
 
 
-"Hello, World!" per l'ultima volta
-==================================
+Finestra derivata
+=================
 
-In questa ultima versione di "Hello, World!" invece di inserire la scritta sul titolo della finestra la inseriremo in una etichetta al centro della stessa.
-Inoltre produrremo una nuova classe che deriva da wx.Frame per inserirvi l'etichetta.
+Nel prossimo esempio di codice andremo a derivare una finestra a partire dalla classe **wx.Frame** che abbiamo già accennato sopra e utilizzato nell'esempio "Hello, World!". Nel suo costruttore (la funzione `__init__`) andremo ad inserire tutti gli oggetti grafici che compongono la nostra finestra, in questo primo esempio
+solo una semplice etichetta di testo.
 
 
 .. code:: python
 
     import wx
 
-    # classe che deriva da wx.Frame
+    # --------------------------------------------------------
+    # QUI SI DEFINISCE LA CLASSE LaMiaPrimaFinestra
+    # (derivata dalla classe wx.Frame)
     class LaMiaPrimaFinestra(wx.Frame):
         
         def __init__(self):
             super().__init__(None, title="La mia prima finestra")
-            self.etichetta = wx.StaticText(self, label="Hello, World!")
+            self.etichetta = wx.StaticText(self, label="Ciao a tutti!")
     
-    # spero sia chiaro ormai
+    # --------------------------------------------------------
+
+    # QUI SI UTILIZZA LA CLASSE LaMiaPrimaFinestra DEFINITA SOPRA
     app = wx.App()
     windows = LaMiaPrimaFinestra()
     windows.Show(True)
@@ -92,5 +96,69 @@ Inoltre produrremo una nuova classe che deriva da wx.Frame per inserirvi l'etich
 In questo modo impareremo a strutturare ogni finestra in una classe e se necessario a strutturare i nostri progetti dividendo ogni classe in un file diverso, in
 modo da favorire al massimo l'organizzazione fortemente orientata agli oggetti e tutti le buone cose che ne derivano (organizzazione del codice, chiara divisione dei compiti fra le classi, semplicità nel riutilizzare il codice, etc..)
 
+
+Dimensione e posizionamento
+===========================
+
+Se vogliamo modificare la **dimensione** di una finestra possiamo farlo in 2 modi: o fornendo una dimensione iniziale nel costruttore della stessa, oppure utilizzando
+la funzione `SetSize(width, height)`. Ricordo che tutte le misure sono espresse in pixel.
+
+
+.. code:: python
+
+    class Finestra(wx.Frame):
+        def __init__(self):
+            super().__init__(None, title="Finestra 800x600", size=(800,600))
+
+    # ------------------------------------
+    # oppure...
+    
+    window = wx.Frame(None)
+    window.SetSize(800,600)
+    window.Show()
+    
+
+Entrambi i metodi sono semplici ed efficaci. In alternativa, il metodo `SetSize()` può essere chiamato all'interno della funzione `__init__` quando si definisce
+una finestra derivata.
+
+In maniera analoga, se vogliamo specificare il **posizionamento** della finestra all'interno dello schermo possiamo specificare la posizione iniziale nel costruttore
+o eseguire successivamente la funzione `Move(x,y)`.
+
+
+.. code:: python
+
+    class Finestra(wx.Frame):
+        def __init__(self):
+            super().__init__(None, title="Finestra al punto (5,5)", pos=(5,5))
+
+    # ------------------------------------
+    # oppure...
+    
+    window = wx.Frame(None)
+    window.Show()
+    window.Move(5,5)
+
+
+Anche qui, possiamo decidere di mischiare i due approcci, inserendo la funzione `Move()` all'interno della funzione `__init__` della classe Finestra. Vi ricordo
+che le finestre TopLevel vengono create nascoste e poi bisogna mostrarle con la funzione `Show()` come facciamo noi nelle ultime righe di codice di ogni programma.
+
+Un'ultima cosa, semplice e molto utile può essere quella relativa al posizionamento automatico con la funzione `Centre()`, che posiziona automaticamente la finestra
+al centro dello schermo:
+
+.. code:: python
+
+    import wx
+    
+    app = wx.App()
+    
+    window = wx.Frame(None, title="Finestra Centrata")
+    
+    # esegui questo codice, poi commenta la riga qui sotto e rieseguilo
+    window.Centre()
+    window.Show()
+
+    app.MainLoop()
+    
+    
 Adesso avanti! Il prossimo step è quello di interagire un pò con l'applicazione! Inserire un pulsante e fargli fare qualcosa!
     

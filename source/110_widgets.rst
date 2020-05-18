@@ -5,7 +5,7 @@ Le widgets
 .. warning::
     Negli esempi che seguono, scritti con l'unico obiettivo di presentare le widget, andremo a posizionare più oggetti
     nella stessa finestra tramite il cosiddetto **posizionamento assoluto**, inserendo tutte le widget in un **wx.Panel** e
-    indicando posizione (pos) e dimensione (size) degli oggetti.
+    indicando **posizione (pos)** e **dimensione (size)** degli oggetti.
 
     Questo modo di fare, pur semplice e intuitivo, è comunque assolutamente sconsigliato e sarà sostituito nel prossimo capitolo 
     da un concetto molto più avanzato e funzionale.
@@ -38,6 +38,8 @@ alla documentazione.
     win.Show()
     app.MainLoop()
 
+    
+.. TODO dimensione, posizione, spostamento
 
 
 wx.Panel
@@ -48,6 +50,9 @@ classe wx.Frame quindi è impossibile distinguere visivamente un Frame con dentr
 
 La sua utilità sta nel fatto che fornisce nativamente interazione con la tastiera (*Tab Traversal*, lo spostamento fra una widget e l'altra premendo Tab)
 per sè e per tutte le widget al suo interno.
+
+
+.. TODO approfitta per background e introdurre i colori
 
 
 wx.Button

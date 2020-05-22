@@ -61,7 +61,9 @@ Riguardiamo per un attimo il solito esempio iniziale alla luce delle nuove cose 
 .. note::
     Il **Main Event Loop** o *ciclo principale degli eventi* è uno stato di grazia in cui si pone ogni applicazione grafica dopo aver disegnato le proprie widgets. 
     
-    In questo particolare stato di colloquio perenne tra il sistema operativo, l'utente e l'applicazione stessa, quest'ultima diventa in grado di intercettare gli eventi che accadono nel sistema (un click su un pulsante, un movimento del mouse, la carta della stampante che finisce, la rete che si sconnette, etc...) e di rispondere (eventualmente) eseguendo una funzione tra quelle disponibili fra gli oggetti che la compongono.
+    In questo particolare stato di colloquio perenne tra il sistema operativo, l'utente e l'applicazione stessa, quest'ultima diventa in grado di 
+    intercettare gli eventi che accadono nel sistema (un click su un pulsante, un movimento del mouse, la carta della stampante che finisce, la rete che 
+    si sconnette, etc...) e di rispondere (eventualmente) eseguendo una funzione tra quelle disponibili fra gli oggetti che la compongono.
 
 
 Finestra derivata
@@ -106,37 +108,57 @@ la funzione `SetSize(width, height)`. Ricordo che tutte le misure sono espresse 
 
 .. code:: python
 
-    class Finestra(wx.Frame):
-        def __init__(self):
-            super().__init__(None, title="Finestra 800x600", size=(800,600))
-
-    # ------------------------------------
-    # oppure...
-    
-    window = wx.Frame(None)
-    window.SetSize(800,600)
+    import wx
+	
+    app = wx.App()   
+    window = wx.Frame(None, title="Finestra 800x600", size=(800,600))
     window.Show()
-    
+    app.MainLoop()
 
-Entrambi i metodi sono semplici ed efficaci. In alternativa, il metodo `SetSize()` può essere chiamato all'interno della funzione `__init__` quando si definisce
-una finestra derivata.
 
-In maniera analoga, se vogliamo specificare il **posizionamento** della finestra all'interno dello schermo possiamo specificare la posizione iniziale nel costruttore
-o eseguire successivamente la funzione `Move(x,y)`.
+...oppure...
 
 
 .. code:: python
 
-    class Finestra(wx.Frame):
-        def __init__(self):
-            super().__init__(None, title="Finestra al punto (5,5)", pos=(5,5))
-
-    # ------------------------------------
-    # oppure...
-    
-    window = wx.Frame(None)
+    import wx
+	
+    app = wx.App()   
+    window = wx.Frame(None, title="Finestra 800x600")
+    window.SetSize(800,600)
     window.Show()
+    app.MainLoop()
+    
+
+Entrambi i metodi sono semplici ed efficaci. In alternativa, il metodo `SetSize()` può essere chiamato all'interno della funzione `__init__` quando 
+si definisce una finestra derivata.
+
+In maniera analoga, se vogliamo specificare il **posizionamento** della finestra all'interno dello schermo possiamo specificare la posizione iniziale 
+nel costruttore o eseguire successivamente la funzione `Move(x,y)`.
+
+
+.. code:: python
+
+    import wx
+
+    app = wx.App()   
+    window = wx.Frame(None, title="Finestra al punto (5,5)", pos=(5,5))
+    window.Show()
+    app.MainLoop()
+
+
+...oppure...
+
+
+.. code:: python
+
+    import wx
+	
+    app = wx.App()   
+    window = wx.Frame(None, title="Finestra 800x600")
     window.Move(5,5)
+    window.Show()
+    app.MainLoop()
 
 
 Anche qui, possiamo decidere di mischiare i due approcci, inserendo la funzione `Move()` all'interno della funzione `__init__` della classe Finestra. Vi ricordo
@@ -150,7 +172,7 @@ al centro dello schermo:
     import wx
     
     app = wx.App()
-    
+   
     window = wx.Frame(None, title="Finestra Centrata")
     
     # esegui questo codice, poi commenta la riga qui sotto e rieseguilo

@@ -114,7 +114,7 @@ alla stessa funzione. Ma come si può distinguere quale pulsante (o più in gene
           self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
           self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
           
-      def chiudi(self, event):
+      def faiQualcosa(self, event):
           # ok... chi mi ha cliccato?
 
   # ----------------------------------------
@@ -214,3 +214,4 @@ Come al solito... copiate e provate!
     
 
 Ok, definiti gli eventi più semplici e capito come collegarli alle widget, vediamo le widgets e i layout per creare delle applicazioni con un look consistente.
+

@@ -50,7 +50,7 @@ Riguardiamo per un attimo il solito esempio iniziale alla luce delle nuove cose 
     # si crea una widget, un oggetto grafico. 
     # Una finestra non collegata a nessun altra con titolo "Hello, World!"
     # Gi oggetti Top Level vengono creati nascosti e quindi devono essere mostrati
-    window = wx.Frame(None, title="Hello, World!")
+    window = wx.Frame(parent=None, title="Hello, World!")
     window.Show()
 
     # si avvia il "Main Event Loop"
@@ -83,7 +83,7 @@ solo una semplice etichetta di testo.
     class LaMiaPrimaFinestra(wx.Frame):
         
         def __init__(self):
-            super().__init__(None, title="La mia prima finestra")
+            super().__init__(parent=None, title="La mia prima finestra")
             self.etichetta = wx.StaticText(self, label="Ciao a tutti!")
     
     # --------------------------------------------------------
@@ -180,7 +180,7 @@ al centro dello schermo:
     window.Show()
 
     app.MainLoop()
-    
-    
+
+
 Adesso avanti! Il prossimo step è quello di interagire un pò con l'applicazione! Inserire un pulsante e fargli fare qualcosa!
     

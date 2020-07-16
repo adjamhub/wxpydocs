@@ -194,7 +194,7 @@ se la TextCtrl non è vuota, aggiunge la parola alla ListBox e pulisce la TextCt
 .. line::
 
 
-**Esercizio 121 (ListBox, PushButton)**
+**Esercizio 121 (ListBox, Button)**
 
 Inserite nella finestra una ListBox vuota e un pulsante. Quando l'utente clicca il pulsante, il programma carica dal file *dati.txt* presente nella stessa cartella
 (dovete crearlo voi, con una parola ogni riga: ogni riga del file diventerà una voce nella ListBox). 

@@ -33,19 +33,19 @@ dall'utente per assicurarsi abbia recepito il messaggio.
 
 Lo stile può contenere alcuni fra i seguenti valori, sovrapponibili con la tecnica del `pipe |`, come per i flag dei Sizer.
 
-=================== ======================================
-Stile               Descrizione
-=================== ======================================
-wx.OK               Mostra il pulsante OK
-wx.CANCEL           Mostra il pulsante CANCEL
-wx.YES_NO           Mostra i pulsanti Sì e No
-wx.HELP             Mostra il pulsante AIUTO
-wx.ICON_EXCLAMATION	Mostra un icona di allerta
-wx.ICON_ERROR	    Mostra una icona di errore
-wx.ICON_HAND	    Come wx.ICON_ERROR
-wx.ICON_INFORMATION	Mostra una icona informativa
-wx.ICON_QUESTION	Mostra una icona a un punto di domanda
-=================== ======================================
+==================== ======================================
+Stile                Descrizione
+==================== ======================================
+wx.OK                Mostra il pulsante OK
+wx.CANCEL            Mostra il pulsante CANCEL
+wx.YES_NO            Mostra i pulsanti Sì e No
+wx.HELP              Mostra il pulsante AIUTO
+wx.ICON_EXCLAMATION  Mostra un icona di allerta
+wx.ICON_ERROR	     Mostra una icona di errore
+wx.ICON_HAND	     Come wx.ICON_ERROR
+wx.ICON_INFORMATION  Mostra una icona informativa
+wx.ICON_QUESTION     Mostra una icona a un punto di domanda
+==================== ======================================
 
 
 Vediamo qualche esempio semplice semplice:
@@ -104,7 +104,7 @@ Servono per selezionare una cartella (presente o no) nel proprio computer.
 .. code:: python
 
     # seleziona una dir e poi visualizza la scelta
-    dlg = DirDialog(None, 'Seleziona la cartella delle immagini')
+    dlg = wx.DirDialog(None, 'Seleziona la cartella delle immagini')
     if dlg.ShowModal() == wx.ID_CANCEL:
         return
     
@@ -138,7 +138,7 @@ Analogamente alle DirDialog, servono per selezionare un file (esistente o no) ne
 .. code:: python
 
     # ESEMPIO 1: SELEZIONA FILE DA APRIRE
-    dlg = FileDialog(None, "Apri File", style=FD_OPEN)
+    dlg = wx.FileDialog(None, "Apri File", style=wx.FD_OPEN)
     if dlg.ShowModal() == wx.ID_CANCEL:
         return
         
@@ -146,7 +146,7 @@ Analogamente alle DirDialog, servono per selezionare un file (esistente o no) ne
     #...
     
     # ESEMPIO 2: SELEZIONA PERCORSO FILE SU CUI SALVARE
-    dlg = FileDialog(None, "Salva File", style=FD_SAVE)
+    dlg = wx.FileDialog(None, "Salva File", style=wx.FD_SAVE)
     if dlg.ShowModal() == wx.ID_CANCEL:
         return
     

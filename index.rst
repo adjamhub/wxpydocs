@@ -64,4 +64,7 @@ Come vedete, questa documentazione è divisa in 3 parti:
    :caption: Documentazione
 
    source/201_classes
-   source/299_tools
+   source/291_tools_docs
+   source/292_tools_demo
+   source/293_tools_wit
+

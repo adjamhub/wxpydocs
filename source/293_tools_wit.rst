@@ -1,6 +1,6 @@
-========
-wx Tools
-========
+======================
+Widget Inspection Tool
+======================
 
 La libreria wxPython fornisce due semplici strumenti per reperire localmente la documentazione e gli esempi principali della libreria stessa. Utilizzandoli avrete
 la comodità di avere tutta la documentazione disponibile offline, oltre che la possibilità di accedere ad una miriade di esempi di codice già scritti e pronti all'uso
@@ -41,4 +41,7 @@ se essi non sono presenti nel vostro sistema.
 .. image:: images/wxdemo.jpg
 
 Cliccate su uno dei gruppi che vi interessano, date un occhio al codice e assolutamente eseguitelo per vederne il risultato!
+
+
+
 

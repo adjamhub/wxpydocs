@@ -25,7 +25,7 @@ Vedremo come sia possibile in maniera semplice individuare alcune modalità di l
         $ pip3 install -U python-pillow
         
 
-Cominciamo il nostro escursus sulle classi wxPython per la visualizzazione e la manipolazione delle immagini. Le prime classi che voglio introdurvi a proposito
+Cominciamo la nostra disamina sulle classi wxPython per la visualizzazione e la manipolazione delle immagini. Le prime classi che voglio introdurvi a proposito
 sono quelle che permettono di gestire le immagini: badate bene, *NON* quelle con cui potrete visualizzarle sulla vostra applicazione, ma quelle tramite le quali
 potrete gestire un **Oggetto Immagine** eventualmente manipolarlo (ad esempio, modificare la dimensione, il colore, il livello di trasparenza, etc..) e affidarlo
 ad un oggetto per la visualizzazione all'interno della nostra applicazione!

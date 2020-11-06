@@ -67,7 +67,7 @@ Prima di iniziare subito a preoccuparvi, sappiate che i contenitori sono pratica
    caratteristiche aggiuntive per rendere il nostro layout più vicino alla nostra idea, ma funzionano con la stessa logica del GridSizer.
 
 
-Ok, vediamo come funzionano ognuno di questi, partendo dalle loro caratteristiche e vedendoli all'opera con qualche esempio di codice.
+Ok, proviamo a vedere come funziona ognuno di questi, partendo dalle loro caratteristiche e vedendoli all'opera con qualche esempio di codice.
 
 
 wx.BoxSizer
@@ -88,9 +88,11 @@ E fino a qui è molto semplice.
 Per aggiungere widget al layout bisogna utilizzare la funzione *Add* che presenta una serie di opzioni che determinano come le widget si *allargheranno*
 nello spazio disponibile e metteranno *bordo* fra di loro. Vediamo la sintassi:
 
+
 .. code:: python
 
     box.Add(widget, proportion = 0, flag = 0, border = 0)
+
 
 Vediamo i parametri:
 
@@ -157,18 +159,18 @@ Vediamo i parametri:
 Quando hai finito di lavorare con layout e widget devi applicare il layout al suo contenitore, che nei nostri esempi sarà sempre un pannello, quindi dovrai fare 
 una cosa del genere:
 
+
 .. code:: python
 
     # ...
     # per inserire il BoxSizer come layout del Panel
     panel.SetSizer(box)
-    # Se vuoi anche ottenere un effetto centrato (sì, lo vuoi...)
-    self.Centre()
 
 
 Sembra complicato all'inizio, ma guardiamo qualche esempio e avremo tutto chiaro. 
 
 Il prossimo codice crea un layout orizzontale con 2 pulsanti che vogliamo ridimensionarsi con la finestra (quindi *proportion = 1*) e con un pochino di bordo in tutte le direzioni.
+
 
 .. code:: python
 
@@ -204,6 +206,23 @@ Il risultato del codice precedente è questo:
 .. image:: images/BoxSizerOrizzontale.jpg
 
 
+
+.. warning::
+    Prima di andare avanti, proviamo a capire quello che abbiamo visto e fatto fino ad ora! Prova a fare le seguenti modifiche al codice precedente:
+
+    * metti a 0 il valore di proportion di uno dei due pulsanti
+
+    * metti a 2 il valore di proportion di uno dei due pulsanti
+
+    * aggiungi ex.EXPAND ai flag dei pulsanti
+
+    * modifica il valore del bordo per uno dei pulsanti.
+
+    * togli wx.ALL dai flag e metti qualcuno degli altri flag disponibili
+
+    Fatte queste prove potrai apprezzare meglio quanto appreso finora ;)
+
+
 Il prossimo esempio è leggermente più complicato (soprattutto perché è più lungo): mette insieme vari layout orizzontali e verticali combinandoli
 assieme fino ad ottenere ciò che vedete nella prossima immagine.
 
@@ -231,14 +250,14 @@ orizzontale in quello verticale principale. Ad un certo punto ho aggiunto anche 
             self.tc1 = wx.TextCtrl(panel)
             hbox1.Add(self.st1, flag=wx.RIGHT, border=10)
             hbox1.Add(self.tc1, proportion=1)
-            vbox.Add(hbox1,flag=wx.EXPAND|wx.ALL, border=10)
+            vbox.Add(hbox1,flag=wx.EXPAND | wx.ALL, border=10)
             
             vbox.Add((-1, 10))  # spazio verticale di 10 pixel, orizzontale nulla
             
             hbox2 = wx.BoxSizer(wx.HORIZONTAL)
             self.st2 = wx.StaticText(panel, label="Risultati della ricerca")
             hbox2.Add(self.st2)
-            vbox.Add(hbox2,flag=wx.EXPAND|wx.LEFT, border=10)
+            vbox.Add(hbox2,flag=wx.EXPAND | wx.LEFT, border=10)
         
             hbox3 = wx.BoxSizer(wx.HORIZONTAL)
             self.tc2 = wx.TextCtrl(panel, style=wx.TE_MULTILINE)
@@ -252,7 +271,7 @@ orizzontale in quello verticale principale. Ad un certo punto ho aggiunto anche 
             self.cancel = wx.Button(panel, label="CANCEL")
             hbox4.Add(self.ok, flag=wx.LEFT, border=10)
             hbox4.Add(self.cancel, flag=wx.LEFT, border=10)
-            vbox.Add(hbox4,flag=wx.ALIGN_RIGHT|wx.RIGHT|wx.BOTTOM,border=10)
+            vbox.Add(hbox4,flag=wx.ALIGN_RIGHT | wx.RIGHT | wx.BOTTOM,border=10)
 
             panel.SetSizer(vbox)
             self.Centre()
@@ -588,4 +607,22 @@ Ecco il codice che implementa quest'ultimo esempio:
     window = Esempio()
     window.Show()
     app.MainLoop()
+
+
+.. tip::
+    Ok, state provando a creare un layout, partendo da una idea che avete e non state riuscendo... Ci sono due suggerimenti che posso darvi.
+    
+    Il primo è quello di disegnare **prima** su carta il layout che volete ottenere, in modo da poter ragionare su quale *Sizers* possono realizzarlo
+    più correttamente.
+
+    In questo modo dovreste riuscire ad avere l'idea giusta su come realizzare il layout. Poi scrivete il codice, lo testate... e non funziona ancora :(
+
+    Il secondo suggerimento è quello di utilizzare uno strumento di debug, fornito direttamente da wxPython: **The Widget Inspection Tool (WIT)**.
+    Ne parlo un pochino in questa pagina_
+
+    Buona lettura!
+
+
+.. _pagina: 299_tools.html
+
 

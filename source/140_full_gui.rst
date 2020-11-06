@@ -151,7 +151,7 @@ Non appena avete creato la MenuBar, sarà possibile inserirvi dentro menù con a
     saveItem = fileMenu.Append(wx.ID_SAVE, "Salva bene :)", "Salva il documento corrente")
     
     # riga di separazione: serve solo come abbellimento
-    fileMenu.AddSeparator()
+    fileMenu.AppendSeparator()
     
     # creazione di un menuItem da azione predefinita, inserimento icona, aggiunta al menù
     saveItem = wx.MenuItem(fileMenu, wx.ID_OPEN)

@@ -52,22 +52,6 @@ Spero sia tutto chiaro :)
 
 
 
-wxPython DateTime
-=================
-
-Oltre al modulo predefinito DateTime, la libreria wxPython fornisce la sua implementazione delle classi DateTime. Non ci crederete mai, la classe principale di 
-siffatta reimplementazione si chiama **wx.DateTime**. Non ho intenzione di spiegare giorni e ore da capo: leggetevi la documentazione ufficiale!
-
-Eccola: https://docs.wxpython.org/datetime_overview.html
-
-
-Calendar widget(s)
-==================
-
-La widget **wx.lib.Calendar** (attenzione... della libreria wx.lib) implementa una widget con un calendario.
-
-
-
 wx.Gauge
 ========
 
@@ -155,33 +139,8 @@ e tre pulsanti per le funzioni START, STOP, RESET.
 .. line::
 
 
-**Esercizio 383 (sveglia)**
-
-Come l'orologio ma con la possibilità per l'utente di impostare una sveglia con ore e minuti. In quel momento dovrà *suonare la sveglia*, ad esempio
-facendo apparire una message dialog, etc...
-
-
-.. line::
-
-
-**Esercizio 384 (semaforo)**
+**Esercizio 383 (semaforo)**
 
 Applicazione con 4 immagini per 3 caselle: luce rossa, luce gialla, luce verde, luce grigia (luce spenta). Il semaforo inizia con la luce verde attiva
 e le altre due grigie. Ogni 5 secondi si passa allo stadio successivo (luce gialla, poi luce rossa, poi si ritorna a luce verde, all'infinito).
 
-
-.. line::
-
-
-**Esercizio 385 (calendario)**
-
-Calendario in cui cliccando su un giorno è possibile inserire un appuntamento per quella data. L'applicazione deve memorizzare tutte le informazioni 
-inserite dall'utente, salvarle su file e ricaricarle all'avvio.
-
-
-.. line::
-
-
-**Esercizio 386 (agenda)**
-
-Un agenda. Io devo ancora pensare come strutturarla. Pensaci anche tu.

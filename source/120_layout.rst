@@ -214,7 +214,7 @@ Il risultato del codice precedente è questo:
 
     * metti a 2 il valore di proportion di uno dei due pulsanti
 
-    * aggiungi ex.EXPAND ai flag dei pulsanti
+    * aggiungi wx.EXPAND ai flag dei pulsanti
 
     * modifica il valore del bordo per uno dei pulsanti.
 
@@ -623,6 +623,6 @@ Ecco il codice che implementa quest'ultimo esempio:
     Buona lettura!
 
 
-.. _pagina: 299_tools.html
+.. _pagina: 293_tools_wit.html
 
 

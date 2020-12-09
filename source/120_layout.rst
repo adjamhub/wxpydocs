@@ -58,13 +58,13 @@ wx.FlexGridSizer   Contenitore a tabella per le widget con dimensioni variabili
 wx.GridBagSizer    Contenitore a tabella con spanning
 =================  ================================================================
 
-Prima di iniziare subito a preoccuparvi, sappiate che i contenitori sono praticamente solo 2:
+Prima di iniziare a preoccuparvi, sappiate che i contenitori sono solo di 2 tipi:
 
-#. **wxBoxSizer** se volete inserire le widget esattamente in fila (oppure esattamente in colonna). **wx.StaticBoxSizer** funziona esattamente come il precedente
-   con l'unica importante differenza di avere un contorno evidenziato intorno: un abbellimento e nulla più.
+#. **Contenitori a fila** , come il Sizer **wx.BoxSizer** che può essere impostato in senso orizzontale oppure verticale o come **wx.StaticBoxSizer**, che funziona
+   esattamente come il precedente con la differenza di avere un contorno evidenziato intorno: un abbellimento e nulla più.
    
-#. **wx.GridSizer** se volete inserire le widget con una organizzazione tabellare (pensate ad una calcolatrice, o a un form da compilare). Le altre due forniscono
-   caratteristiche aggiuntive per rendere il nostro layout più vicino alla nostra idea, ma funzionano con la stessa logica del GridSizer.
+#. **Contenitori a griglia**, che determinano una organizzazione tabellare (pensate ad una calcolatrice, o a un form da compilare). Il primo, **wx.GridSizer** è
+   quello più semplice; gli altri due aggiungono alcune caratteristiche avanzate di cui ci renderemo conto negli esempi sotto.
 
 
 Ok, proviamo a vedere come funziona ognuno di questi, partendo dalle loro caratteristiche e vedendoli all'opera con qualche esempio di codice.
@@ -109,7 +109,7 @@ Vediamo i parametri:
 * **border** (anche se è l'ultimo lo metto prima, perché il prossimo è più lungo) rappresenta la dimensione in pixel del bordo della widget, 
   nelle direzioni indicate in flag (se non ci sono flag, è un parametro inutile).
 
-* **flag** permette di inserire alcune informazioni su come la widget deve comportarsi all'interno del layout.
+* **flag** permette di inserire alcune informazioni su come la widget deve comportarsi **all'interno del layout**.
 
   La direzione verso cui avere bordo, che può essere:
 

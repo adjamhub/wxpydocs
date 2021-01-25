@@ -496,8 +496,10 @@ La classe wx.StaticBox rappresenta una widget che implementa una decorazione per
 
 
 Nell'esempio proposto vediamo come la StaticBox, con etichetta "Informazioni Personali" serva a raggruppare logicamente le widget che permettono
-all'utente di inserirli. La cosa importante da notare è che gli oggetti al suo interno sono tutti "fratelli" della widget contenitrice, ovvero
-hanno tutti lo stesso primo parametro ("pannello", nell'esempio sottostante).
+all'utente di inserirli. Non sapendo ancora organizzare un layout (lo vedremo a breve!!!) voglio farvi notare che gli oggetti sono *dentro* la StaticBox
+solo perché a livello di dimensione essa riesce a contenerli tutti tranne il pulsante in fondo!!!
+
+Provate a giovare un pò con i valori del parametro size per rendervene conto.
 
 .. code:: python
 
@@ -507,14 +509,14 @@ hanno tutti lo stesso primo parametro ("pannello", nell'esempio sottostante).
         
         def __init__(self):
             super().__init__(None, title="Esempio con StaticBox")
-            pannello = wx.Panel(self)
-            self.box = wx.StaticBox(pannello, label='Informazioni personali', pos=(5, 5), size=(240, 170))
-            self.sex = wx.CheckBox(pannello, label='Maschio', pos=(15, 30))
-            self.married = wx.CheckBox(pannello, label='Sposato', pos=(15, 55))
-            self.text = wx.StaticText(pannello, label='Età', pos=(15, 95))
-            self.age = wx.SpinCtrl(pannello, value='1', pos=(55, 90), size=(120, -1), min=1, max=120)
+            pnl = wx.Panel(self)
+            self.box = wx.StaticBox(pnl, label='Informazioni personali', pos=(5, 5), size=(240, 170))
+            self.sex = wx.CheckBox(pnl, label='Maschio', pos=(15, 30))
+            self.married = wx.CheckBox(pnl, label='Sposato', pos=(15, 55))
+            self.text = wx.StaticText(pnl, label='Età', pos=(15, 95))
+            self.age = wx.SpinCtrl(pnl, value='1', pos=(55, 90), size=(120, -1), min=1, max=120)
             
-            self.button = wx.Button(pannello, wx.ID_CLOSE, pos=(90, 185), size=(120, -1))
+            self.button = wx.Button(pnl, wx.ID_CLOSE, pos=(90, 185), size=(120, -1))
             self.button.Bind(wx.EVT_BUTTON, self.chiudi)
                     
         def chiudi(self, event):    
@@ -544,7 +546,7 @@ Questa widget supporta 2 eventi considerabili \"di default\":
 
 * **wx.EVT_LISTBOX**: scatenato quando si seleziona un elemento della lista
 
-* **wx.EVT_LISTBOX_BCLICK**: scatenato quando si fa doppio click su un elemento della lista
+* **wx.EVT_LISTBOX_DCLICK**: scatenato quando si fa doppio click su un elemento della lista
 
 
 Come al solito vediamo il codice che genera l'immagine che vedete sopra:
@@ -558,7 +560,7 @@ Come al solito vediamo il codice che genera l'immagine che vedete sopra:
         
         def __init__(self):
             super().__init__(None, title="ListBox (ce l'ho con la frutta...)")
-            pannello = wx.Panel(self)       
+            pannello = wx.Panel(self)
             frutta = ["pere", "mele", "arance", "banane"]
             self.list = wx.ListBox(pannello, choices=frutta, pos=(10,10), size=(200,300))
             self.etichetta = wx.StaticText(pannello, pos=(250,10), size=(200,50))

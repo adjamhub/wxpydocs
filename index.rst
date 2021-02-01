@@ -42,10 +42,10 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/102_events
    
    source/110_widgets
-   source/112_base_ex
+   source/115_base_ex
    
    source/120_layout
-   source/122_full_ex
+   source/125_full_ex
    
    source/130_dialogs
    source/132_images

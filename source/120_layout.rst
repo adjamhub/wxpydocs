@@ -290,7 +290,20 @@ questo codice quando vi troverete ad implementare qualcosa di simile (o magari p
 wx.StaticBoxSizer
 =================
 
-Lo StaticBoxSizer è esattamente identico al BoxSizer se non per il fatto di inserire un rettangolo decorativo per evidenziare il layout creato.
+Lo StaticBoxSizer è esattamente identico al BoxSizer se non per il fatto che contiene al suo interno già una StaticBox per decorare ed evidenziare il layout creato.
+
+A livello operativo bisogna dunque fornire, in fase di definizione, anche un genitore (per la StaticBox, solitamente un pannello) e il testo della stessa.
+
+
+.. code:: python
+
+    # se vuoi una BoxSizer
+    box1 = wx.BoxSizer( wx.HORIZONTAL )
+
+    # se vuoi una StaticBoxSizer
+    box2 = wx.StaticBoxSizer( wx.HORIZONTAL, panel, "titolo" )
+
+
 Negli esempi relativi al BoxSizer provate a cambiarne qualcuno con uno StaticBoxSizer per apprezzare la differenza. E poi passate al prossimo layout!
 
 
@@ -304,7 +317,7 @@ La classe wx.GridSizer può essere utilizzata per creare un layout a griglia uni
 
     wx.GridSizer(rows = 1, cols = 0, vgap = 0, hgap = 0)
 
-    # esempio di layout a griglia con 4 righe e 3 colonne e 5 pixel di magine orizzontale e verticale
+    # esempio di layout a griglia con 4 righe e 3 colonne e 5 pixel di margine orizzontale e verticale
     grid = wx.GridSizer( rows = 4 , cols = 3, vgap = 5 , hgap = 5 )
 
     
@@ -313,24 +326,6 @@ Beh... perché derivano entrambe dalla stessa classe (la classe **wx.Sizer**, ch
 vengono aggiunte le widget alla GridSizer tramite la funione Add? In fila, a partire da in alto a sinistra, poi si procede in riga e terminata la riga in alto si
 continua sotto.
 
-Adesso voglio esagerare... le classi *Sizer* ereditano anche un'altra funzione, che risulta particolarmente comoda nella GridSizer, ma che potete usare in qualunque
-altra di queste: la funzione **AddMany**. Essa prende come unico parametro una tupla di comandi, tutti uguali a quelli che prenderebbe la funzione Add.
-
-.. warning:: 
-
-    A dire la verità una piccola magagnetta c'è... siccome la funzione **AddMany** prende una tupla di valori, ognuno come se fosse i parametri della funzione
-    **Add**, dobbiamo rispettare la sequenza di comandi della funzione stessa senza poter utilizzare l'inserimento nominale:
-    
-    .. code:: python
-      
-      # SBAGLIATO
-      grid.AddMany( (widget, proportion = 1, flag = wx.ALL, border = 5) , (widget, proportion = 1, flag = wx.ALL, border = 5) )
-    
-      # GIUSTO
-      grid.AddMany( (widget, 1, wx.ALL, 5) , (widget, 1, wx.ALL, 5) )
-    
-    Tutto qui, non è gravissimo dai...
-    
 
 Alla luce delle nuove conoscenze acquisite, facciamo subito una prova semplice semplice:
 
@@ -345,11 +340,19 @@ Alla luce delle nuove conoscenze acquisite, facciamo subito una prova semplice s
             super().__init__(None, title="GridSizer")
             
             panel = wx.Panel(self)
+
             grid = wx.GridSizer(rows = 2, cols = 2, vgap = 10, hgap = 10)
-            grid.AddMany( ( (wx.StaticText(panel, label="Sono qui"), 1, wx.ALIGN_CENTER) , 
-                            (wx.Button(panel, label="pulsante"), 1, wx.ALIGN_CENTER) ,
-                            (wx.CheckBox(panel, label="Non toccarmi"), 1, wx.ALIGN_CENTER) ,
-                            (wx.RadioButton(panel, label="Ho capito"), 1, wx.ALIGN_CENTER) ) )
+
+            self.st = wx.StaticText(panel, label="Sono qui")
+            self.bt = wx.Button(panel, label="pulsante")
+            self.cb = wx.CheckBox(panel, label="Non toccarmi")
+            self.rb = wx.RadioButton(panel, label="Ho capito")
+
+            grid.Add(self.st, proportion=1, flag=wx.ALIGN_CENTER)
+            grid.Add(self.bt, proportion=1, flag=wx.ALIGN_CENTER)
+            grid.Add(self.cb, proportion=1, flag=wx.ALIGN_CENTER)
+            grid.Add(self.rb, proportion=1, flag=wx.ALIGN_CENTER)
+
             panel.SetSizer(grid)
             self.Centre()
             
@@ -396,8 +399,8 @@ viene inserito dentro un layout verticale, fino a formare una pseudo calcolatric
             for lab in self.labels:
                 btn = wx.Button(panel, label=lab)
                 self.buttons[lab] = btn
-                many.append( (btn,0,wx.EXPAND) )  
-            grid.AddMany(many)
+                grid.Add(btn, proportion=0,flag=wx.EXPAND)
+
             vbox.Add(grid,flag=wx.EXPAND|wx.ALL, border=10)
             
             panel.SetSizer(vbox)

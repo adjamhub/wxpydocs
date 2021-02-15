@@ -45,6 +45,7 @@ Come vedete, questa documentazione è divisa in 3 parti:
    source/115_base_ex
    
    source/120_layout
+   source/122_lay_ex
    source/125_full_ex
    
    source/130_dialogs

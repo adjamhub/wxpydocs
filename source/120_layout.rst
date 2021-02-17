@@ -43,10 +43,26 @@ senza ridimensionarsi o *spostarsi* minimamente e viene presto coperto dalla fin
 .. image:: images/chiudiRistretto.jpg
 
 Infatti con il posizionamento assoluto, ovvero inserendo le widget con *pos* e *size*, il contenitore (ovvero la finestra con bordo) non ha voce in capitolo
-sul posizionamento delle widget contenute.Immaginate una finestra con parecchie widget, un disastro!!
+sul posizionamento delle widget contenute. Immaginate una finestra con parecchie widget, un disastro!!
 
-Per implementare correttamente un layout in wxPython dobbiamo ricorrere ai **contenitori di ridimensionamento (sizers)**!!! La libreria wxPython offre i seguenti
-oggetti per gestire il layout:
+Per implementare correttamente un layout in wxPython dobbiamo ricorrere ai **contenitori di ridimensionamento (sizers)**!!!  Questi oggetti (non grafici) possono contenere
+oggetti grafici secondo una disposizione a fila o a griglia e organizzano la dimensione del contenente (tipicamente la finestra o il pannello) in base alle dimensioni
+del contenuto (tipicamente... le widgets). Questi contenitori presentano una serie di caratteristiche comuni:
+
+* **Una dimensione minima**: che è tipicamente identica alla dimensione iniziale delle widget contenute in esso ma che può essere esplicitata 
+  dal programmatore tramite codice.
+
+* **Un bordo**: uno spazio vuoto utile solo a distanziare minimamente le widgets dal bordo reale del contenitore (la finestra o altro). 
+  Il programmatore ha pieno controllo di esso nelle quattro direzioni.
+
+* **Un allineamento**: questo è tipicamente il compito principale del sizer. Ogni sizer induce un allineamento caratteristico. 
+  Li vedremo nel dettaglio studiandoli uno ad uno.
+
+* **Un fattore di allungamento**: una caratteristica che controlla il ridimensionamento delle widgets quando viene ridimensionato il loro contenitore. 
+  Cosa succede se aumentiamo la larghezza di una finestra in cui abbiamo oggetti gestiti da un sizer? Questo parametro regola il comportamento degli stessi in questo caso.
+
+
+La libreria wxPython offre i seguenti oggetti per gestire il layout:
 
 =================  ================================================================
 Sizer              Descrizione
@@ -70,8 +86,8 @@ Prima di iniziare a preoccuparvi, sappiate che i contenitori sono solo di 2 tipi
 Ok, proviamo a vedere come funziona ognuno di questi, partendo dalle loro caratteristiche e vedendoli all'opera con qualche esempio di codice.
 
 
-wx.BoxSizer
-===========
+BoxSizer
+========
 
 La classe wx.BoxSizer può essere utilizzata per creare un layout orizzontale oppure verticale.
 
@@ -287,8 +303,8 @@ Capisco perfettamente che non vi sentiate ancora in grado di implementare layout
 questo codice quando vi troverete ad implementare qualcosa di simile (o magari poco più semplice... accadrà molto presto!!!).
 
 
-wx.StaticBoxSizer
-=================
+StaticBoxSizer
+==============
 
 Lo StaticBoxSizer è esattamente identico al BoxSizer se non per il fatto che contiene al suo interno già una StaticBox per decorare ed evidenziare il layout creato.
 
@@ -307,8 +323,8 @@ A livello operativo bisogna dunque fornire, in fase di definizione, anche un gen
 Negli esempi relativi al BoxSizer provate a cambiarne qualcuno con uno StaticBoxSizer per apprezzare la differenza. E poi passate al prossimo layout!
 
 
-wx.GridSizer
-============
+GridSizer
+=========
 
 La classe wx.GridSizer può essere utilizzata per creare un layout a griglia uniforme, ovvero con lo stesso spazio (più o meno) per tutte le caselle della griglia. Quando si definisce, è possibile anche specificare un margine orizzontale e verticale fra gli elementi della griglia.
 
@@ -423,9 +439,8 @@ Adesso però tornate su e ricontrollate il codice che avete copiato cercando di 
 
 
 
-wx.FlexGridSizer
-================
-
+FlexGridSizer
+=============
 
 La classe wx.FlexGridSizer può essere utilizzata per creare un layout a griglia flessibile, ovvero con righe o colonne di dimensione diversa.
 Questo può ritornare utile soprattutto in alcuni casi specifici, che vedremo fra un attimo.
@@ -521,9 +536,8 @@ Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allun
 
 
 
-wx.GridBagSizer
-===============
-
+GridBagSizer
+============
 
 La classe wx.GridBagSizer implementa il contenitore più flessibile in wxPython e un concetto analogo risulta presente in molti altri toolkit grafici: 
 in questo Sizer infatti, le widget possono occupare qualunque posizione e comprendere anche più di una riga o una colonna.
@@ -629,3 +643,52 @@ Ecco il codice che implementa quest'ultimo esempio:
 .. _pagina: 293_tools_wit.html
 
 
+
+Layout Sizing
+=============
+
+Per concludere il discorso del layout non posso non dedicare qualche riga al dimensionamento delle finestre. Niente di complicato, per carità... il ridimensionamento
+iniziale di una widget dovrebbe essere gestito automaticamente (cioè... senza fare nulla) se il layout viene implementato correttamente. Anzi... quando la dimensione
+iniziale non ci soddisfa, il più delle volte significa che abbiamo sbagliato qualche parametro nel layout!
+
+Ci sono però alcune scelte (poche... tranquilli) che possiamo indurre tramite codice e che posso migliorare il comportamento della nostra finestra. Vediamole una per una!
+
+
+**wx.Window.SetMinSize && wx.Window.SetMaxSize**
+
+    Imposta la dimensione minima/massima della finestra. Funziona solo per il ridimensionamento manuale, perché il programmatore può comunque superare i limiti imposti usando la funzione *SetSize*.
+    Andrebbe chiamata *prima* di imporre un sizer (ovvero prima di SetSizer).
+    
+    Esempio banale:
+    
+    .. code:: python
+    
+        # ...
+        self.SetMinSize( (400,250) )
+        panel.SetSizer(vbox)
+        # ...
+    
+**wx.Sizer.Fit(self, window) && wx.Window.SetSizerAndFit(wx.Sizer)**
+
+    La funzione *Fit*, disponibile in tutti i sizer, dice al sizer di ridimensionare la finestra per aderire alla dimensione minima del sizer. Va ovviamente chiamata *dopo*
+    aver impostato un sizer in una finestra con *SetSizer*.
+    
+    E' possibile ovviare alla chiamata delle due funzioni consecutive inserendo il sizer nella finestra con *SetSizerAndFit*. Esempi banali:
+    
+    .. code:: python
+    
+        # ...
+        # utilizza prima SetSizer e dopo Fit...
+        panel.SetSizer(vbox)
+        vbox.Fit(self)
+        # ...
+        # oppure insieme con SetSizerAndFit
+        panel.SetSizerAndFit(vbox)
+        # ...
+
+
+Volendo approfondire il comportamento dei sizer nel ridimensionamento delle finestre vi consiglio di dare un occhio alle funzioni *wx.Window.ClientToWindowSize* 
+e *wx.Window.WindowToClientSize*. 
+In generale, c'è una parte specifica della documentazione a proposito di questo problema: https://docs.wxpython.org/window_sizing_overview.html
+
+Se invece pensate sia sufficiente quello che avete visto qui... passate agli esercizi del prossimo capitolo!!!

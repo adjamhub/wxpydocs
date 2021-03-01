@@ -656,7 +656,8 @@ Ci sono però alcune scelte (poche... tranquilli) che possiamo indurre tramite c
 
 **wx.Window.SetMinSize && wx.Window.SetMaxSize**
 
-    Imposta la dimensione minima/massima della finestra. Funziona solo per il ridimensionamento manuale, perché il programmatore può comunque superare i limiti imposti usando la funzione *SetSize*.
+    Imposta la dimensione minima/massima della finestra. Funziona solo per il ridimensionamento manuale, perché il programmatore può comunque superare i limiti imposti 
+    usando la funzione *SetSize*.
     Andrebbe chiamata *prima* di imporre un sizer (ovvero prima di SetSizer).
     
     Esempio banale:
@@ -673,7 +674,7 @@ Ci sono però alcune scelte (poche... tranquilli) che possiamo indurre tramite c
     La funzione *Fit*, disponibile in tutti i sizer, dice al sizer di ridimensionare la finestra per aderire alla dimensione minima del sizer. Va ovviamente chiamata *dopo*
     aver impostato un sizer in una finestra con *SetSizer*.
     
-    E' possibile ovviare alla chiamata delle due funzioni consecutive inserendo il sizer nella finestra con *SetSizerAndFit*. Esempi banali:
+    È possibile ovviare alla chiamata delle due funzioni consecutive inserendo il sizer nella finestra con *SetSizerAndFit*. Esempi banali:
     
     .. code:: python
     

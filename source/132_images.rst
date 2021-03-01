@@ -22,7 +22,7 @@ Vedremo come sia possibile in maniera semplice individuare alcune modalità di l
     
     .. code:: bash
     
-        $ pip3 install -U python-pillow
+        $ pip3 install -U pillow
         
 
 Cominciamo la nostra disamina sulle classi wxPython per la visualizzazione e la manipolazione delle immagini. Le prime classi che voglio introdurvi a proposito

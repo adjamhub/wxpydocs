@@ -31,18 +31,28 @@ dall'utente per assicurarsi abbia recepito il messaggio.
     MessageDialog( parent , message , caption=TITOLO , style=STILE )
 
 
-Lo stile può contenere alcuni fra i seguenti valori, sovrapponibili con la tecnica del `pipe |`, come per i flag dei Sizer.
+I pulsanti di una MessageDialog possono essere i seguenti:
+
+==================== ============================================ =========================
+Valore               Descrizione                                  Valore di ritorno
+==================== ============================================ =========================
+wx.OK                Pulsante OK. Combinabile con CANCEL          wx.ID_OK
+wx.CANCEL            Pulsante CANCEL. Combinabile con OK o YES_NO wx.ID_CANCEL
+wx.YES_NO            Pulsanti Sì e No. Combinabile con CANCEL     wx.ID_YES oppure wx.ID_NO
+wx.HELP              Mostra il pulsante AIUTO                     wx.ID_HELP
+==================== ============================================ =========================
+
+Se non si preme nessun pulsante, ad esempio uscendo dalla finestra di dialogo con *ESC*, oppure con l'icona di chiusura, essa
+ritorna il valore `wx.ID_NONE`.
+
+Lo stile può contenere uno dei seguenti valori. Essi sono sovrapponibili ai pulsanti con la tecnica del `pipe |`, come per i flag dei Sizer.
 
 ==================== ======================================
 Stile                Descrizione
 ==================== ======================================
-wx.OK                Mostra il pulsante OK
-wx.CANCEL            Mostra il pulsante CANCEL
-wx.YES_NO            Mostra i pulsanti Sì e No
-wx.HELP              Mostra il pulsante AIUTO
 wx.ICON_EXCLAMATION  Mostra un icona di allerta
-wx.ICON_ERROR	     Mostra una icona di errore
-wx.ICON_HAND	     Come wx.ICON_ERROR
+wx.ICON_ERROR        Mostra una icona di errore
+wx.ICON_HAND         Come wx.ICON_ERROR
 wx.ICON_INFORMATION  Mostra una icona informativa
 wx.ICON_QUESTION     Mostra una icona a un punto di domanda
 ==================== ======================================
@@ -54,8 +64,9 @@ Vediamo qualche esempio semplice semplice:
 .. code:: python
 
     #  Messaggio informativo
-    dial = wx.MessageDialog(None, "Ora della merenda", "Info", wx.OK)
-    dial.ShowModal()
+    dial = wx.MessageDialog(None, "Ora della merenda", "Info", wx.OK | wx.CANCEL)
+    if dial.ShowModal() == wx.ID_OK:
+        # ...
 
     # Messaggio di errore
     dial = wx.MessageDialog(None, "Biscotti non disponibili", "Errore", wx.OK | wx.ICON_ERROR)
@@ -63,7 +74,9 @@ Vediamo qualche esempio semplice semplice:
 
     # Messaggio di domanda
     dial = wx.MessageDialog(None, "Ti andrebbe un mandarino?", "Domanda", wx.YES_NO | wx.ICON_QUESTION)
-    dial.ShowModal()
+    if dial.ShowModal() == wx.ID_YES:
+        # ...
+    elif ...
 
     # Messaggio di avvertimento
     dial = wx.MessageDialog(None, "Troppa nutella all'orizzonte", "Esclamazione", wx.OK | wx.ICON_EXCLAMATION)
@@ -108,8 +121,8 @@ Servono per selezionare una cartella (presente o no) nel proprio computer.
     if dlg.ShowModal() == wx.ID_CANCEL:
         return
     
-    #... il percorso scelto si ottiene con dlg.GetPath()
-
+    percorso = dlg.GetPath()
+    # ...
 
 
 **Esercizio 311**

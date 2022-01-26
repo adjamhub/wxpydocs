@@ -57,7 +57,7 @@ con una finestra che intercetta i suoi spostamenti e tramite una funzione scrive
             self.Bind(wx.EVT_MOVE, self.aggiornaPosizione)
             
         def aggiornaPosizione(self, evt):
-            (x,y) = event.GetPosition()
+            (x,y) = evt.GetPosition()
             info = "x: " + str(x) + "\ny: " + str(y)
             self.etichetta.SetLabel(info)
 
@@ -152,7 +152,7 @@ Il codice nel nostro esempio specifico diventa il seguente:
 
         def faiQualcosa(self, evt):
             # la funzione GetId ci dice l'ID della widget che ha scatenato l'evento
-            id = event.GetId()
+            id = evt.GetId()
             print("Hai cliccato il pulsante con ID =", id)
             return
 
@@ -189,7 +189,7 @@ Nell'esempio che segue la finestra che appare è chiudibile dall'utente (con sco
                 self.Destroy()
             else:
                 # blocca l'evento
-                event.Veto()
+                evt.Veto()
 
     # ----------------------------------------
     if __name__ == "__main__":

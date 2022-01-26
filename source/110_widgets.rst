@@ -38,9 +38,6 @@ alla documentazione.
     win.Show()
     app.MainLoop()
 
-    
-.. TODO dimensione, posizione, spostamento
-
 
 wx.Panel
 ========
@@ -76,16 +73,15 @@ Nell'esempio proposto quando si clicca il pulsante (evento **wx.EVT_BUTTON**) si
             self.pulsante = wx.Button(pannello, label="Riduci ad icona", pos=(5,5), size=(150,40))
             self.pulsante.Bind(wx.EVT_BUTTON, self.iconifica)
             
-        def iconifica(self, event):
+        def iconifica(self, evt):
             self.Iconize()
 
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
     
@@ -111,7 +107,7 @@ e si cambia la scritta sul pulsante (che rimane cliccato). Cliccandolo di nuovo 
             self.fsButton = wx.ToggleButton(pannello, label="Metti fullscreen", pos=(5,5), size=(150,40))
             self.fsButton.Bind(wx.EVT_TOGGLEBUTTON, self.mettiFullScreen)
             
-        def mettiFullScreen(self, event):
+        def mettiFullScreen(self, evt):
             if not self.IsFullScreen():
                 self.ShowFullScreen(True)
                 self.fsButton.SetLabel("Esci dal fullscreen")
@@ -120,13 +116,12 @@ e si cambia la scritta sul pulsante (che rimane cliccato). Cliccandolo di nuovo 
                 self.fsButton.SetLabel("Metti fullscreen")
 
     # ----------------------------------------
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
 
     
 wx.StaticText
@@ -150,12 +145,11 @@ Nel semplicissimo esempio proposto, viene utilizzato la widget wx.StaticText per
             self.etichetta = wx.StaticText(self, label=testo)
 
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 
@@ -189,12 +183,11 @@ di una wx.StaticText e realizzare una widget con titolo, linea e testo, come ved
             self.etichetta = wx.StaticText(pannello, label=testo, pos=(10,60), size=(200,100))
         
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
     
 
@@ -249,17 +242,16 @@ nella TextCtrl.
             self.static1 = wx.StaticText(panel, label="", pos=(5,70))
             self.text1.Bind(wx.EVT_TEXT, self.aggiornaTesto)
             
-        def aggiornaTesto(self, event):
+        def aggiornaTesto(self, evt):
             self.static1.SetLabel( self.text1.GetValue() )
             return
         
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 
@@ -290,18 +282,17 @@ dell'etichetta.
                                             pos=(5,40), size=(200,30))
             self.combo.Bind(wx.EVT_COMBOBOX, self.visualizzaSelezione)
     
-        def visualizzaSelezione(self, event):
-            f = event.GetString()
+        def visualizzaSelezione(self, evt):
+            f = evt.GetString()
             self.etichetta.SetLabel("Hai selezionato: " + f)
             return
         
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 
@@ -329,7 +320,7 @@ quello originale se deselezionata.
             self.check = wx.CheckBox(self, label="sfondo rosso")
             self.check.Bind(wx.EVT_CHECKBOX, self.cambiaSfondo)
             
-        def cambiaSfondo(self, event):
+        def cambiaSfondo(self, evt):
             if self.check.GetValue():
                 self.SetBackgroundColour("red")
             else:
@@ -337,12 +328,11 @@ quello originale se deselezionata.
             return
         
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
     
 
@@ -376,7 +366,7 @@ si deselezionerà automaticamente e l'etichetta sotto verrà aggiornata.
             self.rbM.Bind(wx.EVT_RADIOBUTTON, self.impostaSesso)
             self.rbF.Bind(wx.EVT_RADIOBUTTON, self.impostaSesso)
             
-        def impostaSesso(self, event):
+        def impostaSesso(self, evt):
             if self.rbM.GetValue():
                 self.testo.SetLabel("Hai selezionato: Maschio")
             else:
@@ -384,12 +374,11 @@ si deselezionerà automaticamente e l'etichetta sotto verrà aggiornata.
             return
     
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 
@@ -419,18 +408,17 @@ iniziale a 50. Sotto c'è una etichetta che si aggiorna automaticamente quando s
             
             self.slide.Bind(wx.EVT_SLIDER, self.aggiornaValore)
             
-        def aggiornaValore(self, event):
+        def aggiornaValore(self, evt):
             v = self.slide.GetValue()
             self.testo.SetLabel("Valore: " + str(v))
             return
         
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 
@@ -463,12 +451,12 @@ serve per abilitare e disabilitare la widget. Provate!
             self.spin.Bind(wx.EVT_SPINCTRL, self.aggiornaValore)
             self.pulsante.Bind(wx.EVT_TOGGLEBUTTON, self.bloccaSpinCtrl)
                     
-        def aggiornaValore(self, event):
+        def aggiornaValore(self, evt):
             v = self.spin.GetValue()
             self.testo.SetLabel("Valore: " + str(v))
             return
         
-        def bloccaSpinCtrl(self, event):
+        def bloccaSpinCtrl(self, evt):
             if self.pulsante.GetValue():
                 self.spin.Enable(False)
                 self.pulsante.SetLabel("Sblocca")
@@ -478,12 +466,11 @@ serve per abilitare e disabilitare la widget. Provate!
             return
         
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 
@@ -519,17 +506,16 @@ Provate a giovare un pò con i valori del parametro size per rendervene conto.
             self.button = wx.Button(pnl, wx.ID_CLOSE, pos=(90, 185), size=(120, -1))
             self.button.Bind(wx.EVT_BUTTON, self.chiudi)
                     
-        def chiudi(self, event):    
-            self.Close(True)
+        def chiudi(self, evt):    
+            self.Close()
             return
         
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
     
 
@@ -566,18 +552,17 @@ Come al solito vediamo il codice che genera l'immagine che vedete sopra:
             self.etichetta = wx.StaticText(pannello, pos=(250,10), size=(200,50))
             self.list.Bind(wx.EVT_LISTBOX, self.updateLabel)
             
-        def updateLabel(self, event):
+        def updateLabel(self, evt):
             index = self.list.GetSelection()
             self.etichetta.SetLabel( self.list.GetString(index) )
             return
         
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 Provate a cambiare l'evento nel Bind per vedere la differenza di funzionamento.

@@ -89,10 +89,11 @@ solo una semplice etichetta di testo.
     # --------------------------------------------------------
 
     # QUI SI UTILIZZA LA CLASSE LaMiaPrimaFinestra DEFINITA SOPRA
-    app = wx.App()
-    windows = LaMiaPrimaFinestra()
-    windows.Show(True)
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = LaMiaPrimaFinestra()
+        window.Show()
+        app.MainLoop()
 
 
 In questo modo impareremo a strutturare ogni finestra in una classe e se necessario a strutturare i nostri progetti dividendo ogni classe in un file diverso, in

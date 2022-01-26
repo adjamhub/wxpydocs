@@ -21,16 +21,15 @@ Bene! Vi ripropongo il codice che abbiamo già visto un paio di volte:
             self.pulsante = wx.Button(pannello, label="Chiudi", pos=(100,100), size=(150,40))
             self.pulsante.Bind(wx.EVT_BUTTON, self.chiudiFinestra)
             
-        def chiudiFinestra(self, event):
-            self.Close(True)
+        def chiudiFinestra(self, evt):
+            self.Close()
 
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 Ok... questa è l'immagine della finestra creata con questo codice:
@@ -210,10 +209,11 @@ Il prossimo codice crea un layout orizzontale con 2 pulsanti che vogliamo ridime
             self.Centre()
 
     # ----------------------------------------
-    app = wx.App()
-    window = Esempio()
-    window.Show()
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
     
 Il risultato del codice precedente è questo:
@@ -293,10 +293,11 @@ orizzontale in quello verticale principale. Ad un certo punto ho aggiunto anche 
             self.Centre()
 
     # ----------------------------------------
-    app = wx.App()
-    window = Esempio()
-    window.Show()
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 Capisco perfettamente che non vi sentiate ancora in grado di implementare layout così complicati! Questo l'ho messo apposta perché possiate curiosare in 
@@ -373,10 +374,11 @@ Alla luce delle nuove conoscenze acquisite, facciamo subito una prova semplice s
             self.Centre()
             
     # ----------------------------------------
-    app = wx.App()
-    window = Esempio()
-    window.Show()
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
     
 Risultato:
@@ -423,10 +425,12 @@ viene inserito dentro un layout verticale, fino a formare una pseudo calcolatric
             self.Centre()
             
     # ----------------------------------------
-    app = wx.App()
-    window = Esempio()
-    window.Show()
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
+
 
 
 Copiate il codice, eseguite, dovreste vedere una window tipo questa.
@@ -529,11 +533,11 @@ Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allun
             self.Centre()
             
     # ----------------------------------------
-    app = wx.App()
-    window = Esempio()
-    window.Show()
-    app.MainLoop()
-
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 GridBagSizer
@@ -620,10 +624,11 @@ Ecco il codice che implementa quest'ultimo esempio:
             self.Centre()
             
     # ----------------------------------------
-    app = wx.App()
-    window = Esempio()
-    window.Show()
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 .. tip::

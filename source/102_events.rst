@@ -30,16 +30,15 @@ e ad eseguirlo per vedere cosa succede!
             self.pulsante = wx.Button(self, label="Chiudi tutto")
             self.pulsante.Bind(wx.EVT_BUTTON, self.chiudi)
             
-        def chiudi(self, event):
-            self.Close(True)
+        def chiudi(self, evt):
+            self.Close()
 
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 Ok... con questo esempio abbiamo capito che un pulsante, ovvero la widget **wx.Button** intercetta il click con l'evento **wx.EVT_BUTTON**. Vediamo un altro esempio
@@ -57,19 +56,17 @@ con una finestra che intercetta i suoi spostamenti e tramite una funzione scrive
             self.etichetta = wx.StaticText(self, label="x: 0\ny: 0")
             self.Bind(wx.EVT_MOVE, self.aggiornaPosizione)
             
-        def aggiornaPosizione(self, event):
-            # pos è una tupla (x,y) della posizione
-            pos = event.GetPosition()
-            info = "x: " + str(pos[0]) + "\ny: " + str(pos[1])
+        def aggiornaPosizione(self, evt):
+            (x,y) = event.GetPosition()
+            info = "x: " + str(x) + "\ny: " + str(y)
             self.etichetta.SetLabel(info)
 
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 Anche qui vi propongo di copiare il codice e testarlo prima di andare avanti... L'oggetto in questione stavolta è la finestra principale, la widget **wx.Frame**,
@@ -105,23 +102,24 @@ alla stessa funzione. Ma come si può distinguere quale pulsante (o più in gene
 
   import wx
 
-  class Esempio(wx.Frame):
-      
-      def __init__(self):
-          super().__init__(None, title="2 pulsanti, 1 funzione")
-          self.pulsante1 = wx.Button(self, label="pulsante1", pos=(5,5), size=(100,30))
-          self.pulsante2 = wx.Button(self, label="pulsante2", pos=(120,5), size=(100,30))
-          self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
-          self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
-          
-      def faiQualcosa(self, event):
-          # ok... chi mi ha cliccato?
+    class Esempio(wx.Frame):
 
-  # ----------------------------------------
-  app = wx.App()
-  window = Esempio()
-  window.Show()
-  app.MainLoop()
+        def __init__(self):
+            super().__init__(None, title="2 pulsanti, 1 funzione")
+            self.pulsante1 = wx.Button(self, label="pulsante1", pos=(5,5), size=(100,30))
+            self.pulsante2 = wx.Button(self, label="pulsante2", pos=(120,5), size=(100,30))
+            self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+            self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+
+        def faiQualcosa(self, event):
+            # ok... chi mi ha cliccato?
+
+    # ----------------------------------------
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 Bene... la soluzione in questo e molti altri casi è quella di identificare le widgets con un **ID**. Questo significa praticamente assegnare ad ogni widget
@@ -139,33 +137,31 @@ Il codice nel nostro esempio specifico diventa il seguente:
 
 .. code:: python
 
-  import wx
+    import wx
 
-  class Esempio(wx.Frame):
-      
-      def __init__(self):
-          super().__init__(None, title="2 pulsanti, 1 funzione")
-          
-          # i due pulsanti sono identificati con ID 1 e 2
-          self.pulsante1 = wx.Button(self, label="pulsante 1", pos=(5,5), size=(100,30), id=1)
-          self.pulsante2 = wx.Button(self, label="pulsante 2", pos=(120,5), size=(100,30), id=2)
-          self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
-          self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
-          
-      def faiQualcosa(self, event):
-          # la funzione GetId ci dice l'ID della widget che ha scatenato l'evento
-          id = event.GetId()
-          print("Hai cliccato il pulsante con ID =", id)
-          return
+    class Esempio(wx.Frame):
 
-  # ----------------------------------------
-  app = wx.App()
-  window = Esempio()
-  window.Show()
-  app.MainLoop()
+        def __init__(self):
+            super().__init__(None, title="2 pulsanti, 1 funzione")
 
+            # i due pulsanti sono identificati con ID 1 e 2
+            self.pulsante1 = wx.Button(self, label="pulsante 1", pos=(5,5), size=(100,30), id=1)
+            self.pulsante2 = wx.Button(self, label="pulsante 2", pos=(120,5), size=(100,30), id=2)
+            self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+            self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
 
+        def faiQualcosa(self, evt):
+            # la funzione GetId ci dice l'ID della widget che ha scatenato l'evento
+            id = event.GetId()
+            print("Hai cliccato il pulsante con ID =", id)
+            return
 
+    # ----------------------------------------
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
 
 
 Bloccare gli eventi
@@ -188,7 +184,7 @@ Nell'esempio che segue la finestra che appare è chiudibile dall'utente (con sco
             super().__init__(None, title="Massimizza per chiudere")        
             self.Bind(wx.EVT_CLOSE, self.chiudi)
             
-        def chiudi(self, event):
+        def chiudi(self, evt):
             if (self.IsMaximized()):
                 self.Destroy()
             else:
@@ -196,12 +192,11 @@ Nell'esempio che segue la finestra che appare è chiudibile dall'utente (con sco
                 event.Veto()
 
     # ----------------------------------------
-    app = wx.App()
-
-    window = Esempio()
-    window.Show()
-
-    app.MainLoop()
+    if __name__ == "__main__":
+        app = wx.App()
+        window = Esempio()
+        window.Show()
+        app.MainLoop()
     
 
 Come al solito... copiate e provate!

@@ -69,9 +69,9 @@ Nell'esempio proposto quando si clicca il pulsante (evento **wx.EVT_BUTTON**) si
         
         def __init__(self):
             super().__init__(None, title="Iconificami")
-            pannello = wx.Panel(self)
-            self.pulsante = wx.Button(pannello, label="Riduci ad icona", pos=(5,5), size=(150,40))
-            self.pulsante.Bind(wx.EVT_BUTTON, self.iconifica)
+            panel = wx.Panel(self)
+            pulsante = wx.Button(panel, label="Riduci ad icona", pos=(5,5), size=(150,40))
+            pulsante.Bind(wx.EVT_BUTTON, self.iconifica)
             
         def iconifica(self, evt):
             self.Iconize()
@@ -103,8 +103,8 @@ e si cambia la scritta sul pulsante (che rimane cliccato). Cliccandolo di nuovo 
         
         def __init__(self):
             super().__init__(None, title="Fullscreen(er)")
-            pannello = wx.Panel(self)
-            self.fsButton = wx.ToggleButton(pannello, label="Metti fullscreen", pos=(5,5), size=(150,40))
+            panel = wx.Panel(self)
+            self.fsButton = wx.ToggleButton(panel, label="Metti fullscreen", pos=(5,5), size=(150,40))
             self.fsButton.Bind(wx.EVT_TOGGLEBUTTON, self.mettiFullScreen)
             
         def mettiFullScreen(self, evt):
@@ -142,7 +142,7 @@ Nel semplicissimo esempio proposto, viene utilizzato la widget wx.StaticText per
         def __init__(self):
             super().__init__(None, title="Soldati")
             testo = "\nSi sta come\nd'autunno\nsugli alberi\nle foglie\n"
-            self.etichetta = wx.StaticText(self, label=testo)
+            etichetta = wx.StaticText(self, label=testo)
 
     # ----------------------------------------
     if __name__ == "__main__":
@@ -171,16 +171,16 @@ di una wx.StaticText e realizzare una widget con titolo, linea e testo, come ved
         
         def __init__(self):
             super().__init__(None, title="Poesia")
-            pannello = wx.Panel(self)
+            panel = wx.Panel(self)
             
             font = wx.Font(20,wx.DEFAULT,wx.NORMAL,wx.BOLD)
-            self.titolo = wx.StaticText(pannello, label="Soldati",pos=(10,10), size=(200,30))
-            self.titolo.SetFont(font)
+            titolo = wx.StaticText(panel, label="Soldati",pos=(10,10), size=(200,30))
+            titolo.SetFont(font)
             
-            wx.StaticLine(pannello, pos=(10,50), size=(200,3))
+            linea = wx.StaticLine(panel, pos=(10,50), size=(200,3))
             
             testo = "\nSi sta come\nd'autunno\nsugli alberi\nle foglie\n"
-            self.etichetta = wx.StaticText(pannello, label=testo, pos=(10,60), size=(200,100))
+            etichetta = wx.StaticText(panel, label=testo, pos=(10,60), size=(200,100))
         
     # ----------------------------------------
     if __name__ == "__main__":
@@ -274,11 +274,11 @@ dell'etichetta.
         def __init__(self):
             super().__init__(None, title="Cambia l'etichetta")
                 
-            pannello = wx.Panel(self)       
-            self.etichetta = wx.StaticText(pannello, label="seleziona una voce",
+            panel = wx.Panel(self)       
+            self.etichetta = wx.StaticText(panel, label="seleziona una voce",
                                             pos=(5,5), size=(200,30))
             frutta = ["pere", "mele", "arance", "banane"]
-            self.combo = wx.ComboBox(pannello, choices=frutta, style=wx.CB_READONLY,
+            self.combo = wx.ComboBox(panel, choices=frutta, style=wx.CB_READONLY,
                                             pos=(5,40), size=(200,30))
             self.combo.Bind(wx.EVT_COMBOBOX, self.visualizzaSelezione)
     

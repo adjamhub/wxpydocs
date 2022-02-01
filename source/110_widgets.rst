@@ -444,11 +444,11 @@ serve per abilitare e disabilitare la widget. Provate!
         
         def __init__(self):
             super().__init__(None, title="Seleziona numero")
-            pannello = wx.Panel(self)
-            self.spin = wx.SpinCtrl(pannello, value="0", pos=(5,5), size=(150,30))
+            panel = wx.Panel(self)
+            self.spin = wx.SpinCtrl(panel, value="0", pos=(5,5), size=(150,30))
             self.spin.SetRange(-10,10)
-            self.testo = wx.StaticText(pannello, label="Valore: 0", pos=(5,45), size=(150,30))
-            self.pulsante = wx.ToggleButton(pannello, label="Blocca spin", pos=(5,85), size=(150,30))
+            self.testo = wx.StaticText(panel, label="Valore: 0", pos=(5,45), size=(150,30))
+            self.pulsante = wx.ToggleButton(panel, label="Blocca spin", pos=(5,85), size=(150,30))
             
             self.spin.Bind(wx.EVT_SPINCTRL, self.aggiornaValore)
             self.pulsante.Bind(wx.EVT_TOGGLEBUTTON, self.bloccaSpinCtrl)
@@ -498,14 +498,14 @@ Provate a giovare un pò con i valori del parametro size per rendervene conto.
         
         def __init__(self):
             super().__init__(None, title="Esempio con StaticBox")
-            pnl = wx.Panel(self)
-            self.box = wx.StaticBox(pnl, label='Informazioni personali', pos=(5, 5), size=(240, 170))
-            self.sex = wx.CheckBox(pnl, label='Maschio', pos=(15, 30))
-            self.married = wx.CheckBox(pnl, label='Sposato', pos=(15, 55))
-            self.text = wx.StaticText(pnl, label='Età', pos=(15, 95))
-            self.age = wx.SpinCtrl(pnl, value='1', pos=(55, 90), size=(120, -1), min=1, max=120)
+            panel = wx.Panel(self)
+            self.box = wx.StaticBox(panel, label='Informazioni personali', pos=(5, 5), size=(240, 170))
+            self.sex = wx.CheckBox(panel, label='Maschio', pos=(15, 30))
+            self.married = wx.CheckBox(panel, label='Sposato', pos=(15, 55))
+            self.text = wx.StaticText(panel, label='Età', pos=(15, 95))
+            self.age = wx.SpinCtrl(panel, value='1', pos=(55, 90), size=(120, -1), min=1, max=120)
             
-            self.button = wx.Button(pnl, wx.ID_CLOSE, pos=(90, 185), size=(120, -1))
+            self.button = wx.Button(panel, wx.ID_CLOSE, pos=(90, 185), size=(120, -1))
             self.button.Bind(wx.EVT_BUTTON, self.chiudi)
                     
         def chiudi(self, evt):    
@@ -548,10 +548,10 @@ Come al solito vediamo il codice che genera l'immagine che vedete sopra:
         
         def __init__(self):
             super().__init__(None, title="ListBox (ce l'ho con la frutta...)")
-            pannello = wx.Panel(self)
+            panel = wx.Panel(self)
             frutta = ["pere", "mele", "arance", "banane"]
-            self.list = wx.ListBox(pannello, choices=frutta, pos=(10,10), size=(200,300))
-            self.etichetta = wx.StaticText(pannello, pos=(250,10), size=(200,50))
+            self.list = wx.ListBox(panel, choices=frutta, pos=(10,10), size=(200,300))
+            self.etichetta = wx.StaticText(panel, pos=(250,10), size=(200,50))
             self.list.Bind(wx.EVT_LISTBOX, self.updateLabel)
             
         def updateLabel(self, evt):

@@ -390,8 +390,8 @@ La classe wx.Slider rappresenta una widget che implementa un cursore ad avanzame
 .. image:: images/wxSlider.jpg
 
 
-Nell'esempio proposto ho implementato uno slider che va da 0 a 100 (senza fare nulla: sono i valori di default) e ho impostato il valore
-iniziale a 50. Sotto c'è una etichetta che si aggiorna automaticamente quando si muove lo slider (evento **wx.EVT_SLIDER**)
+Nell'esempio proposto ho implementato uno slider che va da 0 a 10 (il range predefinito è 0-100) e ho impostato il valore
+iniziale a 5. Sotto c'è una etichetta che si aggiorna automaticamente quando si muove lo slider (evento **wx.EVT_SLIDER**)
 
 
 .. code:: python
@@ -402,9 +402,11 @@ iniziale a 50. Sotto c'è una etichetta che si aggiorna automaticamente quando s
         
         def __init__(self):
             super().__init__(None, title="Muovi lo slider")
-            pannello = wx.Panel(self)
-            self.slide = wx.Slider(pannello, value=50, pos=(5,5), size=(250,-1))
-            self.testo = wx.StaticText(pannello, label="Valore: 50", pos=(5,35))
+            panel = wx.Panel(self)
+            self.slide = wx.Slider(pannello, pos=(5,5), size=(250,-1))
+            self.slide.SetRange(0,10)
+            self.slide.SetValue(5)
+            self.testo = wx.StaticText(pannello, label="Valore: 5", pos=(5,35))
             
             self.slide.Bind(wx.EVT_SLIDER, self.aggiornaValore)
             

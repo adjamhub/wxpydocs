@@ -415,10 +415,10 @@ iniziale a 5. Sotto c'è una etichetta che si aggiorna automaticamente quando si
         def __init__(self):
             super().__init__(None, title="Muovi lo slider")
             panel = wx.Panel(self)
-            self.slide = wx.Slider(pannello, pos=(5,5), size=(250,-1))
+            self.slide = wx.Slider(panel, pos=(5,5), size=(250,-1))
             self.slide.SetRange(0,10)
             self.slide.SetValue(5)
-            self.testo = wx.StaticText(pannello, label="Valore: 5", pos=(5,35))
+            self.testo = wx.StaticText(panel, label="Valore: 5", pos=(5,35))
             
             self.slide.Bind(wx.EVT_SLIDER, self.aggiornaValore)
             

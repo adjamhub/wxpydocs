@@ -262,6 +262,18 @@ La classe wx.ComboBox rappresenta una widget che implementa un menù a tendina
 
 .. image:: images/wxComboBox.jpg
 
+La ComboBox supporta i seguenti stili di lavoro:
+
+=================== ==================================================
+Stile               Descrizione
+=================== ==================================================
+(default)           Linea singola di testo editabile + menù a tendina
+wx.CB_READONLY      Linea di testo NON editabile.
+wx.CB_SORT          Ordina automaticamente le voci
+wx.TE_PROCESS_ENTER Gestisce il tasto INVIO come evento separato
+=================== ==================================================
+
+
 Nell'esempio proposto vediamo una etichetta e un menù a tendina. Selezionando una voce del menù a tendina (evento **wx.EVT_COMBOBOX**) si modifica il contenuto
 dell'etichetta.
 

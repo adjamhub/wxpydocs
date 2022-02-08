@@ -42,15 +42,24 @@ alla documentazione.
 wx.Panel
 ========
 
-La classe wx.Panel rappresenta una widget vuota, adatta ad essere utilizzata come contenitore delle altre che vedremo. Ha lo stesso colore di sfondo della
-classe wx.Frame quindi è impossibile distinguere visivamente un Frame con dentro un Panel da uno senza.
+La classe wx.Panel rappresenta una widget vuota, adatta ad essere utilizzata come contenitore delle altre che vedremo. 
 
 La sua utilità sta nel fatto che fornisce nativamente interazione con la tastiera (*Tab Traversal*, lo spostamento fra una widget e l'altra premendo Tab)
 per sè e per tutte le widget al suo interno.
 
+Da ora in poi la utilizzeremo in tutti i nostri progetti!. Anche dal punto di vista visivo, un Frame senza un Panel sembra *vuoto*, mentre un frame con dentro
+un *panel* sembra normalmente *pieno*.
 
-.. TODO approfitta per background e introdurre i colori
+.. tip::
 
+    Da ora in poi utilizzeremo il wx.Panel in tutti i nostri progetti. Esso costituirà anche un livello intermedio di parentela fra le widgets in maniera che:
+    
+    * il Frame nasce senza parent
+    * il Panel nasce con parent il Frame (tipicamente *self*)
+    * Tutte le widget inserite nella finestra, che giacciono sopra il Panel, hanno il panel stesso come parent
+    
+    Tutti gli esempi da qui in poi sono strutturati in questo modo: vi basterà osservarli un minimo :)
+    
 
 wx.Button
 =========

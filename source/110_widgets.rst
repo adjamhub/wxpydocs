@@ -326,17 +326,22 @@ quello originale se deselezionata.
         
         def __init__(self):
             super().__init__(None, title="Cambia il colore di sfondo")
+            self.panel = wx.Panel(self)
             
-            self.color = self.GetBackgroundColour()
+            self.color = self.panel.GetBackgroundColour()
             
             self.check = wx.CheckBox(self, label="sfondo rosso")
             self.check.Bind(wx.EVT_CHECKBOX, self.cambiaSfondo)
             
         def cambiaSfondo(self, evt):
             if self.check.GetValue():
-                self.SetBackgroundColour("red")
+                self.panel.SetBackgroundColour("red")
+                self.check.SetForegroundColour("white")
             else:
-                self.SetBackgroundColour(self.color)
+                self.panel.SetBackgroundColour(self.color)
+                self.check.SetForegroundColour("black")
+
+            self.Refresh()
             return
         
     # ----------------------------------------

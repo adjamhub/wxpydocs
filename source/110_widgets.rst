@@ -330,7 +330,7 @@ quello originale se deselezionata.
             
             self.color = self.panel.GetBackgroundColour()
             
-            self.check = wx.CheckBox(self, label="sfondo rosso")
+            self.check = wx.CheckBox(self.panel, label="sfondo rosso", pos=(5,5))
             self.check.Bind(wx.EVT_CHECKBOX, self.cambiaSfondo)
             
         def cambiaSfondo(self, evt):

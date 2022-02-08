@@ -369,11 +369,11 @@ si deselezionerà automaticamente e l'etichetta sotto verrà aggiornata.
         
         def __init__(self):
             super().__init__(None, title="Seleziona una opzione")
-            pannello = wx.Panel(self)
+            panel = wx.Panel(self)
         
-            self.rbM = wx.RadioButton(pannello, label="Maschio", style=wx.RB_GROUP, pos=(5,5))
-            self.rbF = wx.RadioButton(pannello, label="Femmina", pos=(5,35))
-            self.testo = wx.StaticText(pannello, label="Voce selezionata: Maschio", pos=(5,65))
+            self.rbM = wx.RadioButton(panel, label="Maschio", style=wx.RB_GROUP, pos=(5,5))
+            self.rbF = wx.RadioButton(panel, label="Femmina", pos=(5,35))
+            self.testo = wx.StaticText(panel, label="Voce selezionata: Maschio", pos=(5,65))
             
             self.rbM.Bind(wx.EVT_RADIOBUTTON, self.impostaSesso)
             self.rbF.Bind(wx.EVT_RADIOBUTTON, self.impostaSesso)

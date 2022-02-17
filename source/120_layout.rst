@@ -154,10 +154,10 @@ Vediamo i parametri:
     
     * wx.ALIGN_CENTER, al centro, verticalmente e orizzontalmente
 
-  C'è inoltre un ultimo flag che permette alla widget di espandersi su tutto il posto disponibile (ma ovviamente funziona solo se proportion vale 1 o 2)
+  C'è inoltre un ultimo flag che permette alla widget di espandersi nella direzione ortogonale al layout (se non provi, non capisci...)
     
-    * wx.EXPAND: widget in espansione all'aumentare dello spazio
-
+    * wx.EXPAND: widget espansa su tutto lo spazio disponibile (ortogonalmente al Sizer)
+    
   Va detto che è possibile combinare 2 o più flag con il simbolo `|` (si chiama *pipe*). Vediamo qualche esempio:
   
 
@@ -197,13 +197,13 @@ Il prossimo codice crea un layout orizzontale con 2 pulsanti che vogliamo ridime
             super().__init__(None, title="BoxSizer Orizzontale")
             panel = wx.Panel(self)
             box = wx.BoxSizer(wx.HORIZONTAL)
-            self.p1 = wx.Button(panel, label="testo1")
-            self.p2 = wx.Button(panel, label="testo2")
+            p1 = wx.Button(panel, label="testo1")
+            p2 = wx.Button(panel, label="testo2")
             
             # i 2 pulsanti si espandono allo stesso modo
             # e hanno 10 pixel di bordo (fisso) in tutte le direzioni.
-            box.Add(self.p1, proportion=1, flag=wx.ALL, border=10)
-            box.Add(self.p2, proportion=1, flag=wx.ALL, border=10)
+            box.Add(p1, proportion=1, flag=wx.ALL, border=10)
+            box.Add(p2, proportion=1, flag=wx.ALL, border=10)
             
             panel.SetSizer(box)
             self.Centre()

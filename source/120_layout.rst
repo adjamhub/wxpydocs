@@ -481,7 +481,7 @@ Le funzioni per allargare righe e colonne sono rispettivamente:
 Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allungare la seconda colonna e la terza riga
 
 
-.. image:: images/wxFlexGridLayout.jpg
+.. image:: images/EsempioFlexGridSizer.png
 
 
 .. code:: python
@@ -489,55 +489,52 @@ Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allun
     import wx
 
     class Esempio(wx.Frame):
-        
+
         def __init__(self):
             super().__init__(None, title="FlexGridSizer")
-            
+
             panel = wx.Panel(self)
-            box = wx.BoxSizer(wx.VERTICAL)
-            
-            flex = wx.FlexGridSizer(rows=3, cols=2, vgap=10, hgap=25)
-            
+
+            flex = wx.FlexGridSizer(rows=4, cols=2, vgap=5, hgap=5)
+
+            mailText = wx.StaticText(panel, label="Mail")
+            flex.Add(mailText, proportion=0, flag=wx.ALL, border=5)
+
+            mailTextControl = wx.TextCtrl(panel)
+            flex.Add(mailTextControl, proportion=0, flag=wx.EXPAND|wx.ALL, border=5)
+
             titolo = wx.StaticText(panel, label="Titolo")
-            flex.Add(titolo)
-            
-            tcTitle = wx.TextCtrl(panel)
-            flex.Add(tcTitle, 1, wx.EXPAND)
-            
-            autore = wx.StaticText(panel, label="Autore")
-            flex.Add(autore)
-            
-            tcAuthor = wx.TextCtrl(panel)
-            flex.Add(tcAuthor, 1, wx.EXPAND)
-            
+            flex.Add(titolo, proportion=0, flag=wx.ALL, border=5)
+
+            titoloTextControl = wx.TextCtrl(panel)
+            flex.Add(titoloTextControl, proportion=0, flag=wx.EXPAND|wx.ALL, border=5)
+
             testo = wx.StaticText(panel, label="Testo")
-            flex.Add(testo)
-            
-            tcLyric = wx.TextCtrl(panel, style=wx.TE_MULTILINE)
-            flex.Add(tcLyric, 1, wx.EXPAND)
+            flex.Add(testo, proportion=0, flag=wx.ALL, border=5)
+
+            testoTextControl = wx.TextCtrl(panel, style=wx.TE_MULTILINE)
+            flex.Add(testoTextControl, proportion=0, flag=wx.EXPAND|wx.ALL, border=5)
+
+            vuota = wx.StaticText(panel, label="")
+            flex.Add(vuota,proportion=0, flag=wx.ALL, border=5)
+
+            pulsante = wx.Button(panel, label="INVIA")
+            flex.Add(pulsante,proportion=0, flag=wx.EXPAND|wx.ALL, border=5)
 
             flex.AddGrowableRow(2, proportion=1)
             flex.AddGrowableCol(1, proportion=1)
-            box.Add(flex, proportion=1, flag=wx.ALL|wx.EXPAND, border=10)
             
-            box.Add((-1, 10))  # spazio verticale di 10 pixel
-
-            hbox = wx.BoxSizer(wx.HORIZONTAL)
-            self.ok = wx.Button(panel, label="OK")
-            self.cancel = wx.Button(panel, label="CANCEL")
-            hbox.Add(self.ok, flag=wx.LEFT, border=10)
-            hbox.Add(self.cancel, flag=wx.LEFT, border=10)
-            box.Add(hbox,flag=wx.ALIGN_RIGHT|wx.RIGHT|wx.BOTTOM,border=10)
-
-            panel.SetSizer(box)
+            self.SetMinSize( (200,300) )
+            panel.SetSizer(flex)
             self.Centre()
-            
+
     # ----------------------------------------
     if __name__ == "__main__":
         app = wx.App()
         window = Esempio()
         window.Show()
         app.MainLoop()
+
 
 
 GridBagSizer

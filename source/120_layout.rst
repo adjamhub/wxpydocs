@@ -140,7 +140,7 @@ Vediamo i parametri:
   I flag di allineamento possono decidere l'allineamento della widget rispetto al contenitore (il layout stesso). In questo caso dobbiamo distinguere il comportamento a
   seconda del contenitore. Mi spiego.
   
-  In un layout orizzontale, gli allineamenti disponibili sono:
+  In un **layout orizzontale**, gli allineamenti disponibili sono:
 
     * wx.ALIGN_TOP, incolonnata in alto
     
@@ -148,15 +148,19 @@ Vediamo i parametri:
     
     * wx.ALIGN_CENTER_VERTICAL, allineamento verticale al centro
         
-  In un layout verticale, gli allineamenti disponibili sono:
+  In un **layout verticale**, gli allineamenti disponibili sono:
  
     * wx.ALIGN_LEFT, allineata a sinistra
     
     * wx.ALIGN_RIGHT, allineata a destra
         
-    * wx.ALIGN_CENTER_HORIZONTAL, allinamento orizzontale al centro
-    
-  C'è inoltre un ultimo flag che permette alla widget di espandersi nella direzione ortogonale al layout (se non provi, non capisci...)
+    * wx.ALIGN_CENTER_HORIZONTAL, allineamento orizzontale al centro
+
+  In un **layout a griglia** funzionano tutti gli allineamenti indicati e in più il seguente:
+  
+    * wx.ALIGN_CENTER, allineamento centrato orizzontalmente e verticalmente
+          
+  C'è inoltre un ultimo flag, alternativo a tutti gli altri flag di allineamento, che permette alla widget di espandersi nella direzione ortogonale al layout
     
     * wx.EXPAND: widget espansa su tutto lo spazio disponibile (ortogonalmente al Sizer)
     
@@ -258,40 +262,36 @@ orizzontale in quello verticale principale. Ad un certo punto ho aggiunto anche 
     import wx
 
     class Esempio(wx.Frame):
-        
+
         def __init__(self):
             super().__init__(None, title="Prova layout con BoxSizer")
-            
+
             panel = wx.Panel(self)
             vbox = wx.BoxSizer(wx.VERTICAL)
-            
+
             hbox1 = wx.BoxSizer(wx.HORIZONTAL)
-            self.st1 = wx.StaticText(panel, label="Cerca: ")
+            st1 = wx.StaticText(panel, label="Cerca: ")
             self.tc1 = wx.TextCtrl(panel)
-            hbox1.Add(self.st1, flag=wx.RIGHT, border=10)
-            hbox1.Add(self.tc1, proportion=1)
-            vbox.Add(hbox1,flag=wx.EXPAND | wx.ALL, border=10)
-            
-            vbox.Add((-1, 10))  # spazio verticale di 10 pixel, orizzontale nulla
-            
+            hbox1.Add(st1, proportion = 0 , flag = wx.ALL, border = 5)
+            hbox1.Add(self.tc1, proportion = 1, flag = wx.ALL, border = 5)
+            vbox.Add(hbox1,proportion = 0 , flag = wx.ALL | wx.EXPAND, border = 5)
+
             hbox2 = wx.BoxSizer(wx.HORIZONTAL)
-            self.st2 = wx.StaticText(panel, label="Risultati della ricerca")
-            hbox2.Add(self.st2)
-            vbox.Add(hbox2,flag=wx.EXPAND | wx.LEFT, border=10)
-        
+            st2 = wx.StaticText(panel, label="Risultati della ricerca")
+            hbox2.Add(st2, proportion = 0, flag = wx.ALL | wx.ALIGN_BOTTOM, border = 5)
+            vbox.Add(hbox2,proportion = 0, flag = wx.ALL | wx.EXPAND, border = 5)
+
             hbox3 = wx.BoxSizer(wx.HORIZONTAL)
             self.tc2 = wx.TextCtrl(panel, style=wx.TE_MULTILINE)
-            hbox3.Add(self.tc2, proportion=1, flag=wx.EXPAND)
-            vbox.Add(hbox3,proportion=1,flag=wx.EXPAND|wx.ALL, border=10)
-
-            vbox.Add((-1, 10))  # spazio verticale di 10 pixel, orizzontale nulla
+            hbox3.Add(self.tc2, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
+            vbox.Add(hbox3, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
 
             hbox4 = wx.BoxSizer(wx.HORIZONTAL)
-            self.ok = wx.Button(panel, label="OK")
-            self.cancel = wx.Button(panel, label="CANCEL")
-            hbox4.Add(self.ok, flag=wx.LEFT, border=10)
-            hbox4.Add(self.cancel, flag=wx.LEFT, border=10)
-            vbox.Add(hbox4,flag=wx.ALIGN_RIGHT | wx.RIGHT | wx.BOTTOM,border=10)
+            pulsanteOk = wx.Button(panel, label="OK")
+            pulsanteCancel = wx.Button(panel, label="CANCEL")
+            hbox4.Add(pulsanteOk, proportion = 0, flag = wx.ALL, border = 5)
+            hbox4.Add(pulsanteCancel, proportion = 0, flag = wx.ALL, border = 5)
+            vbox.Add(hbox4, proportion = 0, flag = wx.ALL | wx.ALIGN_RIGHT, border = 5)
 
             panel.SetSizer(vbox)
             self.Centre()
@@ -304,9 +304,16 @@ orizzontale in quello verticale principale. Ad un certo punto ho aggiunto anche 
         app.MainLoop()
 
 
-Capisco perfettamente che non vi sentiate ancora in grado di implementare layout così complicati! Questo l'ho messo apposta perché possiate curiosare in 
-questo codice quando vi troverete ad implementare qualcosa di simile (o magari poco più semplice... accadrà molto presto!!!).
+Capisco perfettamente che non vi sentiate ancora in grado di implementare layout così complicati! 
+Scrivo però alcuni suggerimenti banali:
 
+    * scrivete sempre tutti i parametri nella funzione *Add*: *sizer.Add(widget, proportion = 0, flag = wx.ALL, border = 5)*
+
+    * partiamo da una situazione semplice: proporzione ZERO, e bordo 5 da tutti i lati.
+    
+    * se qualcosa non quadra, fate una modifica per volta e guardate subito cosa succede!
+    
+    
 
 StaticBoxSizer
 ==============
@@ -319,10 +326,10 @@ A livello operativo bisogna dunque fornire, in fase di definizione, anche un gen
 .. code:: python
 
     # se vuoi una BoxSizer
-    box1 = wx.BoxSizer( wx.HORIZONTAL )
+    box = wx.BoxSizer( wx.HORIZONTAL )
 
     # se vuoi una StaticBoxSizer
-    box2 = wx.StaticBoxSizer( wx.HORIZONTAL, panel, "titolo" )
+    sbox = wx.StaticBoxSizer( wx.HORIZONTAL, panel, "titolo" )
 
 
 Negli esempi relativi al BoxSizer provate a cambiarne qualcuno con uno StaticBoxSizer per apprezzare la differenza. E poi passate al prossimo layout!
@@ -364,15 +371,15 @@ Alla luce delle nuove conoscenze acquisite, facciamo subito una prova semplice s
 
             grid = wx.GridSizer(rows = 2, cols = 2, vgap = 10, hgap = 10)
 
-            self.st = wx.StaticText(panel, label="Sono qui")
-            self.bt = wx.Button(panel, label="pulsante")
-            self.cb = wx.CheckBox(panel, label="Non toccarmi")
-            self.rb = wx.RadioButton(panel, label="Ho capito")
+            label = wx.StaticText(panel, label="Sono qui")
+            pulsante = wx.Button(panel, label="pulsante")
+            checkbox = wx.CheckBox(panel, label="Non toccarmi")
+            radio = wx.RadioButton(panel, label="Ho capito")
 
-            grid.Add(self.st, proportion=1, flag=wx.ALIGN_CENTER)
-            grid.Add(self.bt, proportion=1, flag=wx.ALIGN_CENTER)
-            grid.Add(self.cb, proportion=1, flag=wx.ALIGN_CENTER)
-            grid.Add(self.rb, proportion=1, flag=wx.ALIGN_CENTER)
+            grid.Add(label, proportion = 0, flag=wx.ALIGN_TOP, border = 0)
+            grid.Add(pulsante, proportion = 0, flag=wx.ALIGN_CENTER, border = 0)
+            grid.Add(checkbox, proportion = 0, flag=wx.ALIGN_LEFT, border = 0)
+            grid.Add(radio, proportion = 0, flag=wx.ALIGN_BOTTOM, border = 0)
 
             panel.SetSizer(grid)
             self.Centre()
@@ -388,7 +395,19 @@ Alla luce delle nuove conoscenze acquisite, facciamo subito una prova semplice s
 Risultato:
 
 
-.. image:: images/wxGridSizer.jpg
+.. image:: images/wxGridSizer.png
+
+
+.. warning::
+    Anche qui, prima di andare avanti, copia e incolla il primo esempio e fai i seguenti tentativi:
+    
+    * metti *proportion = 1* sui 4 oggetti (nella GridSizer il concetto della proporzione non funziona! Non cambia nulla!)
+
+    * sostituisci il flag del pulsante con wx.EXPAND
+    
+    * aggiungi un bordo a tutti gli oggetti
+    
+    * cambia gli allineamenti per tutti gli oggetti!
 
 
 Come già sperimentato precedentemente, passiamo a visionare il codice e il risultato relativo ad un esempio un pochino più complicato, in cui il GridSizer
@@ -409,21 +428,19 @@ viene inserito dentro un layout verticale, fino a formare una pseudo calcolatric
             
             hbox1 = wx.BoxSizer(wx.HORIZONTAL)
             self.line = wx.TextCtrl(panel)
-            hbox1.Add(self.line, proportion=1)
-            vbox.Add(hbox1,flag=wx.EXPAND|wx.ALL, border=10)
+            hbox1.Add(self.line, proportion = 1, flag = wx.ALL, border = 5)
+            vbox.Add(hbox1, proportion = 1, flag = wx.ALL | wx.EXPAND, border = 5)
             
-            vbox.Add((-1, 10))  # spazio verticale di 10 pixel
-            
-            grid = wx.GridSizer(rows=4, cols=4, vgap=10, hgap=10)
+            grid = wx.GridSizer(rows = 4, cols = 4, vgap = 5, hgap = 5)
             self.labels = "789/456*123-.0=+"
             self.buttons = {}
             many = []
             for lab in self.labels:
                 btn = wx.Button(panel, label=lab)
                 self.buttons[lab] = btn
-                grid.Add(btn, proportion=0,flag=wx.EXPAND)
+                grid.Add(btn, proportion = 0, flag = wx.ALL | wx.EXPAND, border = 5)
 
-            vbox.Add(grid,flag=wx.EXPAND|wx.ALL, border=10)
+            vbox.Add(grid, proportion = 0, flag = wx.ALL | wx.EXPAND, border = 5)
             
             panel.SetSizer(vbox)
             self.Centre()
@@ -459,15 +476,14 @@ La definizione di un FlexGridSizer è identica a quella di un GridSizer:
 
     wx.FlexGridSizer(rows = 1, cols = 0, vgap = 0, hgap = 0)
 
-    # esempio di layout a griglia flessibile con 4 righe e 3 colonne e 5 pixel di magine orizzontale e verticale
+    # esempio di layout con FlexGridSizer con 4 righe e 3 colonne e 5 pixel di margine orizzontale e verticale
     grid = wx.FlexGridSizer( rows = 4 , cols = 3, vgap = 5 , hgap = 5 )
 
     
-Quindi non c'è molto da spiegare: un FlexGridSizer si comporta esattamente come un GridSizer, se non fosse per la possibilità di dire ad una riga 
-(o ad una colonna) di allargarsi secondo lo spazio disponibile. Lo stesso si potrebbe ottenere combinando BoxSizer orizzontale e verticale e lavorando 
-con il parametro proportion, ma forse sarebbe più complicato e comunque sempre meno... *flessibile*.
+La differenza fondamentale fra un GridSizer e un FlexGridSizer è che il GridSizer subisce un espansione in quei campi in cui le widget vengono inserite con flag wx.EXPAND,
+mentre il FlexGridSizer all'inizio non è per niente allungabile: inutile mettere wx.EXPAND!
 
-Le funzioni per allargare righe e colonne sono rispettivamente:
+Per permettere ad un FlexGridSizer di espandere una riga o una colonna bisogna indicarlo esplicitamente con una delle seguenti funzioni:
 
 .. code:: python
 
@@ -478,7 +494,7 @@ Le funzioni per allargare righe e colonne sono rispettivamente:
     AddGrowableCol(colNumber)
     
 
-Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allungare la seconda colonna e la terza riga
+Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allungare la seconda colonna e la terza riga (ricordate che si inizia a contare da ZERO!!!)
 
 
 .. image:: images/EsempioFlexGridSizer.png

@@ -160,10 +160,11 @@ Vediamo i parametri:
   
     * wx.ALIGN_CENTER, allineamento centrato orizzontalmente e verticalmente
           
-  C'è inoltre un ultimo flag, alternativo a tutti gli altri flag di allineamento, che permette alla widget di espandersi nella direzione ortogonale al layout
+  C'è inoltre un ultimo flag, alternativo a tutti gli altri flag di allineamento, che permette alla widget di espandersi verso direzioni predefinite:
     
-    * wx.EXPAND: widget espansa su tutto lo spazio disponibile (ortogonalmente al Sizer)
-    
+    * wx.EXPAND: widget espansa su tutto lo spazio disponibile (ortogonalmente nel caso di un sizer lineare, nelle due direzioni per un sizer a griglia)
+  
+  
   Va detto che è possibile combinare 2 o più flag con il simbolo `|` (si chiama *pipe*). Vediamo qualche esempio:
   
   .. code:: python
@@ -173,8 +174,6 @@ Vediamo i parametri:
       
       # widget allineata a destra con 10 pixel di bordo
       ... flag = wx.ALIGN_RIGHT | wx.RIGHT, border = 10 )
-    
-  E così via...
 
 * **border** rappresenta la dimensione in pixel del bordo della widget, nelle direzioni indicate dai flag di bordo (se non ci sono flag di bordo, è un parametro inutile).
 
@@ -353,7 +352,6 @@ Ok, adesso proviamo a guadagnare punti a favore della OOP. Come si fa ad aggiung
 Beh... perché derivano entrambe dalla stessa classe (la classe **wx.Sizer**, che **non** studieremo) ed ereditano entrambe la funzione **Add**. Con che logica
 vengono aggiunte le widget alla GridSizer tramite la funione Add? In fila, a partire da in alto a sinistra, poi si procede in riga e terminata la riga in alto si
 continua sotto.
-
 
 Alla luce delle nuove conoscenze acquisite, facciamo subito una prova semplice semplice:
 
@@ -592,14 +590,13 @@ Di default le caselle della griglia mantengono la loro proporzione se la finestr
     
     # ...
     # numero di riga
-    bar.AddGrowableRow (row)
+    bag.AddGrowableRow (row)
     # ...
     # numero di colonna
-    bar.AddGrowableCol (col)
+    bag.AddGrowableCol (col)
 
 
-Per concludere arriviamo finalmente all'ultimo esempio con un layout GridBagSizer. In questo esempio l'idea è quella di realizzare una griglia di 3 righe per 5 colonne: le 3 righe sono evidenti nel disegno; nella prima riga è occupata solo la prima casella ( pos = (0,0) ); la seconda riga è tutta occupata da un'unica
-widget; nella terza riga sono occupate dai pulsanti solo le ultime 2 caselle.
+Per concludere arriviamo finalmente all'ultimo esempio con un layout GridBagSizer. In questo esempio l'idea è quella di realizzare una griglia di 3 righe per 5 colonne: le 3 righe sono evidenti nel disegno; nella prima riga è occupata solo la prima casella ( pos = (0,0) ); la seconda riga è tutta occupata da un'unica widget; nella terza riga sono occupate dai pulsanti solo le ultime 2 caselle.
 
 
 .. image:: images/wxGridBagSizerLayout.jpg

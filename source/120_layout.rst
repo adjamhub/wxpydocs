@@ -468,14 +468,10 @@ Le funzioni per allargare righe e colonne sono rispettivamente:
 .. code:: python
 
     # Permette di allungare una riga
-    # Il primo parametro è il numero di riga (si inizia a contare da ZERO)
-    # Il secondo è la solita proportion: mettete 1
-    AddGrowableRow(row, proportion=0)
+    AddGrowableRow(rowNumber)
     
     # Permette di allungare una colonne
-    # Il primo parametro è il numero di colonna (si inizia a contare da ZERO)
-    # Il secondo è la solita proportion: mettete 1
-    AddGrowableCol(1, proportion=1)
+    AddGrowableCol(colNumber)
     
 
 Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allungare la seconda colonna e la terza riga
@@ -521,8 +517,8 @@ Nell'esempio che segue viene utilizzato un FlexGridSizer per permettere di allun
             pulsante = wx.Button(panel, label="INVIA")
             flex.Add(pulsante,proportion=0, flag=wx.EXPAND|wx.ALL, border=5)
 
-            flex.AddGrowableRow(2, proportion=1)
-            flex.AddGrowableCol(1, proportion=1)
+            flex.AddGrowableRow(2)
+            flex.AddGrowableCol(1)
             
             self.SetMinSize( (200,300) )
             panel.SetSizer(flex)

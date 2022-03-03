@@ -115,19 +115,18 @@ Vediamo i parametri:
 
 * **proportion** può essere 0,1,2
 
-    * 0 (valore di *default*, ma poco usato) significa che la widget non si ridimensionerà
+    * 0 (valore di *default*) significa che la widget non si ridimensionerà
     
     * 1 significa che la widget si ridimensionerà proporzionalmente al suo contenitore
     
-    * 2 significa che la widget cercherà di occupare il doppio del posto di quelle con valore 1 :)
+    * 2 significa che la widget cercherà di occupare il doppio del posto di quelle con valore 1
 
-* **border** (anche se è l'ultimo lo metto prima, perché il prossimo è più lungo) rappresenta la dimensione in pixel del bordo della widget, 
-  nelle direzioni indicate in flag (se non ci sono flag, è un parametro inutile).
+* **flag** permette di decidere come la widget deve comportarsi **all'interno del layout**.
 
-* **flag** permette di inserire alcune informazioni su come la widget deve comportarsi **all'interno del layout**.
-
-  La direzione verso cui avere bordo, che può essere:
-
+  Diciamo subito che esistono 2 tipi di flag: flag di bordo e flag di allineamento.
+  
+  I flag di bordo possono decidere *la direzione del bordo* fra una widget e l'altra:
+  
     * wx.TOP: bordo verso l'alto
     
     * wx.RIGHT: bordo verso destra
@@ -136,31 +135,33 @@ Vediamo i parametri:
     
     * wx.LEFT: bordo verso sinistra
     
-    * wx.ALL: bordo in tutte le direzione
-    
-  La direzione di allinamento della widget, che può essere:
+    * wx.ALL: bordo in tutte le direzioni
   
-    * wx.ALIGN_LEFT, allineata a sinistra
-    
-    * wx.ALIGN_RIGHT, allineata a destra
-    
+  I flag di allineamento possono decidere l'allineamento della widget rispetto al contenitore (il layout stesso). In questo caso dobbiamo distinguere il comportamento a
+  seconda del contenitore. Mi spiego.
+  
+  In un layout orizzontale, gli allineamenti disponibili sono:
+
     * wx.ALIGN_TOP, incolonnata in alto
     
     * wx.ALIGN_BOTTOM, incolonnata in basso
     
-    * wx.ALIGN_CENTER_VERTICAL, allinamento verticale al centro
+    * wx.ALIGN_CENTER_VERTICAL, allineamento verticale al centro
+        
+  In un layout verticale, gli allineamenti disponibili sono:
+ 
+    * wx.ALIGN_LEFT, allineata a sinistra
     
+    * wx.ALIGN_RIGHT, allineata a destra
+        
     * wx.ALIGN_CENTER_HORIZONTAL, allinamento orizzontale al centro
     
-    * wx.ALIGN_CENTER, al centro, verticalmente e orizzontalmente
-
   C'è inoltre un ultimo flag che permette alla widget di espandersi nella direzione ortogonale al layout (se non provi, non capisci...)
     
     * wx.EXPAND: widget espansa su tutto lo spazio disponibile (ortogonalmente al Sizer)
     
   Va detto che è possibile combinare 2 o più flag con il simbolo `|` (si chiama *pipe*). Vediamo qualche esempio:
   
-
   .. code:: python
 
       # bordo in alto e a sinistra con la widget in espansione
@@ -170,6 +171,9 @@ Vediamo i parametri:
       ... flag = wx.ALIGN_RIGHT | wx.RIGHT, border = 10 )
     
   E così via...
+
+* **border** rappresenta la dimensione in pixel del bordo della widget, nelle direzioni indicate dai flag di bordo (se non ci sono flag di bordo, è un parametro inutile).
+
 
 Quando hai finito di lavorare con layout e widget devi applicare il layout al suo contenitore, che nei nostri esempi sarà sempre un pannello, quindi dovrai fare 
 una cosa del genere:

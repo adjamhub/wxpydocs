@@ -567,7 +567,7 @@ In questo Sizer è stato reimplementato il metodo *Add*, l'unico utilizzabile pe
 
 .. code:: python
 
-    bag = wx.GridBagSizer( 10, 10 )
+    bag = wx.GridBagSizer( vgap=5, hgap=5 )
     bag.Add ( widget , pos = (row,column) , span = wx.DefaultSpan, flag = 0, border = 0)
     
 Vediamo i parametri:
@@ -586,7 +586,7 @@ Di default le caselle della griglia mantengono la loro proporzione se la finestr
 
 .. code:: python
 
-    bag = wx.GridBagSizer( 10, 10 )
+    bag = wx.GridBagSizer( vgap=5, hgap=5 )
     
     # ...
     # numero di riga
@@ -596,10 +596,23 @@ Di default le caselle della griglia mantengono la loro proporzione se la finestr
     bag.AddGrowableCol (col)
 
 
-Per concludere arriviamo finalmente all'ultimo esempio con un layout GridBagSizer. In questo esempio l'idea è quella di realizzare una griglia di 3 righe per 5 colonne: le 3 righe sono evidenti nel disegno; nella prima riga è occupata solo la prima casella ( pos = (0,0) ); la seconda riga è tutta occupata da un'unica widget; nella terza riga sono occupate dai pulsanti solo le ultime 2 caselle.
-
+Per concludere arriviamo finalmente all'ultimo esempio con un layout GridBagSizer. Stavolta parto dall'immagine del layout da disegnare:
 
 .. image:: images/wxGridBagSizerLayout.jpg
+
+L'idea con cui realizzarlo è abbastanza semplice: provate a dividere con qualche linea *immaginaria* il layout in questione e a formulare un piano d'azione. In questo primo esempio
+ho provato io a darvi un'idea di come potete organizzare.
+
+.. image:: images/wxGridBagSizerPlan.png
+
+Concludo con qualche appunto prima di farvi vedere il codice (che a questo punto dovreste già immaginare): 
+
+    * gli oggetti che non hanno span o che non capitano in righe o colonne *growable* non hanno bisogno di wx.EXPAND
+
+    * gli oggetti che hanno span o che capitano in righe o colonne *growable*, per essere loro stessi espandibili, hanno bisogno di wx.EXPAND
+    
+    * la riga e la colonna *growable* (almeno una per dimensione) rendono il layout fluido: per verificarlo, provate a commentare quelle righe
+    
 
 
 Ecco il codice che implementa quest'ultimo esempio:
@@ -610,36 +623,37 @@ Ecco il codice che implementa quest'ultimo esempio:
     import wx
 
     class Esempio(wx.Frame):
-        
+
         def __init__(self):
             super().__init__(None, title="GridBagSizer")
-            
+
             panel = wx.Panel(self)
-            bag = wx.GridBagSizer(4,4)
-            
+            bag = wx.GridBagSizer(vgap=5, hgap=5)
+
             text = wx.StaticText(panel, label="Inserisci nome: ")
-            bag.Add(text, pos=(0,0), flag=wx.TOP|wx.LEFT|wx.BOTTOM, border=5)
+            bag.Add(text, pos=(0,0), flag=wx.ALL, border=5)
 
             tc = wx.TextCtrl(panel)
-            bag.Add(tc, pos=(1,0), span=(1,5), flag=wx.EXPAND|wx.LEFT|wx.RIGHT, border=5)
+            bag.Add(tc, pos=(1,0), span=(1,4), flag=wx.ALL | wx.EXPAND, border=5)
 
             buttonOk = wx.Button(panel, label="Ok")
             buttonClose = wx.Button(panel, label="Close")
-            bag.Add(buttonOk, pos=(3,3))
-            bag.Add(buttonClose, pos=(3,4), flag=wx.RIGHT|wx.BOTTOM, border=10)
-            
+            bag.Add(buttonOk, pos=(3,2), flag=wx.ALL, border=5)
+            bag.Add(buttonClose, pos=(3,3), flag=wx.ALL, border=5)
+
             bag.AddGrowableCol(1)
             bag.AddGrowableRow(2)
+            
             panel.SetSizer(bag)
             self.Centre()
-            
+
     # ----------------------------------------
     if __name__ == "__main__":
         app = wx.App()
         window = Esempio()
         window.Show()
         app.MainLoop()
-
+        
 
 .. tip::
     Ok, state provando a creare un layout, partendo da una idea che avete e non state riuscendo... Ci sono due suggerimenti che posso darvi.
@@ -708,3 +722,4 @@ e *wx.Window.WindowToClientSize*.
 In generale, c'è una parte specifica della documentazione a proposito di questo problema: https://docs.wxpython.org/window_sizing_overview.html
 
 Se invece pensate sia sufficiente quello che avete visto qui... passate agli esercizi del prossimo capitolo!!!
+

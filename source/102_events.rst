@@ -27,8 +27,8 @@ e ad eseguirlo per vedere cosa succede!
         
         def __init__(self):
             super().__init__(None, title="Cliccami")
-            self.pulsante = wx.Button(self, label="Chiudi tutto")
-            self.pulsante.Bind(wx.EVT_BUTTON, self.chiudi)
+            pulsante = wx.Button(self, label="Chiudi tutto")
+            pulsante.Bind(wx.EVT_BUTTON, self.chiudi)
             
         def chiudi(self, evt):
             self.Close()
@@ -106,10 +106,10 @@ alla stessa funzione. Ma come si può distinguere quale pulsante (o più in gene
 
         def __init__(self):
             super().__init__(None, title="2 pulsanti, 1 funzione")
-            self.pulsante1 = wx.Button(self, label="pulsante1", pos=(5,5), size=(100,30))
-            self.pulsante2 = wx.Button(self, label="pulsante2", pos=(120,5), size=(100,30))
-            self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
-            self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+            pulsante1 = wx.Button(self, label="pulsante1", pos=(5,5), size=(100,30))
+            pulsante2 = wx.Button(self, label="pulsante2", pos=(120,5), size=(100,30))
+            pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+            pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
 
         def faiQualcosa(self, event):
             # ok... chi mi ha cliccato?
@@ -145,10 +145,10 @@ Il codice nel nostro esempio specifico diventa il seguente:
             super().__init__(None, title="2 pulsanti, 1 funzione")
 
             # i due pulsanti sono identificati con ID 1 e 2
-            self.pulsante1 = wx.Button(self, label="pulsante 1", pos=(5,5), size=(100,30), id=1)
-            self.pulsante2 = wx.Button(self, label="pulsante 2", pos=(120,5), size=(100,30), id=2)
-            self.pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
-            self.pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+            pulsante1 = wx.Button(self, label="pulsante 1", pos=(5,5), size=(100,30), id=1)
+            pulsante2 = wx.Button(self, label="pulsante 2", pos=(120,5), size=(100,30), id=2)
+            pulsante1.Bind(wx.EVT_BUTTON, self.faiQualcosa)
+            pulsante2.Bind(wx.EVT_BUTTON, self.faiQualcosa)
 
         def faiQualcosa(self, evt):
             # la funzione GetId ci dice l'ID della widget che ha scatenato l'evento
@@ -203,9 +203,10 @@ Come al solito... copiate e provate!
 
 .. note::
     In questo unico caso, in cui si intercetta l'evento **wx.EVT_CLOSE** è necessario chiudere la finestra utilizzando *Destroy()* invece di *Close(True)*.
-    Infatti la funzione *Close()* genera un evento EVT_CLOSE che di solito chiama la funzione di chiusura predefinita. Se in questo caso usassimo Close(True)
-    dentro la funzione chiudi() si genererebbe un nuovo evento wx.EVT_CLOSE, che richiamerebbe la funzioni chiudi(), che richiamerebbe la funzione Close()...
-    dando vita ad un ciclo infinito.
+    Infatti la funzione *Close()* genera un evento EVT_CLOSE che di solito chiama la funzione di chiusura predefinita. 
+    
+    Se in questo caso usassimo Close(True) dentro la funzione chiudi() si genererebbe un nuovo evento wx.EVT_CLOSE, che richiamerebbe la funzioni chiudi(), 
+    che richiamerebbe la funzione Close()... dando vita ad un ciclo infinito.
     
 
 Ok, definiti gli eventi più semplici e capito come collegarli alle widget, vediamo le widgets e i layout per creare delle applicazioni con un look consistente.
